@@ -1,37 +1,71 @@
-## Welcome to GitHub Pages
+---
+title: about
+date: 1992-07-03 11:45:00
+type: about
+layout: about
+---
 
-You can use the [editor on GitHub](https://github.com/wudoer/wudoer.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## 吴志明/zhiming.wu
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+#### 高级项目经理/Senior Project Manager
 
-### Markdown
+Email	wudoer@qqo.com
+Tel		13164656361
+Blog      https://wudoer.gitee.io
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### 友情链接
 
-```markdown
-Syntax highlighted code block
+#### 关于我
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+#### 工作经历
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+#### 项目经历
 
-### Jekyll Themes
+#### 证书清单
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/wudoer/wudoer.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+|   证书名称   | 学习时间 | 证书图片 | 备注 |
+| :----------: | :------: | :------: | :--: |
+| 硕士学位证书 |          |          |      |
+| 研究生毕业证 |          |          |      |
+|  消防资格证  |          |          |      |
+|  一级建造师  |          |          |      |
+|  二级建造师  |          |          |      |
+|   PMP证书    |          |          |      |
+| 学士学位证书 |          |          |      |
+|  本科毕业证  |          |          |      |
+|  大专毕业证  |          |          |      |
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+#### 教育经历
+
+|     时间      |   学习地点   |     学习课程     | 学习成果 |
+| :-----------: | :----------: | :--------------: | :------: |
+|               |              |                  |          |
+|               |              |                  |          |
+| 2012.9-2015.6 | 湖北理工学院 | 机械制造及自动化 | 大专毕业 |
+
+
+
+## 2020年
+
+#### 2020年3月
+
+###### 计划
+
+| 分类 |     项目     | 时间节点 | 日均 |      量化指标       |   结果输出    | 备注 |
+| :--: | :----------: | :------: | :--: | :-----------------: | :-----------: | :--: |
+| 工作 |   泰安圣奥   |   月底   |  1   |   4月份不相应需求   | 项目实施报告  |      |
+| 工作 |   宝武集团   |   月底   |  1   |      项目启动       | 项目调研报告  |      |
+| 工作 |   IEAM手册   |   月底   |  1   |    对内完成交付     | IEAM-操作手册 |      |
+| 学习 |   学士英语   |   月底   |  1   |   平均分70分梯度    | 考试通过概率  |      |
+| 学习 |   PMP考证    |   月底   |  2   |      模拟1通过      |  PMP学习总结  |      |
+| 阅读 |   四书五经   |   月底   |  2   |    摘选金句99句     |   阅读笔记    |      |
+| 锻炼 | 锻炼1000分钟 |   月底   |  1   | 能够完成一口气5公里 |   锻炼月报    |      |
+
+###### 总结
+
