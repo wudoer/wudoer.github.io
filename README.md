@@ -1,10 +1,3 @@
----
-title: about
-date: 1992-07-03 11:45:00
-type: about
-layout: about
----
-
 ## 吴志明/zhiming.wu
 
 #### 高级项目经理/Senior Project Manager
