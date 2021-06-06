@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.wudoer.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="摘要：Python基础教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础教程">
+<meta property="og:url" content="http://www.wudoer.com/jishu/Python/Study/Runoob/index.html">
+<meta property="og:site_name" content="吴敌">
+<meta property="og:description" content="摘要：Python基础教程">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-31T16:00:00.000Z">
+<meta property="article:author" content="吴敌">
+<meta property="article:tag" content="吴敌">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.wudoer.com/jishu/Python/Study/Runoob/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Python基础教程 | 吴敌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴敌</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">吴敌</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">24</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.wudoer.com/jishu/Python/Study/Runoob/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="吴敌">
+      <meta itemprop="description" content="吴敌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴敌">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python基础教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-01T00:00:00+08:00">2020-11-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><font color="red">摘要：</font>Python基础教程</p>
+<span id="more"></span>
+
+
+
+<h1 id="Python3-教程"><a href="#Python3-教程" class="headerlink" title="Python3 教程"></a>Python3 教程</h1><h2 id="查看Python版本"><a href="#查看Python版本" class="headerlink" title="查看Python版本"></a>查看Python版本</h2><pre><code class="cmd">python3 -v
+</code></pre>
+<h1 id="A-Python3-语法"><a href="#A-Python3-语法" class="headerlink" title="A-Python3 语法"></a>A-Python3 语法</h1><h1 id="B-Python3-环境搭建"><a href="#B-Python3-环境搭建" class="headerlink" title="B-Python3 环境搭建"></a>B-Python3 环境搭建</h1><h1 id="C-Python3-基础语法"><a href="#C-Python3-基础语法" class="headerlink" title="C-Python3 基础语法"></a>C-Python3 基础语法</h1><h1 id="D-Python3-基本数据类型"><a href="#D-Python3-基本数据类型" class="headerlink" title="D-Python3 基本数据类型"></a>D-Python3 基本数据类型</h1><h1 id="E-Python3-解释器"><a href="#E-Python3-解释器" class="headerlink" title="E-Python3 解释器"></a>E-Python3 解释器</h1><h1 id="F-Python3-注释"><a href="#F-Python3-注释" class="headerlink" title="F-Python3 注释"></a>F-Python3 注释</h1><h1 id="G-Python3-运算符"><a href="#G-Python3-运算符" class="headerlink" title="G-Python3 运算符"></a>G-Python3 运算符</h1><h1 id="H-Python3-数字（Number）"><a href="#H-Python3-数字（Number）" class="headerlink" title="H-Python3 数字（Number）"></a>H-Python3 数字（Number）</h1><h1 id="I-Python3-字符串"><a href="#I-Python3-字符串" class="headerlink" title="I-Python3 字符串"></a>I-Python3 字符串</h1><h1 id="J-Python3-列表"><a href="#J-Python3-列表" class="headerlink" title="J-Python3 列表"></a>J-Python3 列表</h1><h1 id="K-Python3-元组"><a href="#K-Python3-元组" class="headerlink" title="K-Python3 元组"></a>K-Python3 元组</h1><h1 id="L-Python3-字典"><a href="#L-Python3-字典" class="headerlink" title="L-Python3 字典"></a>L-Python3 字典</h1><h1 id="M-Python3-集合"><a href="#M-Python3-集合" class="headerlink" title="M-Python3 集合"></a>M-Python3 集合</h1><h1 id="N-Python3-编程第一步"><a href="#N-Python3-编程第一步" class="headerlink" title="N-Python3 编程第一步"></a>N-Python3 编程第一步</h1><h1 id="O-Python3-条件控制"><a href="#O-Python3-条件控制" class="headerlink" title="O-Python3 条件控制"></a>O-Python3 条件控制</h1><h1 id="P-Python3-循环语法"><a href="#P-Python3-循环语法" class="headerlink" title="P-Python3 循环语法"></a>P-Python3 循环语法</h1><h1 id="Q-Python3-迭代器与生成器"><a href="#Q-Python3-迭代器与生成器" class="headerlink" title="Q-Python3 迭代器与生成器"></a>Q-Python3 迭代器与生成器</h1><h1 id="R-Python3-函数"><a href="#R-Python3-函数" class="headerlink" title="R-Python3 函数"></a>R-Python3 函数</h1><h1 id="S-Python3-数据结构"><a href="#S-Python3-数据结构" class="headerlink" title="S-Python3 数据结构"></a>S-Python3 数据结构</h1><h1 id="T-Python3-模块"><a href="#T-Python3-模块" class="headerlink" title="T-Python3 模块"></a>T-Python3 模块</h1><h1 id="Python3-输入和输出"><a href="#Python3-输入和输出" class="headerlink" title="Python3 输入和输出"></a>Python3 输入和输出</h1><h1 id="Python3-File"><a href="#Python3-File" class="headerlink" title="Python3 File"></a>Python3 File</h1><h1 id="Python3-OS"><a href="#Python3-OS" class="headerlink" title="Python3 OS"></a>Python3 OS</h1><h1 id="Python3-错误和异常"><a href="#Python3-错误和异常" class="headerlink" title="Python3  错误和异常"></a>Python3  错误和异常</h1><h1 id="Python3-面向对象"><a href="#Python3-面向对象" class="headerlink" title="Python3 面向对象"></a>Python3 面向对象</h1><h1 id="Python3-命名空间作用域"><a href="#Python3-命名空间作用域" class="headerlink" title="Python3 命名空间作用域"></a>Python3 命名空间作用域</h1><h1 id="Python3-标准库概览"><a href="#Python3-标准库概览" class="headerlink" title="Python3 标准库概览"></a>Python3 标准库概览</h1><h1 id="Python3-实例"><a href="#Python3-实例" class="headerlink" title="Python3 实例"></a>Python3 实例</h1><h1 id="Python3-测验"><a href="#Python3-测验" class="headerlink" title="Python3 测验"></a>Python3 测验</h1><h1 id="2A-Python3-正则表达式"><a href="#2A-Python3-正则表达式" class="headerlink" title="2A-Python3 正则表达式"></a>2A-Python3 正则表达式</h1><h1 id="2B-python3-CGI编程"><a href="#2B-python3-CGI编程" class="headerlink" title="2B-python3 CGI编程"></a>2B-python3 CGI编程</h1><h1 id="2C-python3-MySQL-mysql-connector"><a href="#2C-python3-MySQL-mysql-connector" class="headerlink" title="2C-python3 MySQL(mysql-connector)"></a>2C-python3 MySQL(mysql-connector)</h1><h1 id="2D-python3-MySQL-pymysql"><a href="#2D-python3-MySQL-pymysql" class="headerlink" title="2D-python3 MySQL(pymysql)"></a>2D-python3 MySQL(pymysql)</h1><h1 id="2E-python3-网络编程"><a href="#2E-python3-网络编程" class="headerlink" title="2E-python3 网络编程"></a>2E-python3 网络编程</h1><h1 id="2F-python3-SMTP发送邮件"><a href="#2F-python3-SMTP发送邮件" class="headerlink" title="2F-python3 SMTP发送邮件"></a>2F-python3 SMTP发送邮件</h1><h1 id="2G-python3-多线程"><a href="#2G-python3-多线程" class="headerlink" title="2G-python3 多线程"></a>2G-python3 多线程</h1><h1 id="2H-python3-XML解析"><a href="#2H-python3-XML解析" class="headerlink" title="2H-python3 XML解析"></a>2H-python3 XML解析</h1><h1 id="2I-python3-JSON"><a href="#2I-python3-JSON" class="headerlink" title="2I-python3 JSON"></a>2I-python3 JSON</h1><h1 id="2J-python3-日期和时间"><a href="#2J-python3-日期和时间" class="headerlink" title="2J-python3 日期和时间"></a>2J-python3 日期和时间</h1><h1 id="2K-python3-内置函数"><a href="#2K-python3-内置函数" class="headerlink" title="2K-python3 内置函数"></a>2K-python3 内置函数</h1><h1 id="2L-python3-MongoDB"><a href="#2L-python3-MongoDB" class="headerlink" title="2L-python3 MongoDB"></a>2L-python3 MongoDB</h1><h1 id="2M-python3-uWSGI安装配置"><a href="#2M-python3-uWSGI安装配置" class="headerlink" title="2M-python3 uWSGI安装配置"></a>2M-python3 uWSGI安装配置</h1>
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/jishu/hexo/Blog/" rel="prev" title="操作手册">
+      <i class="fa fa-chevron-left"></i> 操作手册
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/work%20(1)/CIDC%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/" rel="next" title="CIDC操作手册">
+      CIDC操作手册 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Python3 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BPython%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">查看Python版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-Python3-%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">A-Python3 语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#B-Python3-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">B-Python3 环境搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-Python3-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">C-Python3 基础语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D-Python3-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">D-Python3 基本数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#E-Python3-%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-number">6.</span> <span class="nav-text">E-Python3 解释器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#F-Python3-%E6%B3%A8%E9%87%8A"><span class="nav-number">7.</span> <span class="nav-text">F-Python3 注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#G-Python3-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">8.</span> <span class="nav-text">G-Python3 运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#H-Python3-%E6%95%B0%E5%AD%97%EF%BC%88Number%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">H-Python3 数字（Number）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I-Python3-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">10.</span> <span class="nav-text">I-Python3 字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#J-Python3-%E5%88%97%E8%A1%A8"><span class="nav-number">11.</span> <span class="nav-text">J-Python3 列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#K-Python3-%E5%85%83%E7%BB%84"><span class="nav-number">12.</span> <span class="nav-text">K-Python3 元组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#L-Python3-%E5%AD%97%E5%85%B8"><span class="nav-number">13.</span> <span class="nav-text">L-Python3 字典</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#M-Python3-%E9%9B%86%E5%90%88"><span class="nav-number">14.</span> <span class="nav-text">M-Python3 集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#N-Python3-%E7%BC%96%E7%A8%8B%E7%AC%AC%E4%B8%80%E6%AD%A5"><span class="nav-number">15.</span> <span class="nav-text">N-Python3 编程第一步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#O-Python3-%E6%9D%A1%E4%BB%B6%E6%8E%A7%E5%88%B6"><span class="nav-number">16.</span> <span class="nav-text">O-Python3 条件控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#P-Python3-%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95"><span class="nav-number">17.</span> <span class="nav-text">P-Python3 循环语法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-Python3-%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">18.</span> <span class="nav-text">Q-Python3 迭代器与生成器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#R-Python3-%E5%87%BD%E6%95%B0"><span class="nav-number">19.</span> <span class="nav-text">R-Python3 函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#S-Python3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">20.</span> <span class="nav-text">S-Python3 数据结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#T-Python3-%E6%A8%A1%E5%9D%97"><span class="nav-number">21.</span> <span class="nav-text">T-Python3 模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA"><span class="nav-number">22.</span> <span class="nav-text">Python3 输入和输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-File"><span class="nav-number">23.</span> <span class="nav-text">Python3 File</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-OS"><span class="nav-number">24.</span> <span class="nav-text">Python3 OS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="nav-number">25.</span> <span class="nav-text">Python3  错误和异常</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="nav-number">26.</span> <span class="nav-text">Python3 面向对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">27.</span> <span class="nav-text">Python3 命名空间作用域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E6%A0%87%E5%87%86%E5%BA%93%E6%A6%82%E8%A7%88"><span class="nav-number">28.</span> <span class="nav-text">Python3 标准库概览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E5%AE%9E%E4%BE%8B"><span class="nav-number">29.</span> <span class="nav-text">Python3 实例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3-%E6%B5%8B%E9%AA%8C"><span class="nav-number">30.</span> <span class="nav-text">Python3 测验</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2A-Python3-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">31.</span> <span class="nav-text">2A-Python3 正则表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2B-python3-CGI%E7%BC%96%E7%A8%8B"><span class="nav-number">32.</span> <span class="nav-text">2B-python3 CGI编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2C-python3-MySQL-mysql-connector"><span class="nav-number">33.</span> <span class="nav-text">2C-python3 MySQL(mysql-connector)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2D-python3-MySQL-pymysql"><span class="nav-number">34.</span> <span class="nav-text">2D-python3 MySQL(pymysql)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2E-python3-%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">35.</span> <span class="nav-text">2E-python3 网络编程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2F-python3-SMTP%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6"><span class="nav-number">36.</span> <span class="nav-text">2F-python3 SMTP发送邮件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2G-python3-%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">37.</span> <span class="nav-text">2G-python3 多线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2H-python3-XML%E8%A7%A3%E6%9E%90"><span class="nav-number">38.</span> <span class="nav-text">2H-python3 XML解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2I-python3-JSON"><span class="nav-number">39.</span> <span class="nav-text">2I-python3 JSON</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2J-python3-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="nav-number">40.</span> <span class="nav-text">2J-python3 日期和时间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2K-python3-%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="nav-number">41.</span> <span class="nav-text">2K-python3 内置函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2L-python3-MongoDB"><span class="nav-number">42.</span> <span class="nav-text">2L-python3 MongoDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2M-python3-uWSGI%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-number">43.</span> <span class="nav-text">2M-python3 uWSGI安装配置</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">吴敌</p>
+  <div class="site-description" itemprop="description">吴敌</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:wudoer@live.com" title="E-Mail → mailto:wudoer@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 1992 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴敌</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

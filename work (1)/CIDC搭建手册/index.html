@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.wudoer.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="更新日志：    版本号 更新时间 更新内容    V1.0 2021年4月4日 发布   V1.1 2021年6月3日 更新操作系统安装部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CIDC搭建手册">
+<meta property="og:url" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/index.html">
+<meta property="og:site_name" content="吴敌">
+<meta property="og:description" content="更新日志：    版本号 更新时间 更新内容    V1.0 2021年4月4日 发布   V1.1 2021年6月3日 更新操作系统安装部分">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120347531.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120518954.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120702626.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120832492.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120914407.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606121500939.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/20210603-204544-573-1622724514071.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/20210603-204723-873.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205021019.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205139095.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205321363.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205443241.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205842078.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205931876.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210026936.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210607577.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210131740.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210802168.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211025499.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211057535.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211605049.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211827140.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603212007116.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603212419136.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xshell.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%BB%BAXshell%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%BD%95%E5%85%A5%E5%90%8D%E7%A7%B0%E5%8F%8AIP.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%BD%95%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%8F%8A%E5%AF%86%E7%A0%81.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xshell%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xftp.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%BB%BAXftp%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/Xftp%E8%BF%9E%E6%8E%A5%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xftp%E8%BF%9E%E6%8E%A5.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296256460.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296346848.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296373804.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296403560.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618297516833.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%82%B9%E5%87%BB%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%85%8D%E7%BD%AE%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%82%B9%E5%87%BB%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%BF%9B%E5%85%A5kafka%E7%BB%84%E4%BB%B6bin%E7%9B%AE%E5%BD%95.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE%E6%BA%90.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E5%B7%A5%E4%BD%9C%E6%B5%81.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%BF%A1%E6%81%AF%E5%A1%AB%E5%86%99.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E4%B8%8A%E4%BC%A0%E6%89%A7%E8%A1%8C%E5%99%A8.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E4%B8%8A%E4%BC%A0%E7%AE%97%E6%B3%95%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%AE%A2%E9%98%85%E6%95%B0%E6%8D%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%85%8D%E7%BD%AE.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%BF%90%E8%A1%8C%E5%B7%A5%E4%BD%9C%E6%B5%81.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%85%8D%E7%BD%AE%E9%AA%8C%E8%AF%81.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%B7%BB%E5%8A%A0%E8%A7%92%E8%89%B2.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%B7%BB%E5%8A%A0%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7.png">
+<meta property="og:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7.png">
+<meta property="article:published_time" content="2020-10-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-31T16:00:00.000Z">
+<meta property="article:author" content="吴敌">
+<meta property="article:tag" content="吴敌">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120347531.png">
+
+<link rel="canonical" href="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CIDC搭建手册 | 吴敌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴敌</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">吴敌</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">24</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.wudoer.com/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="吴敌">
+      <meta itemprop="description" content="吴敌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴敌">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CIDC搭建手册
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-01T00:00:00+08:00">2020-11-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><font color="red">更新日志：</font></p>
+<table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>更新时间</th>
+<th>更新内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V1.0</td>
+<td>2021年4月4日</td>
+<td>发布</td>
+</tr>
+<tr>
+<td>V1.1</td>
+<td>2021年6月3日</td>
+<td>更新操作系统安装部分</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h1 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h1><h2 id="服务器Raid"><a href="#服务器Raid" class="headerlink" title="服务器Raid"></a>服务器Raid</h2><h3 id="常见服务器Raid设置方法"><a href="#常见服务器Raid设置方法" class="headerlink" title="常见服务器Raid设置方法"></a>常见服务器Raid设置方法</h3><h4 id="戴尔服务器"><a href="#戴尔服务器" class="headerlink" title="戴尔服务器"></a>戴尔服务器</h4><h3 id="服务器Raid分配"><a href="#服务器Raid分配" class="headerlink" title="服务器Raid分配"></a>服务器Raid分配</h3><table>
+<thead>
+<tr>
+<th align="center">Raid形式</th>
+<th align="center">系统盘分区</th>
+<th align="center">数据盘分区</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10</td>
+<td align="center">200G</td>
+<td align="center">其他</td>
+</tr>
+</tbody></table>
+<h2 id="centos安装"><a href="#centos安装" class="headerlink" title="centos安装"></a>centos安装</h2><h3 id="版本与下载地址"><a href="#版本与下载地址" class="headerlink" title="版本与下载地址"></a>版本与下载地址</h3><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>不带GUI下载链接</th>
+<th>带GUI下载连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V7.6 1810</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="启动盘制作"><a href="#启动盘制作" class="headerlink" title="启动盘制作"></a>启动盘制作</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>下载地址：<a target="_blank" rel="noopener" href="http://rufus.ie/zh/">http://rufus.ie/zh/</a></p>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120347531.png" alt="image-20210606120347531"></p>
+<h4 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h4><table>
+<thead>
+<tr>
+<th>打开软件</th>
+<th>制作设置</th>
+<th>确认</th>
+<th>数据清除</th>
+<th>安装完成</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120518954.png" alt="image-20210606120518954"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120702626.png" alt="image-20210606120702626"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120832492.png" alt="image-20210606120832492"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606120914407.png" alt="image-20210606120914407"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210606121500939.png" alt="image-20210606121500939"></td>
+</tr>
+</tbody></table>
+<h3 id="系统安装-1"><a href="#系统安装-1" class="headerlink" title="系统安装"></a>系统安装</h3><table>
+<thead>
+<tr>
+<th>1-选择安装</th>
+<th>1-1-选择语言</th>
+<th>1-2-选择最小安装</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/20210603-204544-573-1622724514071.png" alt="20210603-204544-573"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/20210603-204723-873.png" alt="20210603-204723-873"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205021019.png" alt="image-20210603205021019"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4-分区配置</td>
+<td>4-1-添加分区</td>
+<td>4-2-分区设置</td>
+<td>4-3-分区结果</td>
+<td>4-4-接受更改</td>
+</tr>
+<tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205139095.png" alt="image-20210603205139095"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205321363.png" alt="image-20210603205321363"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205443241.png" alt="image-20210603205443241"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205842078.png" alt="image-20210603205842078"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603205931876.png" alt="image-20210603205931876"></td>
+</tr>
+<tr>
+<td>5-开始安装</td>
+<td>5-1-用户设置</td>
+<td>5-2-设置root密码</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210026936.png" alt="image-20210603210026936"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210607577.png" alt="image-20210603210607577"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210131740.png" alt="image-20210603210131740"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6安装完成</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603210802168.png" alt="image-20210603210802168"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="ip网络配置"><a href="#ip网络配置" class="headerlink" title="ip网络配置"></a>ip网络配置</h2><h3 id="系统登录"><a href="#系统登录" class="headerlink" title="系统登录"></a>系统登录</h3><table>
+<thead>
+<tr>
+<th>输入root</th>
+<th>输入密码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211025499.png" alt="image-20210603211025499"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211057535.png" alt="image-20210603211057535"></td>
+</tr>
+</tbody></table>
+<p>vi</p>
+<h3 id="配置静态ip"><a href="#配置静态ip" class="headerlink" title="配置静态ip"></a>配置静态ip</h3><h4 id="进入文件目录"><a href="#进入文件目录" class="headerlink" title="进入文件目录"></a>进入文件目录</h4><pre><code class="shell">cd /etc/sysconfig/network-scripts
+ls
+</code></pre>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211605049.png" alt="image-20210603211605049"></p>
+<h4 id="修改为静态IP"><a href="#修改为静态IP" class="headerlink" title="修改为静态IP"></a>修改为静态IP</h4><pre><code class="bash">vi ifcfg-ens1
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>进入文件</th>
+<th>按”i”进入编辑模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603211827140.png" alt="image-20210603211827140"></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603212007116.png" alt="image-20210603212007116"></td>
+</tr>
+<tr>
+<td>修改信息</td>
+<td>按” Esc键 “ 退出编辑模式</td>
+</tr>
+<tr>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/image-20210603212419136.png" alt="image-20210603212419136"></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="磁盘挂载"><a href="#磁盘挂载" class="headerlink" title="磁盘挂载"></a>磁盘挂载</h2><h1 id="链接工具安装"><a href="#链接工具安装" class="headerlink" title="链接工具安装"></a>链接工具安装</h1><h2 id="工具安装包位置"><a href="#工具安装包位置" class="headerlink" title="工具安装包位置"></a>工具安装包位置</h2><blockquote>
+<p>Xftp安装包SVN目录：\5软件交付部\2实施模板\03.CIDC项目实施标准\A-平台部署\2-KVM虚拟化\NetSarangXmanagerEnterprise5</p>
+</blockquote>
+<h2 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h2><blockquote>
+<p>解压安装包后，运行Xme5_.exe文件，安装即可</p>
+</blockquote>
+<h2 id="工具连接"><a href="#工具连接" class="headerlink" title="工具连接"></a>工具连接</h2><h3 id="Xshell"><a href="#Xshell" class="headerlink" title="Xshell"></a>Xshell</h3><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>截图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打开Xshell</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xshell.png" alt="打开Xshell"></td>
+</tr>
+<tr>
+<td>新建连接</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%BB%BAXshell%E8%BF%9E%E6%8E%A5.png" alt="新建Xshell连接"></td>
+</tr>
+<tr>
+<td>录入名称及目标服务器IP</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%BD%95%E5%85%A5%E5%90%8D%E7%A7%B0%E5%8F%8AIP.png" alt="录入名称及IP"></td>
+</tr>
+<tr>
+<td>点击用户身份验证，录入登录用户名及密码</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%BD%95%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%8F%8A%E5%AF%86%E7%A0%81.png" alt="录入用户名及密码"></td>
+</tr>
+<tr>
+<td>打开连接，选中要连接的服务器即可</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xshell%E8%BF%9E%E6%8E%A5.png" alt="打开Xshell连接"></td>
+</tr>
+</tbody></table>
+<h3 id="Xftp"><a href="#Xftp" class="headerlink" title="Xftp"></a>Xftp</h3><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>截图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打开Xftp</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xftp.png" alt="打开Xftp"></td>
+</tr>
+<tr>
+<td>新建连接</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%BB%BAXftp%E8%BF%9E%E6%8E%A5.png" alt="新建Xftp连接"></td>
+</tr>
+<tr>
+<td>录入名称，IP，选择SFTP协议，录入用户名及登录密码</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/Xftp%E8%BF%9E%E6%8E%A5%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF.png" alt="Xftp连接详细信息"></td>
+</tr>
+<tr>
+<td>点击打开，选择要连接的服务器即可</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80Xftp%E8%BF%9E%E6%8E%A5.png" alt="打开Xftp连接"></td>
+</tr>
+</tbody></table>
+<h1 id="安装主控程序"><a href="#安装主控程序" class="headerlink" title="安装主控程序"></a>安装主控程序</h1><h2 id="上传安装包"><a href="#上传安装包" class="headerlink" title="上传安装包"></a>上传安装包</h2><blockquote>
+<p>上传安装包autodeployment.tar.gz至opt目录，通过Xftp软件(Xftp安装包SVN目录：\5软件交付部\2实施模板\03.CIDC项目实施标准\A-平台部署\2-KVM虚拟化\NetSarangXmanagerEnterprise5)</p>
+</blockquote>
+<h2 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h2><h3 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h3><pre><code class="bash">tar -xzf /opt/autodeployment.tar.gz -C /srv  
+</code></pre>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296256460.png" alt="1618296256460"></p>
+<h2 id="安装程序"><a href="#安装程序" class="headerlink" title="安装程序"></a>安装程序</h2><h3 id="执行命令-1"><a href="#执行命令-1" class="headerlink" title="执行命令"></a>执行命令</h3><pre><code class="bash">rpm -ivh /srv/salt-ssh-master/*.rpm --nodeps --force
+</code></pre>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296346848.png" alt="1618296346848"></p>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296373804.png" alt="1618296373804"></p>
+<h2 id="启动程序"><a href="#启动程序" class="headerlink" title="启动程序"></a>启动程序</h2><h3 id="执行命令-2"><a href="#执行命令-2" class="headerlink" title="执行命令"></a>执行命令</h3><pre><code class="bash">systemctl start salt-master &amp;&amp; systemctl enable salt-master
+</code></pre>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618296403560.png" alt="1618296403560"></p>
+<h2 id="配置云主机"><a href="#配置云主机" class="headerlink" title="配置云主机"></a>配置云主机</h2><h3 id="配置-etc-salt-roster"><a href="#配置-etc-salt-roster" class="headerlink" title="配置/etc/salt/roster"></a>配置/etc/salt/roster</h3><h4 id="执行命令-3"><a href="#执行命令-3" class="headerlink" title="执行命令"></a>执行命令</h4><pre><code class="bash">vi /etc/salt/roster
+</code></pre>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><blockquote>
+<p>node01:<br> host: 192.168.1.2<br> user: root<br> passwd: KISCrz@sb!@[!1]<br>node02:<br> host: 192.168.1.3<br> user: root<br> passwd: KISCrz@sb!@[!1]<br>node03:<br> host: 192.168.1.4<br> user: root<br> passwd: KISCrz@sb!@[!1]<br>node04:<br> host: 192.168.1.5<br> user: root<br> passwd: KISCrz@sb!@[!1]<br>node05:<br> host: 192.168.1.6<br> user: root<br> passwd: KISCrz@sb!@[!1]<br>node06:<br> host: 192.168.1.7<br> user: root<br> passwd: KISCrz@sb!@[!1]</p>
+</blockquote>
+<h4 id="测试命令"><a href="#测试命令" class="headerlink" title="测试命令"></a>测试命令</h4><pre><code class="bash">salt-ssh -L &#39;node01,node02,node03,node04,node05,node06&#39; test.ping -i
+</code></pre>
+<p><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/1618297516833.png" alt="1618297516833"></p>
+<h3 id="配置-srv-pillar-servers-sls"><a href="#配置-srv-pillar-servers-sls" class="headerlink" title="配置/srv/pillar/servers.sls"></a>配置/srv/pillar/servers.sls</h3><h4 id="执行命令-4"><a href="#执行命令-4" class="headerlink" title="执行命令"></a>执行命令</h4><pre><code class="bash">vi /srv/pillar/servers.sls
+</code></pre>
+<h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><blockquote>
+<p>hosts:{‘node01’:’192.168.1.2’,’node02’:’192.168.1.3’,’node03’:’192.168.1.4’,’node01’:’192.168.1.5’,’node05’:’192.168.1.6’,’node06’:’192.168.1.7’}<br>master: node01<br>password: KISCrz@sb!@[!1]</p>
+</blockquote>
+<h2 id="执行安装命令"><a href="#执行安装命令" class="headerlink" title="执行安装命令"></a>执行安装命令</h2><h3 id="执行命令-5"><a href="#执行命令-5" class="headerlink" title="执行命令"></a>执行命令</h3><pre><code class="bash">salt-ssh -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls minion.install-host
+salt-ssh -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls minion.refresh-grains
+salt-ssh -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls minion.install
+salt-ssh -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls minion.start
+</code></pre>
+<h3 id="测试命令-1"><a href="#测试命令-1" class="headerlink" title="测试命令"></a>测试命令</h3><pre><code class="bash">salt-ssh -L &#39;node01,node02,node03,node04,node05,node06&#39; grains.item host
+</code></pre>
+<h3 id="允许所有key"><a href="#允许所有key" class="headerlink" title="允许所有key"></a>允许所有key</h3><pre><code class="bash">salt-key -A -y
+</code></pre>
+<h3 id="查看key状态"><a href="#查看key状态" class="headerlink" title="查看key状态"></a>查看key状态</h3><pre><code class="bash">salt-key
+</code></pre>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><pre><code class="bash">salt &#39;*&#39; test.ping
+</code></pre>
+<h1 id="组件安装-目录顺序安装"><a href="#组件安装-目录顺序安装" class="headerlink" title="组件安装(目录顺序安装)"></a>组件安装(目录顺序安装)</h1><h2 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h2><h3 id="执行Tools安装命令"><a href="#执行Tools安装命令" class="headerlink" title="执行Tools安装命令"></a>执行Tools安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls tools.install-expect
+salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls tools.install-gcc
+salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls tools.install-lrzsz
+salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls tools.install-netstat 
+salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls tools.install-unzip 
+salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls tools.install-telnet
+</code></pre>
+<h2 id="RSA（集群免密组件）"><a href="#RSA（集群免密组件）" class="headerlink" title="RSA（集群免密组件）"></a>RSA（集群免密组件）</h2><h3 id="执行RSA安装命令"><a href="#执行RSA安装命令" class="headerlink" title="执行RSA安装命令"></a>执行RSA安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls rsa.init
+</code></pre>
+<h2 id="NTP（集群时间同步）"><a href="#NTP（集群时间同步）" class="headerlink" title="NTP（集群时间同步）"></a>NTP（集群时间同步）</h2><h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><h4 id="执行命令-6"><a href="#执行命令-6" class="headerlink" title="执行命令"></a>执行命令</h4><pre><code class="bash">vi /srv/pillar/ntp.sls
+</code></pre>
+<h4 id="配置文件-2"><a href="#配置文件-2" class="headerlink" title="配置文件"></a>配置文件</h4><blockquote>
+<p>ntp:<br>node_host: node01  //配置ntp服务器地址<br>currentTime: “18:13:00”  //配置ntp服务器时间<br>currentDate: 2021-01-07  //配置ntp服务器日期</p>
+<p>注：时间根据配置时具体时间为准</p>
+</blockquote>
+<h3 id="执行NTP安装命令"><a href="#执行NTP安装命令" class="headerlink" title="执行NTP安装命令"></a>执行NTP安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls ntp.init
+</code></pre>
+<h3 id="执行对时命令"><a href="#执行对时命令" class="headerlink" title="执行对时命令"></a>执行对时命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls ntp.synchronization-time
+</code></pre>
+<h3 id="查看NTP状态"><a href="#查看NTP状态" class="headerlink" title="查看NTP状态"></a>查看NTP状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls ntp.status
+</code></pre>
+<h2 id="Python3（基础环境）"><a href="#Python3（基础环境）" class="headerlink" title="Python3（基础环境）"></a>Python3（基础环境）</h2><h3 id="执行Python3安装命令"><a href="#执行Python3安装命令" class="headerlink" title="执行Python3安装命令"></a>执行Python3安装命令</h3><pre><code class="bash">salt -L &#39;node04,node05,node06&#39; state.sls python3.init
+</code></pre>
+<h2 id="JDK（基础环境）"><a href="#JDK（基础环境）" class="headerlink" title="JDK（基础环境）"></a>JDK（基础环境）</h2><h3 id="执行JDK安装命令"><a href="#执行JDK安装命令" class="headerlink" title="执行JDK安装命令"></a>执行JDK安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,node04,node05,node06&#39; state.sls jdk.init
+</code></pre>
+<h2 id="Meld3（基础环境）"><a href="#Meld3（基础环境）" class="headerlink" title="Meld3（基础环境）"></a>Meld3（基础环境）</h2><h3 id="执行Meld3安装命令"><a href="#执行Meld3安装命令" class="headerlink" title="执行Meld3安装命令"></a>执行Meld3安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls meld3.install
+</code></pre>
+<h2 id="NetCore-（基础环境）"><a href="#NetCore-（基础环境）" class="headerlink" title="NetCore （基础环境）"></a>NetCore （基础环境）</h2><h3 id="执行NetCore安装命令"><a href="#执行NetCore安装命令" class="headerlink" title="执行NetCore安装命令"></a>执行NetCore安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls netcore.init
+</code></pre>
+<h2 id="Setuptools（基础环境）"><a href="#Setuptools（基础环境）" class="headerlink" title="Setuptools（基础环境）"></a>Setuptools（基础环境）</h2><h3 id="执行Setuptools安装程序"><a href="#执行Setuptools安装程序" class="headerlink" title="执行Setuptools安装程序"></a>执行Setuptools安装程序</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls setuptools.install
+</code></pre>
+<h2 id="Supervisor"><a href="#Supervisor" class="headerlink" title="Supervisor"></a>Supervisor</h2><h3 id="执行Supervisor安装程序"><a href="#执行Supervisor安装程序" class="headerlink" title="执行Supervisor安装程序"></a>执行Supervisor安装程序</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls supervisor.init
+</code></pre>
+<h3 id="查看Supervisor状态"><a href="#查看Supervisor状态" class="headerlink" title="查看Supervisor状态"></a>查看Supervisor状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls supervisor.status
+</code></pre>
+<h2 id="nodejs（基础环境）"><a href="#nodejs（基础环境）" class="headerlink" title="nodejs（基础环境）"></a>nodejs（基础环境）</h2><h3 id="执行nodejs安装程序"><a href="#执行nodejs安装程序" class="headerlink" title="执行nodejs安装程序"></a>执行nodejs安装程序</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls nodejs.init
+</code></pre>
+<h2 id="Zookeeper（协调服务）"><a href="#Zookeeper（协调服务）" class="headerlink" title="Zookeeper（协调服务）"></a>Zookeeper（协调服务）</h2><h3 id="执行Zookeeper安装命令"><a href="#执行Zookeeper安装命令" class="headerlink" title="执行Zookeeper安装命令"></a>执行Zookeeper安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls zookeeper.init
+</code></pre>
+<h3 id="查看Zookeeper状态"><a href="#查看Zookeeper状态" class="headerlink" title="查看Zookeeper状态"></a>查看Zookeeper状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls zookeeper.status
+</code></pre>
+<h2 id="Kafka（高吞吐量的分布式发布订阅消息系统）"><a href="#Kafka（高吞吐量的分布式发布订阅消息系统）" class="headerlink" title="Kafka（高吞吐量的分布式发布订阅消息系统）"></a>Kafka（高吞吐量的分布式发布订阅消息系统）</h2><h3 id="执行Kafka安装命令"><a href="#执行Kafka安装命令" class="headerlink" title="执行Kafka安装命令"></a>执行Kafka安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls kafka.init
+</code></pre>
+<h3 id="查看Kafka状态"><a href="#查看Kafka状态" class="headerlink" title="查看Kafka状态"></a>查看Kafka状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls kafka.status
+</code></pre>
+<h2 id="Hadoop（框架）"><a href="#Hadoop（框架）" class="headerlink" title="Hadoop（框架）"></a>Hadoop（框架）</h2><h3 id="执行Hadoop安装命令"><a href="#执行Hadoop安装命令" class="headerlink" title="执行Hadoop安装命令"></a>执行Hadoop安装命令</h3><pre><code class="bash">salt -L &#39;node04,node05,node06&#39; state.sls hadoop.init
+</code></pre>
+<h3 id="查看Hadoop状态"><a href="#查看Hadoop状态" class="headerlink" title="查看Hadoop状态"></a>查看Hadoop状态</h3><pre><code class="bash">salt -L &#39;node04,node05,node06&#39; state.sls hadoop.status
+</code></pre>
+<h2 id="Spark-yarn（大规模数据处理二设计的快速通用计算引擎）"><a href="#Spark-yarn（大规模数据处理二设计的快速通用计算引擎）" class="headerlink" title="Spark-yarn（大规模数据处理二设计的快速通用计算引擎）"></a>Spark-yarn（大规模数据处理二设计的快速通用计算引擎）</h2><h3 id="执行Spark-yarn安装命令"><a href="#执行Spark-yarn安装命令" class="headerlink" title="执行Spark-yarn安装命令"></a>执行Spark-yarn安装命令</h3><pre><code class="bash">salt -L &#39;node04,node05,node06&#39; state.sls spark.init
+</code></pre>
+<h3 id="查看Spark-yarn状态"><a href="#查看Spark-yarn状态" class="headerlink" title="查看Spark-yarn状态"></a>查看Spark-yarn状态</h3><pre><code class="bash">salt -L &#39;node04,node05,node06&#39; state.sls spark.status-exporter
+</code></pre>
+<h2 id="RabbitMQ（数据接入）"><a href="#RabbitMQ（数据接入）" class="headerlink" title="RabbitMQ（数据接入）"></a>RabbitMQ（数据接入）</h2><h3 id="执行RabbitMQ安装命令"><a href="#执行RabbitMQ安装命令" class="headerlink" title="执行RabbitMQ安装命令"></a>执行RabbitMQ安装命令</h3><pre><code class="bash">salt &#39;node01&#39; state.sls rabbitmq.init
+</code></pre>
+<h3 id="查看RabbitMQ状态"><a href="#查看RabbitMQ状态" class="headerlink" title="查看RabbitMQ状态"></a>查看RabbitMQ状态</h3><pre><code class="bash">salt &#39;node01&#39; state.sls rabbitmq.status
+</code></pre>
+<h3 id="查看Rabbitmq-exporter状态"><a href="#查看Rabbitmq-exporter状态" class="headerlink" title="查看Rabbitmq-exporter状态"></a>查看Rabbitmq-exporter状态</h3><pre><code class="bash">salt &#39;node01&#39; state.sls rabbitmq.status-exporter
+</code></pre>
+<h2 id="Consul（数据同步）"><a href="#Consul（数据同步）" class="headerlink" title="Consul（数据同步）"></a>Consul（数据同步）</h2><h3 id="执行Consul安装命令"><a href="#执行Consul安装命令" class="headerlink" title="执行Consul安装命令"></a>执行Consul安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls consul.init
+</code></pre>
+<h3 id="创建集群命令（node01为例）"><a href="#创建集群命令（node01为例）" class="headerlink" title="创建集群命令（node01为例）"></a>创建集群命令（node01为例）</h3><pre><code class="bash">salt &#39;node01&#39; state.sls consul.join
+</code></pre>
+<h3 id="查看Consul状态"><a href="#查看Consul状态" class="headerlink" title="查看Consul状态"></a>查看Consul状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls consul.status
+</code></pre>
+<h2 id="Fabio（负载均衡路由器）"><a href="#Fabio（负载均衡路由器）" class="headerlink" title="Fabio（负载均衡路由器）"></a>Fabio（负载均衡路由器）</h2><h3 id="执行Fabio安装命令"><a href="#执行Fabio安装命令" class="headerlink" title="执行Fabio安装命令"></a>执行Fabio安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls fabio.init
+</code></pre>
+<h3 id="查看Fabio状态"><a href="#查看Fabio状态" class="headerlink" title="查看Fabio状态"></a>查看Fabio状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls fabio.status
+</code></pre>
+<h2 id="nginx（web发布）"><a href="#nginx（web发布）" class="headerlink" title="nginx（web发布）"></a>nginx（web发布）</h2><h3 id="执行nginx安装命令"><a href="#执行nginx安装命令" class="headerlink" title="执行nginx安装命令"></a>执行nginx安装命令</h3><pre><code class="bash">salt &#39;node01&#39; state.sls nginx.init
+</code></pre>
+<h3 id="查看nginx状态"><a href="#查看nginx状态" class="headerlink" title="查看nginx状态"></a>查看nginx状态</h3><pre><code class="bash">salt &#39;node01&#39; state.sls nginx.status
+</code></pre>
+<h2 id="Redis（非关系型数据库）"><a href="#Redis（非关系型数据库）" class="headerlink" title="Redis（非关系型数据库）"></a>Redis（非关系型数据库）</h2><h3 id="执行Redis安装命令"><a href="#执行Redis安装命令" class="headerlink" title="执行Redis安装命令"></a>执行Redis安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls redis.init
+</code></pre>
+<h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><pre><code class="bash">salt &#39;node01&#39; state.sls redis.create-cluster
+</code></pre>
+<h3 id="查看服务1状态"><a href="#查看服务1状态" class="headerlink" title="查看服务1状态"></a>查看服务1状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls redis.status1
+</code></pre>
+<h3 id="查看服务2状态"><a href="#查看服务2状态" class="headerlink" title="查看服务2状态"></a>查看服务2状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls redis.status2
+</code></pre>
+<h3 id="查看redis-exporter状态"><a href="#查看redis-exporter状态" class="headerlink" title="查看redis-exporter状态"></a>查看redis-exporter状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls redis.status-exporter
+</code></pre>
+<h2 id="Minio（-存储大容量非结构化数据-）"><a href="#Minio（-存储大容量非结构化数据-）" class="headerlink" title="Minio（ 存储大容量非结构化数据  ）"></a>Minio（ 存储大容量非结构化数据  ）</h2><h3 id="执行Minio安装命令"><a href="#执行Minio安装命令" class="headerlink" title="执行Minio安装命令"></a>执行Minio安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls minio.init
+</code></pre>
+<h3 id="查看Minio状态"><a href="#查看Minio状态" class="headerlink" title="查看Minio状态"></a>查看Minio状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls minio.status
+</code></pre>
+<h2 id="Cassandra（分布式NoSQL数据库系统"><a href="#Cassandra（分布式NoSQL数据库系统" class="headerlink" title="Cassandra（分布式NoSQL数据库系统 )"></a>Cassandra（分布式NoSQL数据库系统 )</h2><h3 id="执行Cassandra安装命令"><a href="#执行Cassandra安装命令" class="headerlink" title="执行Cassandra安装命令"></a>执行Cassandra安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls cassandra.init
+</code></pre>
+<h3 id="查看Cassandra状态"><a href="#查看Cassandra状态" class="headerlink" title="查看Cassandra状态"></a>查看Cassandra状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls cassandra.status
+</code></pre>
+<h3 id="安装完成需选择任一节点建表"><a href="#安装完成需选择任一节点建表" class="headerlink" title="安装完成需选择任一节点建表"></a>安装完成需选择任一节点建表</h3><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第一步</td>
+<td>/hd01/ronds/cassandra/bin/cqlsh</td>
+</tr>
+<tr>
+<td>第二步</td>
+<td>CREATE KEYSPACE eimp WITH replication={‘class’:’SimpleStrategy’, ‘replication_factor’:3};</td>
+</tr>
+<tr>
+<td>第三步</td>
+<td>USE eimp;</td>
+</tr>
+<tr>
+<td>第四步</td>
+<td>[!1]创建时标表<br>CREATE table if not exists eimp.timescale (<br>id uuid,<br>datatype int,<br>Value blob,<br>timebase bigint,<br>time timestamp ,<br>properties map&lt;text, text&gt;,<br>PRIMARY KEY (id,datatype)<br>)<br>with clustering order by (datatype desc)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第五步</td>
+<td>[!1]创建工艺数据表<br>CREATE table if not exists eimp.processdata (<br>id uuid,<br>value float,<br>time timestamp ,<br>properties map&lt;text, text&gt;,<br>PRIMARY KEY (id,time)<br>)<br>with clustering order by (time desc)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第六步</td>
+<td>[!1]创建特征数据<br>CREATE table if not exists eimp.traitdata (<br>id uuid,<br>value float,<br>time timestamp ,<br>properties map&lt;text, text&gt;,<br>datatype int,<br>PRIMARY KEY ((id,datatype),time)<br>)<br>with clustering order by (time desc)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第七步</td>
+<td>[!1]创建振动数据<br>CREATE TABLE eimp.vibdata (<br>id uuid,<br>time timestamp,<br>flag text,<br>alarmlevel int,<br>channelcount int,<br>channelno int,<br>collectorcode text,<br>datatype int,<br>description text,<br>errorsignaltype int,<br>length int,<br>properties map&lt;text, text&gt;,<br>rpm float,<br>samplefreq float,<br>signaltype int,<br>tempseq int,<br>unit text,<br>value float,<br>wareid uuid,<br>PRIMARY KEY (id, time, flag)<br>) WITH CLUSTERING ORDER BY (time DESC, flag ASC)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第八步</td>
+<td>[!1]创建波形数据<br>CREATE TABLE eimp.vibwave (<br>id uuid,<br>seqno int,<br>compresstype int,<br>convertcoef float,<br>length int,<br>path text,<br>properties map&lt;text, text&gt;,<br>resolvertype int,<br>rpm float,<br>samplefreq float,<br>sourcerate float,<br>time timestamp,<br>timescaleid uuid,<br>timescaleoffset int,<br>unit text,<br>value float,<br>PRIMARY KEY (id, seqno)<br>) WITH CLUSTERING ORDER BY (seqno ASC)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第九步</td>
+<td>[!1]创建特征数据按小时聚合的表<br>CREATE TABLE eimp.dat_trait_data_extend (<br>id uuid,<br>datatype int,<br>time timestamp,<br>value map&lt;text, float&gt;,<br>PRIMARY KEY ((id, datatype), time)<br>) WITH CLUSTERING ORDER BY (time DESC)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第十步</td>
+<td>[!1]创建工艺数据按小时聚合的表<br>CREATE TABLE eimp.dat_process_data_extend (<br>id uuid,<br>time timestamp,<br>value map&lt;text, float&gt;,<br>PRIMARY KEY (id, time)<br>) WITH CLUSTERING ORDER BY (time DESC)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+<tr>
+<td>第十一步</td>
+<td>[!1]创建通道日志<br>CREATE table if not exists eimp.channel_log (<br>id uuid,<br>voltage float,<br>temperature float,<br>lqi int,<br>transtime int,<br>transerrs int,<br>rssi int,<br>chclock text,<br>currenti int,<br>retransmissiontimes int,<br>totalnumber int,<br>value float,<br>time timestamp ,<br>properties map&lt;text, text&gt;,<br>PRIMARY KEY (id,time)<br>)<br>with clustering order by (time desc)<br>AND compaction = {‘compaction_window_size’: ‘7’, <br>                               ‘compaction_window_unit’: ‘DAYS’, <br>                               ‘class’: ‘org.apache.cassandra.db.compaction.TimeWindowCompactionStrategy’};</td>
+</tr>
+</tbody></table>
+<h2 id="PostgreSQL（数据库）"><a href="#PostgreSQL（数据库）" class="headerlink" title="PostgreSQL（数据库）"></a>PostgreSQL（数据库）</h2><h3 id="执行PostgreSQL安装命令"><a href="#执行PostgreSQL安装命令" class="headerlink" title="执行PostgreSQL安装命令"></a>执行PostgreSQL安装命令</h3><pre><code class="bash">salt &#39;node02&#39; state.sls postgresql.init
+</code></pre>
+<h3 id="查看PostgreSQL状态"><a href="#查看PostgreSQL状态" class="headerlink" title="查看PostgreSQL状态"></a>查看PostgreSQL状态</h3><pre><code class="bash">salt &#39;node02&#39; state.sls postgresql.status
+</code></pre>
+<h3 id="查看postgreSQL-exporter状态"><a href="#查看postgreSQL-exporter状态" class="headerlink" title="查看postgreSQL-exporter状态"></a>查看postgreSQL-exporter状态</h3><pre><code class="bash">salt &#39;node02&#39; state.sls postgresql.status-exporter
+</code></pre>
+<h2 id="Node-exporter"><a href="#Node-exporter" class="headerlink" title="Node_exporter"></a>Node_exporter</h2><h3 id="执行Node-exporter安装命令"><a href="#执行Node-exporter安装命令" class="headerlink" title="执行Node_exporter安装命令"></a>执行Node_exporter安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03,ode04,node05,node06&#39; state.sls node_exporter.init
+</code></pre>
+<h3 id="查看Node-exporter状态"><a href="#查看Node-exporter状态" class="headerlink" title="查看Node_exporter状态"></a>查看Node_exporter状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls node_exporter.status
+</code></pre>
+<h2 id="Prometheus"><a href="#Prometheus" class="headerlink" title="Prometheus"></a>Prometheus</h2><h3 id="执行Prometheus安装命令"><a href="#执行Prometheus安装命令" class="headerlink" title="执行Prometheus安装命令"></a>执行Prometheus安装命令</h3><pre><code class="bash">salt &#39;node03&#39; state.sls prometheus.init
+</code></pre>
+<h3 id="查看Prometheus状态"><a href="#查看Prometheus状态" class="headerlink" title="查看Prometheus状态"></a>查看Prometheus状态</h3><pre><code class="bash">salt &#39;node03&#39; state.sls prometheus.status
+</code></pre>
+<h2 id="Grafana"><a href="#Grafana" class="headerlink" title="Grafana"></a>Grafana</h2><h3 id="执行Grafana安装命令"><a href="#执行Grafana安装命令" class="headerlink" title="执行Grafana安装命令"></a>执行Grafana安装命令</h3><pre><code class="bash">salt &#39;node01&#39; state.sls grafana.init
+</code></pre>
+<h3 id="查看Grafana状态"><a href="#查看Grafana状态" class="headerlink" title="查看Grafana状态"></a>查看Grafana状态</h3><pre><code class="bash">salt &#39;node01&#39; state.sls grafana.status
+</code></pre>
+<h2 id="BigdataPlatform（算法部署软件）"><a href="#BigdataPlatform（算法部署软件）" class="headerlink" title="BigdataPlatform（算法部署软件）"></a>BigdataPlatform（算法部署软件）</h2><h3 id="执行BigdataPlatform安装命令"><a href="#执行BigdataPlatform安装命令" class="headerlink" title="执行BigdataPlatform安装命令"></a>执行BigdataPlatform安装命令</h3><pre><code class="bash">salt &#39;node04&#39; state.sls bigdataplatform.init
+</code></pre>
+<h3 id="查看BigdataPlatform状态"><a href="#查看BigdataPlatform状态" class="headerlink" title="查看BigdataPlatform状态"></a>查看BigdataPlatform状态</h3><pre><code class="bash">salt &#39;node01&#39; state.sls bigdataplatform.status
+</code></pre>
+<h2 id="CIDC（前端）"><a href="#CIDC（前端）" class="headerlink" title="CIDC（前端）"></a>CIDC（前端）</h2><h3 id="执行CIDC安装命令"><a href="#执行CIDC安装命令" class="headerlink" title="执行CIDC安装命令"></a>执行CIDC安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls cidc.init
+</code></pre>
+<h3 id="重启CIDC"><a href="#重启CIDC" class="headerlink" title="重启CIDC"></a>重启CIDC</h3><pre><code class="bash">salt &#39;node01&#39; state.sls cidc.restart
+salt &#39;node02&#39; state.sls cidc.restart
+salt &#39;node03&#39; state.sls cidc.restart
+</code></pre>
+<h3 id="CIDC状态查看表"><a href="#CIDC状态查看表" class="headerlink" title="CIDC状态查看表"></a>CIDC状态查看表</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查看所有状态（不包括exportserver）</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status</td>
+</tr>
+<tr>
+<td>查看alarm状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-alarm</td>
+</tr>
+<tr>
+<td>查看data状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-data</td>
+</tr>
+<tr>
+<td>查看diagnosis状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-diagnosis</td>
+</tr>
+<tr>
+<td>查看enterprise状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-enterprise</td>
+</tr>
+<tr>
+<td>查看webserver状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-webserver</td>
+</tr>
+<tr>
+<td>查看notice状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-notice</td>
+</tr>
+<tr>
+<td>查看oss状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-oss</td>
+</tr>
+<tr>
+<td>查看case状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-case</td>
+</tr>
+<tr>
+<td>查看identityserver状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-identityserver</td>
+</tr>
+<tr>
+<td>查看basic状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-basic</td>
+</tr>
+<tr>
+<td>查看appserver状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-appserver</td>
+</tr>
+<tr>
+<td>查看exporterserver状态</td>
+<td>salt -L ‘node01,node02,node03’ state.sls cidc.status-exportserver</td>
+</tr>
+</tbody></table>
+<h2 id="OrleansServer"><a href="#OrleansServer" class="headerlink" title="OrleansServer"></a>OrleansServer</h2><h3 id="执行OrleansServer安装命令"><a href="#执行OrleansServer安装命令" class="headerlink" title="执行OrleansServer安装命令"></a>执行OrleansServer安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls orleansserver.init
+</code></pre>
+<h3 id="查看OrleansServer状态"><a href="#查看OrleansServer状态" class="headerlink" title="查看OrleansServer状态"></a>查看OrleansServer状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls orleansserver.status
+</code></pre>
+<h2 id="MasterServer"><a href="#MasterServer" class="headerlink" title="MasterServer"></a>MasterServer</h2><h3 id="执行MasterServer安装命令"><a href="#执行MasterServer安装命令" class="headerlink" title="执行MasterServer安装命令"></a>执行MasterServer安装命令</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls masterserver.init
+</code></pre>
+<h3 id="查看MasterServer状态"><a href="#查看MasterServer状态" class="headerlink" title="查看MasterServer状态"></a>查看MasterServer状态</h3><pre><code class="bash">salt -L &#39;node01,node02,node03&#39; state.sls masterserver.status
+</code></pre>
+<h1 id="登录验证"><a href="#登录验证" class="headerlink" title="登录验证"></a>登录验证</h1><h2 id="登录CIDC"><a href="#登录CIDC" class="headerlink" title="登录CIDC"></a>登录CIDC</h2><blockquote>
+<p>打开浏览器，输入主服务器服务器IP，加上3100端口，如：<a href="http://172.168.147.11:3100,回车后进入CIDC登录界面，用户名：admin，密码：1q2w3E*，正常登录即可。">http://172.168.147.11:3100,回车后进入CIDC登录界面，用户名：admin，密码：1q2w3E*，正常登录即可。</a></p>
+</blockquote>
+<h1 id="添加菜单"><a href="#添加菜单" class="headerlink" title="添加菜单"></a>添加菜单</h1><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>截图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打开菜单管理</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86.png" alt="打开菜单管理"></td>
+</tr>
+<tr>
+<td>选择数据平台，点击右侧编辑按钮</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0.png" alt="选择数据平台"></td>
+</tr>
+<tr>
+<td>配置数据平台，地址依据BigdataPlatform组件所在服务器IP为准，地址模板：<a target="_blank" rel="noopener" href="http://10.1.213.205:54321/[!1]/user/login?token=%7Btoken%7D&amp;menu=DataMonitor">http://10.1.213.205:54321/[!1]/user/login?token={token}&amp;menu=DataMonitor</a></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0.png" alt="配置数据平台"></td>
+</tr>
+<tr>
+<td>点击数据平台</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%82%B9%E5%87%BB%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0.png" alt="点击数据平台"></td>
+</tr>
+<tr>
+<td>正常跳转即为配置成功</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%95%B0%E6%8D%AE%E5%B9%B3%E5%8F%B0%E7%95%8C%E9%9D%A2.png" alt="数据平台界面"></td>
+</tr>
+<tr>
+<td>选择数据平台，点击右侧编辑按钮</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0.png" alt="选择算法平台"></td>
+</tr>
+<tr>
+<td>配置算法平台，地址依据BigdataPlatform组件所在服务器IP为准，地址模板：<a target="_blank" rel="noopener" href="http://10.1.213.205:54321/[!1]/user/login?token=%7Btoken%7D&amp;menu=WorkFlowManagement">http://10.1.213.205:54321/[!1]/user/login?token={token}&amp;menu=WorkFlowManagement</a></td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E9%85%8D%E7%BD%AE%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0.png" alt="配置算法平台"></td>
+</tr>
+<tr>
+<td>点击算法平台</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%82%B9%E5%87%BB%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0.png" alt="点击算法平台"></td>
+</tr>
+<tr>
+<td>正常跳转即为配置成功</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%AE%97%E6%B3%95%E5%B9%B3%E5%8F%B0%E7%95%8C%E9%9D%A2.png" alt="算法平台界面"></td>
+</tr>
+</tbody></table>
+<h1 id="算法流程验证"><a href="#算法流程验证" class="headerlink" title="算法流程验证"></a>算法流程验证</h1><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>截图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建主题（进入kafka组件bin目录）</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%BF%9B%E5%85%A5kafka%E7%BB%84%E4%BB%B6bin%E7%9B%AE%E5%BD%95.png" alt="进入kafka组件bin目录"></td>
+</tr>
+<tr>
+<td>创建主题test_input（在kafka组件bin目录下运行脚本）</td>
+<td>./kafka-topics.sh –create –zookeeper node01:2181 –replication-factor 1 –partitions 1 –topic test_input</td>
+</tr>
+<tr>
+<td>创建主题test_output（在kafka组件bin目录下运行脚本）</td>
+<td>./kafka-topics.sh –create –zookeeper node01:2181 –replication-factor 1 –partitions 1 –topic test_output</td>
+</tr>
+<tr>
+<td>数据源管理，点击新增按钮，新增数据源</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE%E6%BA%90.png" alt="新增数据源"></td>
+</tr>
+<tr>
+<td>数据源配置，选择数据源：kafka，数据源名称：kafka，IP为kafka安装服务器节点，端口：9092</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt="数据源配置"></td>
+</tr>
+<tr>
+<td>环境管理，点击新增按钮，新增环境配置</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png" alt="新增环境配置"></td>
+</tr>
+<tr>
+<td>环境配置，选择环境：yarn，数据源名称：yarn，IP为hadoop配置文件，yarn配置服务器节点，安装服务器节点，端口：8032</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png" alt="环境配置"></td>
+</tr>
+<tr>
+<td>工作流仓库，点击新增按钮，新增工作流</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E5%B7%A5%E4%BD%9C%E6%B5%81.png" alt="新增工作流"></td>
+</tr>
+<tr>
+<td>工作流信息填写</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%BF%A1%E6%81%AF%E5%A1%AB%E5%86%99.png" alt="工作流信息填写"></td>
+</tr>
+<tr>
+<td>上传执行器</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E4%B8%8A%E4%BC%A0%E6%89%A7%E8%A1%8C%E5%99%A8.png" alt="上传执行器"></td>
+</tr>
+<tr>
+<td>上传算法文件</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E4%B8%8A%E4%BC%A0%E7%AE%97%E6%B3%95%E6%96%87%E4%BB%B6.png" alt="上传算法文件"></td>
+</tr>
+<tr>
+<td>新增数据源配置</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt="新增数据源配置"></td>
+</tr>
+<tr>
+<td>订阅数据数据源配置</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%AE%A2%E9%98%85%E6%95%B0%E6%8D%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt="订阅数据数据源配置"></td>
+</tr>
+<tr>
+<td>输出数据数据源配置</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE.png" alt="输出数据数据源配置"></td>
+</tr>
+<tr>
+<td>工作流配置</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%85%8D%E7%BD%AE.png" alt="工作流配置"></td>
+</tr>
+<tr>
+<td>运行工作流</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E8%BF%90%E8%A1%8C%E5%B7%A5%E4%BD%9C%E6%B5%81.png" alt="运行工作流"></td>
+</tr>
+<tr>
+<td>验证数据流配置，运行状态：正在运行中即为配置完成</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E5%B7%A5%E4%BD%9C%E6%B5%81%E9%85%8D%E7%BD%AE%E9%AA%8C%E8%AF%81.png" alt="工作流配置验证"></td>
+</tr>
+</tbody></table>
+<h1 id="创建游客用户"><a href="#创建游客用户" class="headerlink" title="创建游客用户"></a>创建游客用户</h1><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>截图</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打开角色管理界面，基础数据–组织用户权限–角色管理</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2.png" alt="打开角色管理界面"></td>
+</tr>
+<tr>
+<td>添加角色，点击“+”，添加角色“游客”</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%B7%BB%E5%8A%A0%E8%A7%92%E8%89%B2.png" alt="添加角色"></td>
+</tr>
+<tr>
+<td>角色授权，点击“设置功能权限”，添加查看权限，所有编辑权限都不勾选</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%B7%BB%E5%8A%A0%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90.png" alt="添加角色权限"></td>
+</tr>
+<tr>
+<td>打开用户管理界面</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%89%93%E5%BC%80%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2.png" alt="打开用户管理界面"></td>
+</tr>
+<tr>
+<td>添加用户，角色选择“游客”，默认密码：123456</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7.png" alt="新增用户"></td>
+</tr>
+<tr>
+<td>登录验证，录入新建的用户及密码，正常登录即可</td>
+<td><img src="/work%20(1)/CIDC%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7.png" alt="登录账号"></td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/work%20(1)/CIDC%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C/" rel="prev" title="CIDC操作手册">
+      <i class="fa fa-chevron-left"></i> CIDC操作手册
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/jishu/Net/ping/" rel="next" title="防火墙开启无法Ping通问题">
+      防火墙开启无法Ping通问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8Raid"><span class="nav-number">1.1.</span> <span class="nav-text">服务器Raid</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%9C%8D%E5%8A%A1%E5%99%A8Raid%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">常见服务器Raid设置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%B4%E5%B0%94%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">戴尔服务器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8Raid%E5%88%86%E9%85%8D"><span class="nav-number">1.1.2.</span> <span class="nav-text">服务器Raid分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#centos%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">centos安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9C%AC%E4%B8%8E%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-number">1.2.1.</span> <span class="nav-text">版本与下载地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E7%9B%98%E5%88%B6%E4%BD%9C"><span class="nav-number">1.2.2.</span> <span class="nav-text">启动盘制作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E5%90%AF%E5%8A%A8%E7%9B%98"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">制作启动盘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">系统安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ip%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">ip网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%99%BB%E5%BD%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">系统登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip"><span class="nav-number">1.3.2.</span> <span class="nav-text">配置静态ip</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">进入文件目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BA%E9%9D%99%E6%80%81IP"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">修改为静态IP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD"><span class="nav-number">1.4.</span> <span class="nav-text">磁盘挂载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">链接工具安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85%E5%8C%85%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">工具安装包位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">工具安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.3.</span> <span class="nav-text">工具连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xshell"><span class="nav-number">2.3.1.</span> <span class="nav-text">Xshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xftp"><span class="nav-number">2.3.2.</span> <span class="nav-text">Xftp</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%BB%E6%8E%A7%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.</span> <span class="nav-text">安装主控程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">3.1.</span> <span class="nav-text">上传安装包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text">解压安装包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">3.2.1.</span> <span class="nav-text">执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.3.</span> <span class="nav-text">安装程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">3.4.</span> <span class="nav-text">启动程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">执行命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BA%91%E4%B8%BB%E6%9C%BA"><span class="nav-number">3.5.</span> <span class="nav-text">配置云主机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-etc-salt-roster"><span class="nav-number">3.5.1.</span> <span class="nav-text">配置&#x2F;etc&#x2F;salt&#x2F;roster</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4-3"><span class="nav-number">3.5.1.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.5.1.2.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%91%BD%E4%BB%A4"><span class="nav-number">3.5.1.3.</span> <span class="nav-text">测试命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-srv-pillar-servers-sls"><span class="nav-number">3.5.2.</span> <span class="nav-text">配置&#x2F;srv&#x2F;pillar&#x2F;servers.sls</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4-4"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-1"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">3.6.</span> <span class="nav-text">执行安装命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4-5"><span class="nav-number">3.6.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%91%BD%E4%BB%A4-1"><span class="nav-number">3.6.2.</span> <span class="nav-text">测试命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%81%E8%AE%B8%E6%89%80%E6%9C%89key"><span class="nav-number">3.6.3.</span> <span class="nav-text">允许所有key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bkey%E7%8A%B6%E6%80%81"><span class="nav-number">3.6.4.</span> <span class="nav-text">查看key状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81"><span class="nav-number">3.6.5.</span> <span class="nav-text">验证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%AE%89%E8%A3%85-%E7%9B%AE%E5%BD%95%E9%A1%BA%E5%BA%8F%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">组件安装(目录顺序安装)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tools"><span class="nav-number">4.1.</span> <span class="nav-text">Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CTools%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.1.</span> <span class="nav-text">执行Tools安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA%EF%BC%88%E9%9B%86%E7%BE%A4%E5%85%8D%E5%AF%86%E7%BB%84%E4%BB%B6%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">RSA（集群免密组件）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CRSA%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.1.</span> <span class="nav-text">执行RSA安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NTP%EF%BC%88%E9%9B%86%E7%BE%A4%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">NTP（集群时间同步）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.3.1.</span> <span class="nav-text">修改配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4-6"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-2"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CNTP%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.2.</span> <span class="nav-text">执行NTP安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%AF%B9%E6%97%B6%E5%91%BD%E4%BB%A4"><span class="nav-number">4.3.3.</span> <span class="nav-text">执行对时命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BNTP%E7%8A%B6%E6%80%81"><span class="nav-number">4.3.4.</span> <span class="nav-text">查看NTP状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python3%EF%BC%88%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-number">4.4.</span> <span class="nav-text">Python3（基础环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CPython3%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.4.1.</span> <span class="nav-text">执行Python3安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK%EF%BC%88%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-number">4.5.</span> <span class="nav-text">JDK（基础环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CJDK%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.5.1.</span> <span class="nav-text">执行JDK安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Meld3%EF%BC%88%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-number">4.6.</span> <span class="nav-text">Meld3（基础环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CMeld3%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.6.1.</span> <span class="nav-text">执行Meld3安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NetCore-%EF%BC%88%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-number">4.7.</span> <span class="nav-text">NetCore （基础环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CNetCore%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.7.1.</span> <span class="nav-text">执行NetCore安装命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setuptools%EF%BC%88%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-number">4.8.</span> <span class="nav-text">Setuptools（基础环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSetuptools%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.8.1.</span> <span class="nav-text">执行Setuptools安装程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supervisor"><span class="nav-number">4.9.</span> <span class="nav-text">Supervisor</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSupervisor%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.9.1.</span> <span class="nav-text">执行Supervisor安装程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BSupervisor%E7%8A%B6%E6%80%81"><span class="nav-number">4.9.2.</span> <span class="nav-text">查看Supervisor状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs%EF%BC%88%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="nav-number">4.10.</span> <span class="nav-text">nodejs（基础环境）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8Cnodejs%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.10.1.</span> <span class="nav-text">执行nodejs安装程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper%EF%BC%88%E5%8D%8F%E8%B0%83%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="nav-number">4.11.</span> <span class="nav-text">Zookeeper（协调服务）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CZookeeper%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.11.1.</span> <span class="nav-text">执行Zookeeper安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BZookeeper%E7%8A%B6%E6%80%81"><span class="nav-number">4.11.2.</span> <span class="nav-text">查看Zookeeper状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka%EF%BC%88%E9%AB%98%E5%90%9E%E5%90%90%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="nav-number">4.12.</span> <span class="nav-text">Kafka（高吞吐量的分布式发布订阅消息系统）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CKafka%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.12.1.</span> <span class="nav-text">执行Kafka安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BKafka%E7%8A%B6%E6%80%81"><span class="nav-number">4.12.2.</span> <span class="nav-text">查看Kafka状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%EF%BC%88%E6%A1%86%E6%9E%B6%EF%BC%89"><span class="nav-number">4.13.</span> <span class="nav-text">Hadoop（框架）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CHadoop%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.13.1.</span> <span class="nav-text">执行Hadoop安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BHadoop%E7%8A%B6%E6%80%81"><span class="nav-number">4.13.2.</span> <span class="nav-text">查看Hadoop状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-yarn%EF%BC%88%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BA%8C%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%BF%AB%E9%80%9F%E9%80%9A%E7%94%A8%E8%AE%A1%E7%AE%97%E5%BC%95%E6%93%8E%EF%BC%89"><span class="nav-number">4.14.</span> <span class="nav-text">Spark-yarn（大规模数据处理二设计的快速通用计算引擎）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSpark-yarn%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.14.1.</span> <span class="nav-text">执行Spark-yarn安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BSpark-yarn%E7%8A%B6%E6%80%81"><span class="nav-number">4.14.2.</span> <span class="nav-text">查看Spark-yarn状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RabbitMQ%EF%BC%88%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%85%A5%EF%BC%89"><span class="nav-number">4.15.</span> <span class="nav-text">RabbitMQ（数据接入）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CRabbitMQ%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.15.1.</span> <span class="nav-text">执行RabbitMQ安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BRabbitMQ%E7%8A%B6%E6%80%81"><span class="nav-number">4.15.2.</span> <span class="nav-text">查看RabbitMQ状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BRabbitmq-exporter%E7%8A%B6%E6%80%81"><span class="nav-number">4.15.3.</span> <span class="nav-text">查看Rabbitmq-exporter状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Consul%EF%BC%88%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%EF%BC%89"><span class="nav-number">4.16.</span> <span class="nav-text">Consul（数据同步）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CConsul%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.16.1.</span> <span class="nav-text">执行Consul安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4%E5%91%BD%E4%BB%A4%EF%BC%88node01%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">4.16.2.</span> <span class="nav-text">创建集群命令（node01为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BConsul%E7%8A%B6%E6%80%81"><span class="nav-number">4.16.3.</span> <span class="nav-text">查看Consul状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fabio%EF%BC%88%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E8%B7%AF%E7%94%B1%E5%99%A8%EF%BC%89"><span class="nav-number">4.17.</span> <span class="nav-text">Fabio（负载均衡路由器）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CFabio%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.17.1.</span> <span class="nav-text">执行Fabio安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BFabio%E7%8A%B6%E6%80%81"><span class="nav-number">4.17.2.</span> <span class="nav-text">查看Fabio状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx%EF%BC%88web%E5%8F%91%E5%B8%83%EF%BC%89"><span class="nav-number">4.18.</span> <span class="nav-text">nginx（web发布）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8Cnginx%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.18.1.</span> <span class="nav-text">执行nginx安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bnginx%E7%8A%B6%E6%80%81"><span class="nav-number">4.18.2.</span> <span class="nav-text">查看nginx状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%EF%BC%88%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%89"><span class="nav-number">4.19.</span> <span class="nav-text">Redis（非关系型数据库）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CRedis%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.19.1.</span> <span class="nav-text">执行Redis安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E7%BE%A4"><span class="nav-number">4.19.2.</span> <span class="nav-text">创建集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A11%E7%8A%B6%E6%80%81"><span class="nav-number">4.19.3.</span> <span class="nav-text">查看服务1状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A12%E7%8A%B6%E6%80%81"><span class="nav-number">4.19.4.</span> <span class="nav-text">查看服务2状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bredis-exporter%E7%8A%B6%E6%80%81"><span class="nav-number">4.19.5.</span> <span class="nav-text">查看redis-exporter状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minio%EF%BC%88-%E5%AD%98%E5%82%A8%E5%A4%A7%E5%AE%B9%E9%87%8F%E9%9D%9E%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE-%EF%BC%89"><span class="nav-number">4.20.</span> <span class="nav-text">Minio（ 存储大容量非结构化数据  ）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CMinio%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.20.1.</span> <span class="nav-text">执行Minio安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BMinio%E7%8A%B6%E6%80%81"><span class="nav-number">4.20.2.</span> <span class="nav-text">查看Minio状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cassandra%EF%BC%88%E5%88%86%E5%B8%83%E5%BC%8FNoSQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="nav-number">4.21.</span> <span class="nav-text">Cassandra（分布式NoSQL数据库系统 )</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CCassandra%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.21.1.</span> <span class="nav-text">执行Cassandra安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BCassandra%E7%8A%B6%E6%80%81"><span class="nav-number">4.21.2.</span> <span class="nav-text">查看Cassandra状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E9%9C%80%E9%80%89%E6%8B%A9%E4%BB%BB%E4%B8%80%E8%8A%82%E7%82%B9%E5%BB%BA%E8%A1%A8"><span class="nav-number">4.21.3.</span> <span class="nav-text">安装完成需选择任一节点建表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PostgreSQL%EF%BC%88%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%89"><span class="nav-number">4.22.</span> <span class="nav-text">PostgreSQL（数据库）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CPostgreSQL%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.22.1.</span> <span class="nav-text">执行PostgreSQL安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BPostgreSQL%E7%8A%B6%E6%80%81"><span class="nav-number">4.22.2.</span> <span class="nav-text">查看PostgreSQL状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BpostgreSQL-exporter%E7%8A%B6%E6%80%81"><span class="nav-number">4.22.3.</span> <span class="nav-text">查看postgreSQL-exporter状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-exporter"><span class="nav-number">4.23.</span> <span class="nav-text">Node_exporter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CNode-exporter%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.23.1.</span> <span class="nav-text">执行Node_exporter安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BNode-exporter%E7%8A%B6%E6%80%81"><span class="nav-number">4.23.2.</span> <span class="nav-text">查看Node_exporter状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prometheus"><span class="nav-number">4.24.</span> <span class="nav-text">Prometheus</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CPrometheus%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.24.1.</span> <span class="nav-text">执行Prometheus安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BPrometheus%E7%8A%B6%E6%80%81"><span class="nav-number">4.24.2.</span> <span class="nav-text">查看Prometheus状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Grafana"><span class="nav-number">4.25.</span> <span class="nav-text">Grafana</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CGrafana%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.25.1.</span> <span class="nav-text">执行Grafana安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BGrafana%E7%8A%B6%E6%80%81"><span class="nav-number">4.25.2.</span> <span class="nav-text">查看Grafana状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BigdataPlatform%EF%BC%88%E7%AE%97%E6%B3%95%E9%83%A8%E7%BD%B2%E8%BD%AF%E4%BB%B6%EF%BC%89"><span class="nav-number">4.26.</span> <span class="nav-text">BigdataPlatform（算法部署软件）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CBigdataPlatform%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.26.1.</span> <span class="nav-text">执行BigdataPlatform安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BBigdataPlatform%E7%8A%B6%E6%80%81"><span class="nav-number">4.26.2.</span> <span class="nav-text">查看BigdataPlatform状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CIDC%EF%BC%88%E5%89%8D%E7%AB%AF%EF%BC%89"><span class="nav-number">4.27.</span> <span class="nav-text">CIDC（前端）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CCIDC%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.27.1.</span> <span class="nav-text">执行CIDC安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%90%AFCIDC"><span class="nav-number">4.27.2.</span> <span class="nav-text">重启CIDC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CIDC%E7%8A%B6%E6%80%81%E6%9F%A5%E7%9C%8B%E8%A1%A8"><span class="nav-number">4.27.3.</span> <span class="nav-text">CIDC状态查看表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OrleansServer"><span class="nav-number">4.28.</span> <span class="nav-text">OrleansServer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8COrleansServer%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.28.1.</span> <span class="nav-text">执行OrleansServer安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BOrleansServer%E7%8A%B6%E6%80%81"><span class="nav-number">4.28.2.</span> <span class="nav-text">查看OrleansServer状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MasterServer"><span class="nav-number">4.29.</span> <span class="nav-text">MasterServer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CMasterServer%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-number">4.29.1.</span> <span class="nav-text">执行MasterServer安装命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BMasterServer%E7%8A%B6%E6%80%81"><span class="nav-number">4.29.2.</span> <span class="nav-text">查看MasterServer状态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81"><span class="nav-number">5.</span> <span class="nav-text">登录验证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95CIDC"><span class="nav-number">5.1.</span> <span class="nav-text">登录CIDC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%8F%9C%E5%8D%95"><span class="nav-number">6.</span> <span class="nav-text">添加菜单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%E9%AA%8C%E8%AF%81"><span class="nav-number">7.</span> <span class="nav-text">算法流程验证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%B8%B8%E5%AE%A2%E7%94%A8%E6%88%B7"><span class="nav-number">8.</span> <span class="nav-text">创建游客用户</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">吴敌</p>
+  <div class="site-description" itemprop="description">吴敌</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:wudoer@live.com" title="E-Mail → mailto:wudoer@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 1992 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴敌</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.wudoer.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="摘要：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VIM帮助文档">
+<meta property="og:url" content="http://www.wudoer.com/jishu/VIM/Help/index.html">
+<meta property="og:site_name" content="吴敌">
+<meta property="og:description" content="摘要：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-03T16:00:00.000Z">
+<meta property="article:author" content="吴敌">
+<meta property="article:tag" content="吴敌">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.wudoer.com/jishu/VIM/Help/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VIM帮助文档 | 吴敌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴敌</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">吴敌</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">24</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.wudoer.com/jishu/VIM/Help/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="吴敌">
+      <meta itemprop="description" content="吴敌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴敌">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VIM帮助文档
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-04T00:00:00+08:00">2020-11-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/VIM/" itemprop="url" rel="index"><span itemprop="name">VIM</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><font color="red">摘要：</font></p>
+<span id="more"></span>
+
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>j</td>
+<td>下行</td>
+<td>同 ↑</td>
+</tr>
+<tr>
+<td>k</td>
+<td>上行</td>
+<td>同 ↓</td>
+</tr>
+<tr>
+<td>h</td>
+<td>左移</td>
+<td>同 ←</td>
+</tr>
+<tr>
+<td>l</td>
+<td>右移</td>
+<td>同 →</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>退出</td>
+<td></td>
+</tr>
+<tr>
+<td>:qa!</td>
+<td>不保存退出</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>Close this window:  Use “:q<Enter>“.<br>   Get out of Vim:  Use “:qa!<Enter>“ (careful, all changes are lost!).</Enter></Enter></p>
+<p>Jump to a subject:  Position the cursor on a tag (e.g. |bars|) and hit CTRL-].<br>   With the mouse:  “:set mouse=a” to enable the mouse (in xterm or GUI).<br>            Double-click the left mouse button on a tag, e.g. |bars|.<br>    Jump back:  Type CTRL-O.  Repeat to go further back.</p>
+<p>Get specific help:  It is possible to go directly to whatever you want help<br>            on, by giving an argument to the |:help| command.<br>            Prepend something to specify the context:  <em>help-context</em></p>
+<pre><code>          WHAT            PREPEND    EXAMPLE    ~
+          Normal mode command           :help x
+          Visual mode command      v_       :help v_u
+          Insert mode command      i_       :help i_&lt;Esc&gt;
+          Command-line command      :       :help :quit
+          Command-line editing      c_       :help c_&lt;Del&gt;
+          Vim command argument      -       :help -r
+          Option              &#39;       :help &#39;textwidth&#39;
+          Regular expression      /       :help /[
+        See |help-summary| for more contexts and an explanation.
+</code></pre>
+<p>  Search for help:  Type “:help word”, then hit CTRL-D to see matching<br>            help entries for “word”.<br>            Or use “:helpgrep word”. |:helpgrep|</p>
+<p>  Getting started:  Do the Vim tutor, a 20 minute interactive training for the<br>            basic commands, see |vimtutor|.<br>            Read the user manual from start to end: |usr_01.txt|</p>
+<p>Vim stands for Vi IMproved.  Most of Vim was made by Bram Moolenaar, but only<br>through the help of many others.  See |credits|.</p>
+<hr>
+<pre><code>                    *doc-file-list* *Q_ct*
+</code></pre>
+<p>BASIC:<br>|quickref|    Overview of the most common commands you will use<br>|tutor|        20 minutes training course for beginners<br>|copying|    About copyrights<br>|iccf|        Helping poor children in Uganda<br>|sponsor|    Sponsor Vim development, become a registered Vim user<br>|www|        Vim on the World Wide Web<br>|bugs|        Where to send bug reports</p>
+<p>USER MANUAL: These files explain how to accomplish an editing task.</p>
+<p>|usr_toc.txt|    Table Of Contents</p>
+<p>Getting Started ~<br>|usr_01.txt|  About the manuals<br>|usr_02.txt|  The first steps in Vim<br>|usr_03.txt|  Moving around<br>|usr_04.txt|  Making small changes<br>|usr_05.txt|  Set your settings<br>|usr_06.txt|  Using syntax highlighting<br>|usr_07.txt|  Editing more than one file<br>|usr_08.txt|  Splitting windows<br>|usr_09.txt|  Using the GUI<br>|usr_10.txt|  Making big changes<br>|usr_11.txt|  Recovering from a crash<br>|usr_12.txt|  Clever tricks</p>
+<p>Editing Effectively ~<br>|usr_20.txt|  Typing command-line commands quickly<br>|usr_21.txt|  Go away and come back<br>|usr_22.txt|  Finding the file to edit<br>|usr_23.txt|  Editing other files<br>|usr_24.txt|  Inserting quickly<br>|usr_25.txt|  Editing formatted text<br>|usr_26.txt|  Repeating<br>|usr_27.txt|  Search commands and patterns<br>|usr_28.txt|  Folding<br>|usr_29.txt|  Moving through programs<br>|usr_30.txt|  Editing programs<br>|usr_31.txt|  Exploiting the GUI<br>|usr_32.txt|  The undo tree</p>
+<p>Tuning Vim ~<br>|usr_40.txt|  Make new commands<br>|usr_41.txt|  Write a Vim script<br>|usr_42.txt|  Add new menus<br>|usr_43.txt|  Using filetypes<br>|usr_44.txt|  Your own syntax highlighted<br>|usr_45.txt|  Select your language</p>
+<p>Making Vim Run ~<br>|usr_90.txt|  Installing Vim</p>
+<p>REFERENCE MANUAL: These files explain every detail of Vim.    <em>reference_toc</em></p>
+<p>General subjects ~<br>|intro.txt|    general introduction to Vim; notation used in help files<br>|help.txt|    overview and quick reference (this file)<br>|helphelp.txt|    about using the help files<br>|index.txt|    alphabetical index of all commands<br>|help-tags|    all the tags you can jump to (index of tags)<br>|howto.txt|    how to do the most common editing tasks<br>|tips.txt|    various tips on using Vim<br>|message.txt|    (error) messages and explanations<br>|quotes.txt|    remarks from users of Vim<br>|todo.txt|    known problems and desired extensions<br>|develop.txt|    development of Vim<br>|debug.txt|    debugging Vim itself<br>|uganda.txt|    Vim distribution conditions and what to do with your money</p>
+<p>Basic editing ~<br>|starting.txt|    starting Vim, Vim command arguments, initialisation<br>|editing.txt|    editing and writing files<br>|motion.txt|    commands for moving around<br>|scroll.txt|    scrolling the text in the window<br>|insert.txt|    Insert and Replace mode<br>|change.txt|    deleting and replacing text<br>|undo.txt|    Undo and Redo<br>|repeat.txt|    repeating commands, Vim scripts and debugging<br>|visual.txt|    using the Visual mode (selecting a text area)<br>|various.txt|    various remaining commands<br>|recover.txt|    recovering from a crash</p>
+<p>Advanced editing ~<br>|cmdline.txt|    Command-line editing<br>|options.txt|    description of all options<br>|pattern.txt|    regexp patterns and search commands<br>|map.txt|    key mapping and abbreviations<br>|tagsrch.txt|    tags and special searches<br>|windows.txt|    commands for using multiple windows and buffers<br>|tabpage.txt|    commands for using multiple tab pages<br>|spell.txt|    spell checking<br>|diff.txt|    working with two to four versions of the same file<br>|autocmd.txt|    automatically executing commands on an event<br>|eval.txt|    expression evaluation, conditional commands<br>|channel.txt|    Jobs, Channels, inter-process communication<br>|fold.txt|    hide (fold) ranges of lines</p>
+<p>Special issues ~<br>|testing.txt|    testing Vim and Vim scripts<br>|print.txt|    printing<br>|remote.txt|    using Vim as a server or client<br>|term.txt|    using different terminals and mice<br>|terminal.txt|    Terminal window support<br>|popup.txt|    popop window support</p>
+<p>Programming language support ~<br>|indent.txt|    automatic indenting for C and other languages<br>|syntax.txt|    syntax highlighting<br>|textprop.txt|    Attaching properties to text for highlighting or other<br>|filetype.txt|    settings done specifically for a type of file<br>|quickfix.txt|    commands for a quick edit-compile-fix cycle<br>|ft_ada.txt|    Ada (the programming language) support<br>|ft_rust.txt|    Filetype plugin for Rust<br>|ft_sql.txt|    about the SQL filetype plugin</p>
+<p>Language support ~<br>|digraph.txt|    list of available digraphs<br>|mbyte.txt|    multi-byte text support<br>|mlang.txt|    non-English language support<br>|rileft.txt|    right-to-left editing mode<br>|arabic.txt|    Arabic language support and editing<br>|farsi.txt|    Farsi (Persian) editing<br>|hebrew.txt|    Hebrew language support and editing<br>|russian.txt|    Russian language support and editing<br>|hangulin.txt|    Hangul (Korean) input mode</p>
+<p>GUI ~<br>|gui.txt|    Graphical User Interface (GUI)<br>|gui_w32.txt|    Win32 GUI<br>|gui_x11.txt|    X11 GUI</p>
+<p>Interfaces ~<br>|if_cscop.txt|    using Cscope with Vim<br>|if_lua.txt|    Lua interface<br>|if_mzsch.txt|    MzScheme interface<br>|if_perl.txt|    Perl interface<br>|if_pyth.txt|    Python interface<br>|if_tcl.txt|    Tcl interface<br>|if_ole.txt|    OLE automation interface for Win32<br>|if_ruby.txt|    Ruby interface<br>|debugger.txt|    Interface with a debugger<br>|netbeans.txt|    NetBeans External Editor interface<br>|sign.txt|    debugging signs</p>
+<p>Versions ~<br>|vi_diff.txt|    Main differences between Vim and Vi<br>|version4.txt|    Differences between Vim version 3.0 and 4.x<br>|version5.txt|    Differences between Vim version 4.6 and 5.x<br>|version6.txt|    Differences between Vim version 5.7 and 6.x<br>|version7.txt|    Differences between Vim version 6.4 and 7.x<br>|version8.txt|    Differences between Vim version 7.4 and 8.x<br>                        <em>sys-file-list</em><br>Remarks about specific systems ~<br>|os_390.txt|    OS/390 Unix<br>|os_amiga.txt|    Amiga<br>|os_beos.txt|    BeOS and BeBox<br>|os_dos.txt|    MS-DOS and MS-Windows NT/95 common items<br>|os_mac.txt|    Macintosh<br>|os_mint.txt|    Atari MiNT<br>|os_msdos.txt|    MS-DOS (plain DOS and DOS box under Windows)<br>|os_os2.txt|    OS/2<br>|os_qnx.txt|    QNX<br>|os_risc.txt|    RISC-OS<br>|os_unix.txt|    Unix<br>|os_vms.txt|    VMS<br>|os_win32.txt|    MS-Windows 95/98/NT<br>                        <em>standard-plugin-list</em><br>Standard plugins ~<br>|pi_getscript.txt| Downloading latest version of Vim scripts<br>|pi_gzip.txt|      Reading and writing compressed files<br>|pi_logipat.txt|   Logical operators on patterns<br>|pi_netrw.txt|     Reading and writing files over a network<br>|pi_paren.txt|     Highlight matching parens<br>|pi_spec.txt|      Filetype plugin to work with rpm spec files<br>|pi_tar.txt|       Tar file explorer<br>|pi_vimball.txt|   Create a self-installing Vim script<br>|pi_zip.txt|       Zip archive explorer</p>
+<p>LOCAL ADDITIONS:                <em>local-additions</em></p>
+<hr>
+<p><em>bars</em>        Bars example</p>
+<p>Now that you’ve jumped here with CTRL-] or a double mouse click, you can use<br>CTRL-T, CTRL-O, g<RightMouse>, or <C-RightMouse> to go back to where you were.</C-RightMouse></RightMouse></p>
+<p>Note that tags are within | characters, but when highlighting is enabled these<br>characters are hidden.  That makes it easier to read a command.</p>
+<p>Anyway, you can use CTRL-] on any word, also when it is not within |, and Vim<br>will try to find help for it.  Especially for options in single quotes, e.g.<br>‘compatible’.</p>
+<hr>
+<p> vim:tw=78:isk=!-~,^*,^|,^&quot;:ts=8:noet:ft=help:norl:</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/jishu/VIM/pydiction/" rel="prev" title="pydiction">
+      <i class="fa fa-chevron-left"></i> pydiction
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/jishu/ubuntu/sources/" rel="next" title="Ubuntu修改源">
+      Ubuntu修改源 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">吴敌</p>
+  <div class="site-description" itemprop="description">吴敌</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:wudoer@live.com" title="E-Mail → mailto:wudoer@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 1992 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴敌</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

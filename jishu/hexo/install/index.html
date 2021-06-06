@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.wudoer.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="ubuntu子系统搭建hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="部署hexo博客">
+<meta property="og:url" content="http://www.wudoer.com/jishu/hexo/install/index.html">
+<meta property="og:site_name" content="吴敌">
+<meta property="og:description" content="ubuntu子系统搭建hexo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%90%AF%E5%8A%A8%E6%88%96%E5%85%B3%E9%97%ADWindows%E5%8A%9F%E8%83%BD.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E9%80%82%E7%94%A8%E4%BA%8EWindows%E7%9A%84linux%E5%AD%90%E7%B3%BB%E7%BB%9F.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E6%90%9C%E7%B4%A2.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%AE%89%E8%A3%85ubuntu.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%90%AF%E5%8A%A8ubuntu.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%85%B3%E9%97%AD%E7%95%8C%E9%9D%A2.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E9%87%8D%E5%90%AFubuntu.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD.png">
+<meta property="og:image" content="http://www.wudoer.com/jishu/hexo/install/%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE.png">
+<meta property="article:published_time" content="2021-03-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-03-19T16:00:00.000Z">
+<meta property="article:author" content="吴敌">
+<meta property="article:tag" content="吴敌">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.wudoer.com/jishu/hexo/install/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF.png">
+
+<link rel="canonical" href="http://www.wudoer.com/jishu/hexo/install/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>部署hexo博客 | 吴敌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴敌</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">吴敌</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">24</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.wudoer.com/jishu/hexo/install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="吴敌">
+      <meta itemprop="description" content="吴敌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴敌">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          部署hexo博客
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-20T00:00:00+08:00">2021-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>ubuntu子系统搭建hexo</p>
+ <span id="more"></span> 
+
+<h1 id="部署ubuntu子系统"><a href="#部署ubuntu子系统" class="headerlink" title="部署ubuntu子系统"></a>部署ubuntu子系统</h1><h2 id="开启子系统功能"><a href="#开启子系统功能" class="headerlink" title="开启子系统功能"></a>开启子系统功能</h2><table>
+<thead>
+<tr>
+<th align="center">1-控制面板</th>
+<th align="center">2-Windows功能</th>
+<th>3-组件安装</th>
+<th>4-完成安装</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="/jishu/hexo/install/%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF.png" alt="1616845274080"></td>
+<td align="center"><img src="/jishu/hexo/install/%E5%90%AF%E5%8A%A8%E6%88%96%E5%85%B3%E9%97%ADWindows%E5%8A%9F%E8%83%BD.png" alt="1616845370226"></td>
+<td><img src="/jishu/hexo/install/%E9%80%82%E7%94%A8%E4%BA%8EWindows%E7%9A%84linux%E5%AD%90%E7%B3%BB%E7%BB%9F.png" alt="1616845451527"></td>
+<td><img src="/jishu/hexo/install/%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85.png" alt="1616845560754"></td>
+</tr>
+</tbody></table>
+<h2 id="下载ubuntu"><a href="#下载ubuntu" class="headerlink" title="下载ubuntu"></a>下载ubuntu</h2><table>
+<thead>
+<tr>
+<th>1-微软商店搜索</th>
+<th>2-搜索结果</th>
+<th>3-安装ubuntu</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/jishu/hexo/install/%E5%BE%AE%E8%BD%AF%E5%95%86%E5%BA%97%E6%90%9C%E7%B4%A2.png" alt="1616845869401"></td>
+<td><img src="/jishu/hexo/install/%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png" alt="1616845964865"></td>
+<td><img src="/jishu/hexo/install/%E5%AE%89%E8%A3%85ubuntu.png" alt="1616846056661"></td>
+</tr>
+</tbody></table>
+<h2 id="安装ubuntu"><a href="#安装ubuntu" class="headerlink" title="安装ubuntu"></a>安装ubuntu</h2><table>
+<thead>
+<tr>
+<th>启动ubuntu</th>
+<th>关闭界面</th>
+<th>重启</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/jishu/hexo/install/%E5%90%AF%E5%8A%A8ubuntu.png" alt="1616846641362"></td>
+<td><img src="/jishu/hexo/install/%E5%85%B3%E9%97%AD%E7%95%8C%E9%9D%A2.png" alt="1616846850854"></td>
+<td><img src="/jishu/hexo/install/%E9%87%8D%E5%90%AFubuntu.png" alt="1616846927260"></td>
+</tr>
+</tbody></table>
+<h2 id="设置ubuntu源"><a href="#设置ubuntu源" class="headerlink" title="设置ubuntu源"></a>设置ubuntu源</h2><pre><code class="shell">cp /etc/apt/sources.list /etc/apt/sources.bak
+</code></pre>
+<pre><code class="shell">nano /etc/apt/sources.list
+</code></pre>
+<blockquote>
+<p>deb            <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal main restricted universe multiverse<br>deb-src     <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal main restricted universe multiverse<br>deb            <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-security main restricted universe multiverse<br>deb-src     <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-security main restricted universe multiverse<br>deb            <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-updates main restricted universe multiverse<br>deb-src     <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-updates main restricted universe multiverse<br>deb            <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-proposed main restricted universe multiverse<br>deb-src     <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-proposed main restricted universe multiverse<br>deb            <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-backports main restricted universe multiverse<br>deb-src     <a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/ubuntu/">https://mirrors.aliyun.com/ubuntu/</a> focal-backports main restricted universe multiverse</p>
+</blockquote>
+<h2 id="系统更新"><a href="#系统更新" class="headerlink" title="系统更新"></a>系统更新</h2><pre><code class="shell">#！/bin/bash
+apt update -y
+apt upgrade -y
+apt clean -y
+apt autoclean -y
+apt autoremove -y
+</code></pre>
+<h2 id="设置ubuntu中文"><a href="#设置ubuntu中文" class="headerlink" title="设置ubuntu中文"></a>设置ubuntu中文</h2><h3 id="安装语言包"><a href="#安装语言包" class="headerlink" title="安装语言包"></a>安装语言包</h3><pre><code class="shell">sudo apt install -y language-pack-zh-hans language-pack-zh-hans-base
+</code></pre>
+<h3 id="设置中文"><a href="#设置中文" class="headerlink" title="设置中文"></a>设置中文</h3><pre><code class="shell">nano /root/.profile
+</code></pre>
+<blockquote>
+<p>LANG=zh_CN.UTF-8</p>
+</blockquote>
+<h2 id="npm安装"><a href="#npm安装" class="headerlink" title="npm安装"></a>npm安装</h2><h3 id="在线安装"><a href="#在线安装" class="headerlink" title="在线安装"></a>在线安装</h3><pre><code class="bash">apt install npm
+</code></pre>
+<h3 id="下载nodejs-12安装包"><a href="#下载nodejs-12安装包" class="headerlink" title="下载nodejs-12安装包"></a>下载nodejs-12安装包</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/node/v12.9.1/node-v12.9.1-linux-x64.tar.gz">https://npm.taobao.org/mirrors/node/v12.9.1/node-v12.9.1-linux-x64.tar.gz</a></p>
+</blockquote>
+<h3 id="将安装包复制、改名、解压"><a href="#将安装包复制、改名、解压" class="headerlink" title="将安装包复制、改名、解压"></a>将安装包复制、改名、解压</h3><pre><code class="bash">cp /mnt/d/down/node-v12.9.1-linux-x64.tar.gz /opt/node.tar.gz
+tar xvf /opt/node.tar.gz
+</code></pre>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><pre><code class="bash">nano /etc/profile
+</code></pre>
+<blockquote>
+<p> #SET PATH FOR NODEJS<br> export NODE_HOME=/opt/node-v12.9.1-linux-x64<br> export PATH=$NODE_HOME/bin:$PATH </p>
+</blockquote>
+<pre><code class="bash">source /etc/profile
+</code></pre>
+<h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><h2 id="框架安装"><a href="#框架安装" class="headerlink" title="框架安装"></a>框架安装</h2><pre><code class="shell">npm install hexo-cli -g
+cd blog
+hexo init blog
+npm install
+</code></pre>
+<h2 id="主题安装"><a href="#主题安装" class="headerlink" title="主题安装"></a>主题安装</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/releases/tag/v7.8.0">https://github.com/theme-next/hexo-theme-next/releases/tag/v7.8.0</a></p>
+<p>下载连接：</p>
+<table>
+<thead>
+<tr>
+<th>主题下载</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/jishu/hexo/install/%E4%B8%BB%E9%A2%98%E4%B8%8B%E8%BD%BD.png" alt="1616847926106"></td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="官网引导"><a href="#官网引导" class="headerlink" title="官网引导"></a>官网引导</h1><h2 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre><code class="bash">npm install -g hexo-cli
+</code></pre>
+<h3 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h3><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><h3 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h3><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h2 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h2><h1 id="博客设置"><a href="#博客设置" class="headerlink" title="博客设置"></a>博客设置</h1><h2 id="config-yml（hexo）"><a href="#config-yml（hexo）" class="headerlink" title="_config.yml（hexo）"></a>_config.yml（hexo）</h2><h3 id="原始文件"><a href="#原始文件" class="headerlink" title="原始文件"></a>原始文件</h3><pre><code class="bash"># Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: Hexo
+subtitle: &#39;&#39;
+description: &#39;&#39;
+keywords:
+author: John Doe
+language: en
+timezone: &#39;&#39;
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as &#39;https://username.github.io/project&#39;
+url: http://example.com
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing &#39;index.html&#39; from permalinks
+  trailing_html: true # Set to false to remove trailing &#39;.html&#39; from permalinks
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: &#39;&#39;
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: true
+  auto_detect: false
+  tab_replace: &#39;&#39;
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: &#39;&#39;
+
+# Home page setting
+# path: Root path for your blogs index page. (default = &#39;&#39;)
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: &#39;&#39;
+  per_page: 10
+  order_by: -date
+
+# Category &amp; Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+## updated_option supports &#39;mtime&#39;, &#39;date&#39;, &#39;empty&#39;
+updated_option: &#39;mtime&#39;
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the &#39;source/&#39; folder
+include:
+exclude:
+ignore:
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: landscape
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: &#39;&#39;
+</code></pre>
+<h3 id="改后文件"><a href="#改后文件" class="headerlink" title="改后文件"></a>改后文件</h3><h3 id="修改说明"><a href="#修改说明" class="headerlink" title="修改说明"></a>修改说明</h3><h2 id="config-yml（next）"><a href="#config-yml（next）" class="headerlink" title="_config.yml（next）"></a>_config.yml（next）</h2><h3 id="原始文件-1"><a href="#原始文件-1" class="headerlink" title="原始文件"></a>原始文件</h3><pre><code class="shell"># ---------------------------------------------------------------
+# Theme Core Configuration Settings
+# See: https://theme-next.org/docs/theme-settings/
+# ---------------------------------------------------------------
+
+# If false, merge configs from `_data/next.yml` into default configuration (rewrite).
+# If true, will fully override default configuration by options from `_data/next.yml` (override). Only for NexT settings.
+# And if true, all config from default NexT `_config.yml` have to be copied into `next.yml`. Use if you know what you are doing.
+# Useful if you want to comment some options from NexT `_config.yml` by `next.yml` without editing default config.
+override: false
+
+# Console reminder if new version released.
+reminder: false
+
+# Allow to cache content generation. Introduced in NexT v6.0.0.
+cache:
+  enable: true
+
+# Remove unnecessary files after hexo generate.
+minify: false
+
+# Define custom file paths.
+# Create your custom files in site directory `source/_data` and uncomment needed files below.
+custom_file_path:
+  #head: source/_data/head.swig
+  #header: source/_data/header.swig
+  #sidebar: source/_data/sidebar.swig
+  #postMeta: source/_data/post-meta.swig
+  #postBodyEnd: source/_data/post-body-end.swig
+  #footer: source/_data/footer.swig
+  #bodyEnd: source/_data/body-end.swig
+  #variable: source/_data/variables.styl
+  #mixin: source/_data/mixins.styl
+  #style: source/_data/styles.styl
+
+
+# ---------------------------------------------------------------
+# Site Information Settings
+# See: https://theme-next.org/docs/getting-started/
+# ---------------------------------------------------------------
+
+favicon:
+  small: /images/favicon-16x16-next.png
+  medium: /images/favicon-32x32-next.png
+  apple_touch_icon: /images/apple-touch-icon-next.png
+  safari_pinned_tab: /images/logo.svg
+  #android_manifest: /images/manifest.json
+  #ms_browserconfig: /images/browserconfig.xml
+
+# Show multilingual switcher in footer.
+language_switcher: false
+
+footer:
+  # Specify the date when the site was setup. If not defined, current year will be used.
+  #since: 2015
+
+  # Icon between year and copyright info.
+  icon:
+    # Icon name in Font Awesome. See: https://fontawesome.com/v4.7.0/icons/
+    # `heart` is recommended with animation in red (#ff0000).
+    name: user
+    # If you want to animate the icon, set it to true.
+    animated: false
+    # Change the color of icon, using Hex Code.
+    color: &quot;#808080&quot;
+
+  # If not defined, `author` from Hexo `_config.yml` will be used.
+  copyright:
+
+  # Powered by Hexo &amp; NexT
+  powered: true
+
+  # Beian ICP and gongan information for Chinese users. See: http://www.beian.miit.gov.cn, http://www.beian.gov.cn
+  beian:
+    enable: false
+    icp:
+    # The digit in the num of gongan beian.
+    gongan_id:
+    # The full num of gongan beian.
+    gongan_num:
+    # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
+    gongan_icon_url:
+
+# Creative Commons 4.0 International License.
+# See: https://creativecommons.org/share-your-work/licensing-types-examples
+# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
+# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
+creative_commons:
+  license: by-nc-sa
+  sidebar: false
+  post: false
+  language:
+
+
+# ---------------------------------------------------------------
+# Scheme Settings
+# ---------------------------------------------------------------
+
+# Schemes
+scheme: Muse
+#scheme: Mist
+#scheme: Pisces
+#scheme: Gemini
+
+# Dark Mode
+darkmode: false
+
+
+# ---------------------------------------------------------------
+# Menu Settings
+# ---------------------------------------------------------------
+
+# Usage: `Key: /link/ || icon`
+# Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-senstive.
+# Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.
+# When running the site in a subdirectory (e.g. yoursite.com/blog), remove the leading slash from link value (/archives -&gt; archives).
+# External url should start with http:// or https://
+menu:
+  home: / || home
+  #about: /about/ || user
+  #tags: /tags/ || tags
+  #categories: /categories/ || th
+  archives: /archives/ || archive
+  #schedule: /schedule/ || calendar
+  #sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat
+
+# Enable / Disable menu icons / item badges.
+menu_settings:
+  icons: true
+  badges: false
+
+
+# ---------------------------------------------------------------
+# Sidebar Settings
+# See: https://theme-next.org/docs/theme-settings/sidebar
+# ---------------------------------------------------------------
+
+sidebar:
+  # Sidebar Position.
+  position: left
+  #position: right
+
+  # Manual define the sidebar width. If commented, will be default for:
+  # Muse | Mist: 320
+  # Pisces | Gemini: 240
+  #width: 300
+
+  # Sidebar Display (only for Muse | Mist), available values:
+  #  - post    expand on posts automatically. Default.
+  #  - always  expand for all pages automatically.
+  #  - hide    expand only when click on the sidebar toggle icon.
+  #  - remove  totally remove sidebar including sidebar toggle.
+  display: post
+
+  # Sidebar padding in pixels.
+  padding: 18
+  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
+  offset: 12
+  # Enable sidebar on narrow view (only for Muse | Mist).
+  onmobile: false
+
+# Sidebar Avatar
+avatar:
+  # Replace the default image and set the url here.
+  url: #/images/avatar.gif
+  # If true, the avatar will be dispalyed in circle.
+  rounded: false
+  # If true, the avatar will be rotated with the cursor.
+  rotated: false
+
+# Posts / Categories / Tags in sidebar.
+site_state: true
+
+# Social Links
+# Usage: `Key: permalink || icon`
+# Key is the link label showing to end users.
+# Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
+social:
+  #GitHub: https://github.com/yourname || github
+  #E-Mail: mailto:yourname@gmail.com || envelope
+  #Weibo: https://weibo.com/yourname || weibo
+  #Google: https://plus.google.com/yourname || google
+  #Twitter: https://twitter.com/yourname || twitter
+  #FB Page: https://www.facebook.com/yourname || facebook
+  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
+  #YouTube: https://youtube.com/yourname || youtube
+  #Instagram: https://instagram.com/yourname || instagram
+  #Skype: skype:yourname?call|chat || skype
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: false
+
+# Blog rolls
+links_settings:
+  icon: link
+  title: Links
+  # Available values: block | inline
+  layout: block
+
+links:
+  #Title: http://yoursite.com
+
+# Table of Contents in the Sidebar
+# Front-matter variable (unsupport wrap expand_all).
+toc:
+  enable: true
+  # Automatically add list number to toc.
+  number: true
+  # If true, all words will placed on next lines if header width longer then sidebar width.
+  wrap: false
+  # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
+  expand_all: false
+  # Maximum heading depth of generated toc.
+  max_depth: 6
+
+# A button to open designated chat widget in sidebar.
+# Firstly, you need enable the chat service you want to activate its sidebar button.
+chat:
+  enable: false
+  #service: chatra
+  #service: tidio
+  icon: comment # Icon name in Font Awesome, set false to disable icon.
+  text: Chat # Button text, change it as you wish.
+
+
+# ---------------------------------------------------------------
+# Post Settings
+# See: https://theme-next.org/docs/theme-settings/posts
+# ---------------------------------------------------------------
+
+# Automatically excerpt description in homepage as preamble text.
+excerpt_description: true
+
+# Read more button
+# If true, the read more button will be displayed in excerpt section.
+read_more_btn: true
+
+# Post meta display settings
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at:
+    enable: true
+    another_day: true
+  categories: true
+
+# Post wordcount display settings
+# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
+symbols_count_time:
+  separated_meta: true
+  item_text_post: true
+  item_text_total: false
+
+# Use icon instead of the symbol # to indicate the tag at the bottom of the post
+tag_icon: false
+
+# Reward (Donate)
+# Front-matter variable (unsupport animation).
+reward_settings:
+  # If true, reward will be displayed in every article by default.
+  enable: false
+  animation: false
+  #comment: Donate comment here.
+
+reward:
+  #wechatpay: /images/wechatpay.png
+  #alipay: /images/alipay.png
+  #paypal: /images/paypal.png
+  #bitcoin: /images/bitcoin.png
+
+# Subscribe through Telegram Channel, Twitter, etc.
+# Usage: `Key: permalink || icon` (Font Awesome)
+follow_me:
+  #Twitter: https://twitter.com/username || twitter
+  #Telegram: https://t.me/channel_name || telegram
+  #WeChat: /images/wechat_channel.jpg || wechat
+  #RSS: /atom.xml || rss
+
+# Related popular posts
+# Dependencies: https://github.com/tea3/hexo-related-popular-posts
+related_posts:
+  enable: false
+  title: # Custom header, leave empty to use the default one
+  display_in_home: false
+  params:
+    maxCount: 5
+    #PPMixingRate: 0.0
+    #isDate: false
+    #isImage: false
+    #isExcerpt: false
+
+# Post edit
+# Dependencies: https://github.com/hexojs/hexo-deployer-git
+post_edit:
+  enable: false
+  url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name # Link for view source
+  #url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name # Link for fork &amp; edit
+
+# Show previous post and next post in post footer if exists
+# Available values: left | right | false
+post_navigation: left
+
+
+# ---------------------------------------------------------------
+# Custom Page Settings
+# See: https://theme-next.org/docs/theme-settings/custom-pages
+# ---------------------------------------------------------------
+
+# TagCloud settings for tags page.
+tagcloud:
+  # All values below are same as default, change them by yourself.
+  min: 12 # Minimun font size in px
+  max: 30 # Maxium font size in px
+  start: &quot;#ccc&quot; # Start color (hex, rgba, hsla or color keywords)
+  end: &quot;#111&quot; # End color (hex, rgba, hsla or color keywords)
+  amount: 200 # Amount of tags, change it if you have more than 200 tags
+
+# Google Calendar
+# Share your recent schedule to others via calendar page.
+calendar:
+  calendar_id: &lt;required&gt; # Your Google account E-Mail
+  api_key: &lt;required&gt;
+  orderBy: startTime
+  offsetMax: 24 # Time Range
+  offsetMin: 4 # Time Range
+  showDeleted: false
+  singleEvents: true
+  maxResults: 250
+
+
+# ---------------------------------------------------------------
+# Misc Theme Settings
+# ---------------------------------------------------------------
+
+# Set the text alignment in posts / pages.
+text_align:
+  # Available values: start | end | left | right | center | justify | justify-all | match-parent
+  desktop: justify
+  mobile: justify
+
+# Reduce padding / margin indents on devices with narrow width.
+mobile_layout_economy: false
+
+# Android Chrome header panel color ($brand-bg / $headband-bg =&gt; $black-deep).
+android_chrome_color: &quot;#222&quot;
+
+# Custom Logo (Do not support scheme Mist)
+custom_logo: #/uploads/custom-logo.jpg
+
+codeblock:
+  # Code Highlight theme
+  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic
+  # See: https://github.com/chriskempson/tomorrow-theme
+  highlight_theme: normal
+  # Add copy button on codeblock
+  copy_button:
+    enable: false
+    # Show text copy result.
+    show_result: false
+    # Available values: default | flat | mac
+    style:
+
+back2top:
+  enable: true
+  # Back to top in sidebar.
+  sidebar: false
+  # Scroll percent label in b2t button.
+  scrollpercent: false
+
+# Reading progress bar
+reading_progress:
+  enable: false
+  # Available values: top | bottom
+  position: top
+  color: &quot;#37c6c0&quot;
+  height: 3px
+
+# Bookmark Support
+bookmark:
+  enable: false
+  # Customize the color of the bookmark.
+  color: &quot;#222&quot;
+  # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
+  # If manual, only save it by clicking the bookmark-icon.
+  save: auto
+
+# `Follow me on GitHub` banner in the top-right corner.
+github_banner:
+  enable: false
+  permalink: https://github.com/yourname
+  title: Follow me on GitHub
+
+
+# ---------------------------------------------------------------
+# Font Settings
+# See: https://theme-next.org/docs/theme-settings/#Fonts-Customization
+# ---------------------------------------------------------------
+# Find fonts on Google Fonts (https://www.google.com/fonts)
+# All fonts set here will have the following styles:
+#   light | light italic | normal | normal italic | bold | bold italic
+# Be aware that setting too much fonts will cause site running slowly
+# ---------------------------------------------------------------
+# To avoid space between header and sidebar in scheme Pisces / Gemini, Web Safe fonts are recommended for `global` (and `title`):
+# Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS
+# ---------------------------------------------------------------
+
+font:
+  enable: false
+
+  # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
+  host:
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: x.x`. Use `em` as unit. Default: 1 (16px)
+
+  # Global font settings used for all elements inside &lt;body&gt;.
+  global:
+    external: true
+    family: Lato
+    size:
+
+  # Font settings for site title (.site-title).
+  title:
+    external: true
+    family:
+    size:
+
+  # Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).
+  headings:
+    external: true
+    family:
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family:
+
+  # Font settings for &lt;code&gt; and code blocks.
+  codes:
+    external: true
+    family:
+
+
+# ---------------------------------------------------------------
+# SEO Settings
+# ---------------------------------------------------------------
+
+# Disable Baidu transformation on mobile devices.
+disable_baidu_transformation: false
+
+# If true, site-subtitle will be added to index page.
+# Remember to set up your site-subtitle in Hexo `_config.yml` (e.g. subtitle: Subtitle)
+index_with_subtitle: false
+
+# Automatically add external URL with Base64 encrypt &amp; decrypt.
+exturl: false
+
+# Google Webmaster tools verification.
+# See: https://www.google.com/webmasters
+google_site_verification:
+
+# Bing Webmaster tools verification.
+# See: https://www.bing.com/webmaster
+bing_site_verification:
+
+# Yandex Webmaster tools verification.
+# See: https://webmaster.yandex.ru
+yandex_site_verification:
+
+# Baidu Webmaster tools verification.
+# See: https://ziyuan.baidu.com/site
+baidu_site_verification:
+
+# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
+baidu_push: false
+
+
+# ---------------------------------------------------------------
+# Third Party Plugins &amp; Services Settings
+# See: https://theme-next.org/docs/third-party-services/
+# More plugins: https://github.com/theme-next/awesome-next
+# You may need to install dependencies or set CDN URLs in `vendors`
+# There are two different CDN providers by default:
+#   - jsDelivr (cdn.jsdelivr.net), works everywhere even in China
+#   - CDNJS (cdnjs.cloudflare.com), provided by cloudflare
+# ---------------------------------------------------------------
+
+# Math Formulas Render Support
+math:
+  # Default (true) will load mathjax / katex script on demand.
+  # That is it only render those page which has `mathjax: true` in Front-matter.
+  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
+  per_page: true
+
+  # hexo-renderer-pandoc (or hexo-renderer-kramed) required for full MathJax support.
+  mathjax:
+    enable: false
+    # See: https://mhchem.github.io/MathJax-mhchem/
+    mhchem: false
+
+  # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
+  katex:
+    enable: false
+    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
+    copy_tex: false
+
+# Easily enable fast Ajax navigation on your website.
+# Dependencies: https://github.com/theme-next/theme-next-pjax
+pjax: false
+
+# FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
+# For more information: https://fancyapps.com/fancybox
+fancybox: false
+
+# A JavaScript library for zooming images like Medium.
+# Do not enable both `fancybox` and `mediumzoom`.
+# For more information: https://github.com/francoischalifour/medium-zoom
+mediumzoom: false
+
+# Vanilla JavaScript plugin for lazyloading images.
+# For more information: https://github.com/ApoorvSaxena/lozad.js
+lazyload: false
+
+# Pangu Support
+# For more information: https://github.com/vinta/pangu.js
+pangu: false
+
+# Quicklink Support
+# Do not enable both `pjax` and `quicklink`.
+# For more information: https://github.com/GoogleChromeLabs/quicklink
+# Front-matter (unsupport home archive).
+quicklink:
+  enable: false
+
+  # Home page and archive page can be controlled through home and archive options below.
+  # This configuration item is independent of `enable`.
+  home: false
+  archive: false
+
+  # Default (true) will initialize quicklink after the load event fires.
+  delay: true
+  # Custom a time in milliseconds by which the browser must execute prefetching.
+  timeout: 3000
+  # Default (true) will enable fetch() or falls back to XHR.
+  priority: true
+
+  # For more flexibility you can add some patterns (RegExp, Function, or Array) to ignores.
+  # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
+  ignores:
+
+
+# ---------------------------------------------------------------
+# Comments Settings
+# See: https://theme-next.org/docs/third-party-services/comments
+# ---------------------------------------------------------------
+
+# Multiple Comment System Support
+comments:
+  # Available values: tabs | buttons
+  style: tabs
+  # Choose a comment system to be displayed by default.
+  # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
+  active:
+  # Setting `true` means remembering the comment system selected by the visitor.
+  storage: true
+  # Lazyload all comment systems.
+  lazyload: false
+  # Modify texts or order for any navs, here are some examples.
+  nav:
+    #disqus:
+    #  text: Load Disqus
+    #  order: -1
+    #gitalk:
+    #  order: -2
+
+# Disqus
+disqus:
+  enable: false
+  shortname:
+  count: true
+  #post_meta_order: 0
+
+# DisqusJS
+# Alternative Disqus - Render comment component using Disqus API.
+# Demo: https://suka.js.org/DisqusJS/
+# For more information: https://github.com/SukkaW/DisqusJS
+disqusjs:
+  enable: false
+  # API Endpoint of Disqus API (https://disqus.com/api/).
+  # Leave api empty if you are able to connect to Disqus API. Otherwise you need a reverse proxy for it.
+  # For example:
+  # api: https://disqus.skk.moe/disqus/
+  api:
+  apikey: # Register new application from https://disqus.com/api/applications/
+  shortname: # See: https://disqus.com/admin/settings/general/
+
+# Changyan
+changyan:
+  enable: false
+  appid:
+  appkey:
+  #post_meta_order: 0
+
+# Valine
+# For more information: https://valine.js.org, https://github.com/xCss/Valine
+valine:
+  enable: false
+  appid: # Your leancloud application appid
+  appkey: # Your leancloud application appkey
+  notify: false # Mail notifier
+  verify: false # Verification code
+  placeholder: Just go go # Comment box placeholder
+  avatar: mm # Gravatar style
+  guest_info: nick,mail,link # Custom comment header
+  pageSize: 10 # Pagination size
+  language: # Language, available values: en, zh-cn
+  visitor: false # Article reading statistic
+  comment_count: true # If false, comment count will only be displayed in post page, not in home page
+  recordIP: false # Whether to record the commenter IP
+  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)
+  #post_meta_order: 0
+
+# LiveRe comments system
+# You can get your uid from https://livere.com/insight/myCode (General web site)
+livere_uid: # &lt;your_uid&gt;
+
+# Gitalk
+# For more information: https://gitalk.github.io, https://github.com/gitalk/gitalk
+gitalk:
+  enable: false
+  github_id: # GitHub repo owner
+  repo: # Repository name to store issues
+  client_id: # GitHub Application Client ID
+  client_secret: # GitHub Application Client Secret
+  admin_user: # GitHub repo owner and collaborators, only these guys can initialize gitHub issues
+  distraction_free_mode: true # Facebook-like distraction free mode
+  # Gitalk&#39;s display language depends on user&#39;s browser or system environment
+  # If you want everyone visiting your site to see a uniform language, you can set a force language value
+  # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
+  language:
+
+
+# ---------------------------------------------------------------
+# Post Widgets &amp; Content Sharing Services
+# See: https://theme-next.org/docs/third-party-services/post-widgets
+# ---------------------------------------------------------------
+
+# Star rating support to each article.
+# To get your ID visit https://widgetpack.com
+rating:
+  enable: false
+  id:     # &lt;app_id&gt;
+  color:  fc6423
+
+# AddThis Share. See: https://www.addthis.com
+# Go to https://www.addthis.com/dashboard to customize your tools.
+add_this_id:
+
+
+# ---------------------------------------------------------------
+# Statistics and Analytics
+# See: https://theme-next.org/docs/third-party-services/statistics-and-analytics
+# ---------------------------------------------------------------
+
+# Google Analytics
+google_analytics:
+  tracking_id: # &lt;app_id&gt;
+  # By default, NexT will load an external gtag.js script on your site.
+  # If you only need the pageview feature, set the following option to true to get a better performance.
+  only_pageview: false
+
+# Baidu Analytics
+baidu_analytics: # &lt;app_id&gt;
+
+# Growingio Analytics
+growingio_analytics: # &lt;project_id&gt;
+
+# CNZZ count
+cnzz_siteid:
+
+# Show number of visitors of each article.
+# You can visit https://leancloud.cn to get AppID and AppKey.
+# AppID and AppKey are recommended to be the same as valine&#39;s for counter compatibility.
+# Do not enable both `valine.visitor` and `leancloud_visitors`.
+leancloud_visitors:
+  enable: false
+  app_id: # &lt;your app id&gt;
+  app_key: # &lt;your app key&gt;
+  # Required for apps from CN region
+  server_url: # &lt;your server url&gt;
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don&#39;t care about security in leancloud counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
+  security: true
+
+# Another tool to show number of visitors to each article.
+# Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.
+# Visit https://firebase.google.com/docs/firestore/ to get more information about firestore.
+firestore:
+  enable: false
+  collection: articles # Required, a string collection name to access firestore database
+  apiKey: # Required
+  projectId: # Required
+
+# Show Views / Visitors of the website / page with busuanzi.
+# Get more information on http://ibruce.info/2015/04/04/busuanzi
+busuanzi_count:
+  enable: false
+  total_visitors: true
+  total_visitors_icon: user
+  total_views: true
+  total_views_icon: eye
+  post_views: true
+  post_views_icon: eye
+
+
+# ---------------------------------------------------------------
+# Search Services
+# See: https://theme-next.org/docs/third-party-services/search-services
+# ---------------------------------------------------------------
+
+# Algolia Search
+# For more information: https://www.algolia.com
+algolia_search:
+  enable: false
+  hits:
+    per_page: 10
+  labels:
+    input_placeholder: Search for Posts
+    hits_empty: &quot;We didn&#39;t find any results for the search: $&#123;query&#125;&quot;
+    hits_stats: &quot;$&#123;hits&#125; results found in $&#123;time&#125; ms&quot;
+
+# Local Search
+# Dependencies: https://github.com/theme-next/hexo-generator-searchdb
+local_search:
+  enable: false
+  # If auto, trigger search by changing input.
+  # If manual, trigger search by pressing enter key or search button.
+  trigger: auto
+  # Show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # Unescape html strings to the readable one.
+  unescape: false
+  # Preload the search data when the page loads.
+  preload: false
+
+# Swiftype Search API Key
+swiftype_key:
+
+
+# ---------------------------------------------------------------
+# Chat Services
+# See: https://theme-next.org/docs/third-party-services/chat-services
+# ---------------------------------------------------------------
+
+# Chatra Support
+# See: https://chatra.io
+# Dashboard: https://app.chatra.io/settings/general
+chatra:
+  enable: false
+  async: true
+  id: # Visit Dashboard to get your ChatraID
+  #embed: # Unfinished experimental feature for developers. See: https://chatra.io/help/api/#injectto
+
+# Tidio Support
+# See: https://www.tidiochat.com
+# Dashboard: https://www.tidiochat.com/panel/dashboard
+tidio:
+  enable: false
+  key: # Public Key, get it from dashboard. See: https://www.tidiochat.com/panel/settings/developer
+
+
+# ---------------------------------------------------------------
+# Tags Settings
+# See: https://theme-next.org/docs/tag-plugins/
+# ---------------------------------------------------------------
+
+# Note tag (bs-callout)
+note:
+  # Note tag style values:
+  #  - simple    bs-callout old alert style. Default.
+  #  - modern    bs-callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: simple
+  icons: false
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+# Tabs tag
+tabs:
+  transition:
+    tabs: false
+    labels: true
+
+# PDF tag
+# NexT will try to load pdf files natively, if failed, pdf.js will be used.
+# So, you have to install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.
+# See: https://github.com/theme-next/theme-next-pdf
+pdf:
+  enable: false
+  # Default height
+  height: 500px
+
+# Mermaid tag
+mermaid:
+  enable: false
+  # Available themes: default | dark | forest | neutral
+  theme: forest
+
+
+# ---------------------------------------------------------------
+# Animation Settings
+# ---------------------------------------------------------------
+
+# Use velocity to animate everything.
+# For more information: http://velocityjs.org
+motion:
+  enable: true
+  async: false
+  transition:
+    # Transition variants:
+    # fadeIn | flipXIn | flipYIn | flipBounceXIn | flipBounceYIn
+    # swoopIn | whirlIn | shrinkIn | expandIn
+    # bounceIn | bounceUpIn | bounceDownIn | bounceLeftIn | bounceRightIn
+    # slideUpIn | slideDownIn | slideLeftIn | slideRightIn
+    # slideUpBigIn | slideDownBigIn | slideLeftBigIn | slideRightBigIn
+    # perspectiveUpIn | perspectiveDownIn | perspectiveLeftIn | perspectiveRightIn
+    post_block: fadeIn
+    post_header: slideDownIn
+    post_body: slideDownIn
+    coll_header: slideLeftIn
+    # Only for Pisces | Gemini.
+    sidebar: slideUpIn
+
+# Progress bar in the top during page loading.
+# Dependencies: https://github.com/theme-next/theme-next-pace
+# For more information: https://github.com/HubSpot/pace
+pace:
+  enable: false
+  # Themes list:
+  # big-counter | bounce | barber-shop | center-atom | center-circle | center-radar | center-simple
+  # corner-indicator | fill-left | flat-top | flash | loading-bar | mac-osx | material | minimal
+  theme: minimal
+
+# JavaScript 3D library.
+# Dependencies: https://github.com/theme-next/theme-next-three
+three:
+  enable: false
+  three_waves: false
+  canvas_lines: false
+  canvas_sphere: false
+
+# Canvas-ribbon
+# Dependencies: https://github.com/theme-next/theme-next-canvas-ribbon
+# For more information: https://github.com/zproo/canvas-ribbon
+canvas_ribbon:
+  enable: false
+  size: 300 # The width of the ribbon
+  alpha: 0.6 # The transparency of the ribbon
+  zIndex: -1 # The display level of the ribbon
+
+
+#! ---------------------------------------------------------------
+#! DO NOT EDIT THE FOLLOWING SETTINGS
+#! UNLESS YOU KNOW WHAT YOU ARE DOING
+#! See: https://theme-next.org/docs/advanced-settings
+#! ---------------------------------------------------------------
+
+# Script Vendors. Set a CDN address for the vendor you want to customize.
+# Be aware that you would better use the same version as internal ones to avoid potential problems.
+# Remember to use the https protocol of CDN files when you enable https on your site.
+vendors:
+  # Internal path prefix.
+  _internal: lib
+
+  # Internal version: 3.1.0
+  # anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
+  anime:
+
+  # Internal version: 4.7.0
+  # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
+  # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+  fontawesome:
+
+  # MathJax
+  # mathjax: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  mathjax:
+
+  # KaTeX
+  # katex: //cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css
+  # katex: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css
+  # copy_tex_js: //cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js
+  # copy_tex_css: //cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css
+  katex:
+  copy_tex_js:
+  copy_tex_css:
+
+  # Internal version: 0.2.8
+  # pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
+  pjax:
+
+  # FancyBox
+  # jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+  # fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
+  # fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
+  jquery:
+  fancybox:
+  fancybox_css:
+
+  # Medium-zoom
+  # mediumzoom: //cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js
+  mediumzoom:
+
+  # Lazyload
+  # lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
+  # lazyload: //cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js
+  lazyload:
+
+  # Pangu
+  # pangu: //cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js
+  # pangu: //cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js
+  pangu:
+
+  # Quicklink
+  # quicklink: //cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
+  quicklink:
+
+  # DisqusJS
+  # disqusjs_js: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js
+  # disqusjs_css: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
+  disqusjs_js:
+  disqusjs_css:
+
+  # Valine
+  # valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
+  # valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js
+  valine:
+
+  # Gitalk
+  # gitalk_js: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
+  # gitalk_css: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css
+  gitalk_js:
+  gitalk_css:
+
+  # Algolia Search
+  # algolia_search: //cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
+  # instant_search: //cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
+  algolia_search:
+  instant_search:
+
+  # Mermaid
+  # mermaid: //cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js
+  # mermaid: //cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.8/mermaid.min.js
+  mermaid:
+
+  # Internal version: 1.2.1
+  # velocity: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js
+  # velocity: //cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js
+  # velocity_ui: //cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js
+  # velocity_ui: //cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js
+  velocity:
+  velocity_ui:
+
+  # Internal version: 1.0.2
+  # pace: //cdn.jsdelivr.net/npm/pace-js@1/pace.min.js
+  # pace: //cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js
+  # pace_css: //cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css
+  # pace_css: //cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css
+  pace:
+  pace_css:
+
+  # Internal version: 1.0.0
+  # three: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js
+  # three_waves: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three-waves.min.js
+  # canvas_lines: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/canvas_lines.min.js
+  # canvas_sphere: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/canvas_sphere.min.js
+  three:
+  three_waves:
+  canvas_lines:
+  canvas_sphere:
+
+  # Internal version: 1.0.0
+  # canvas_ribbon: //cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js
+  canvas_ribbon:
+
+# Assets
+css: css
+js: js
+images: images
+</code></pre>
+<h3 id="改后文件-1"><a href="#改后文件-1" class="headerlink" title="改后文件"></a>改后文件</h3><h3 id="修改说明-1"><a href="#修改说明-1" class="headerlink" title="修改说明"></a>修改说明</h3><h1 id="设置步骤"><a href="#设置步骤" class="headerlink" title="设置步骤"></a>设置步骤</h1><h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><h2 id="git插件"><a href="#git插件" class="headerlink" title="git插件"></a>git插件</h2><h3 id="下载命令"><a href="#下载命令" class="headerlink" title="下载命令"></a>下载命令</h3><pre><code class="shell">npm install --save hexo-deployer-git
+</code></pre>
+<h3 id="账户设置"><a href="#账户设置" class="headerlink" title="账户设置"></a>账户设置</h3><blockquote>
+<p>git config –global user.name “<a href="mailto:&#119;&#x75;&#100;&#x6f;&#101;&#114;&#64;&#x6c;&#105;&#118;&#101;&#46;&#x63;&#x6f;&#109;">&#119;&#x75;&#100;&#x6f;&#101;&#114;&#64;&#x6c;&#105;&#118;&#101;&#46;&#x63;&#x6f;&#109;</a>“<br>git config –global user.email “<a href="mailto:&#x77;&#x75;&#x64;&#111;&#101;&#x72;&#64;&#x6c;&#x69;&#x76;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#x77;&#x75;&#x64;&#111;&#101;&#x72;&#64;&#x6c;&#x69;&#x76;&#x65;&#x2e;&#x63;&#111;&#x6d;</a>“<br>git config -l </p>
+</blockquote>
+<h2 id="git插件-1"><a href="#git插件-1" class="headerlink" title="git插件"></a>git插件</h2><h3 id="下载命令-1"><a href="#下载命令-1" class="headerlink" title="下载命令"></a>下载命令</h3><pre><code class="shell">npm install hexo-deployer-git --save
+</code></pre>
+<h2 id="mermaid插件"><a href="#mermaid插件" class="headerlink" title="mermaid插件"></a>mermaid插件</h2><h3 id="下载命令-2"><a href="#下载命令-2" class="headerlink" title="下载命令"></a>下载命令</h3><pre><code class="shell">npm install hexo-filter-mermaid-diagrams  --save
+</code></pre>
+<h3 id="相关设置-themes-yml"><a href="#相关设置-themes-yml" class="headerlink" title="相关设置 themes.yml"></a>相关设置 themes.yml</h3><blockquote>
+<p>mermaid:<br>  enable: ture           ## /启动mermaid插件/<br>  theme: forest</p>
+</blockquote>
+<h2 id="fancybox插件"><a href="#fancybox插件" class="headerlink" title="fancybox插件"></a>fancybox插件</h2><blockquote>
+<p>fancybox: true         ## /启动fancybox缩放/</p>
+</blockquote>
+<h2 id="图片显示插件"><a href="#图片显示插件" class="headerlink" title="图片显示插件"></a>图片显示插件</h2><pre><code class="shell">npm install https://github.com/CodeFalling/hexo-asset-image
+</code></pre>
+<h2 id="搜索插件"><a href="#搜索插件" class="headerlink" title="搜索插件"></a>搜索插件</h2><h3 id="下载命令-3"><a href="#下载命令-3" class="headerlink" title="下载命令"></a>下载命令</h3><pre><code class="shell">npm install hexo-generator-searchdb --save
+</code></pre>
+<h3 id="hexo-yml"><a href="#hexo-yml" class="headerlink" title="hexo.yml"></a>hexo.yml</h3><blockquote>
+<p>search:                    ## /搜索插件/<br>  path: search.xml<br>  field: post<br>  format: html<br>  limit: 10000<br>  content: true</p>
+</blockquote>
+<h3 id="themes-yml"><a href="#themes-yml" class="headerlink" title="themes.yml"></a>themes.yml</h3><blockquote>
+<p>local_search:               ## /搜索插件/<br> enable: true<br> trigger: auto<br> top_n_per_article: 1<br> unescape: false<br> preload: false</p>
+</blockquote>
+<h2 id="emoji插件"><a href="#emoji插件" class="headerlink" title="emoji插件"></a>emoji插件</h2><h3 id="下载命令-4"><a href="#下载命令-4" class="headerlink" title="下载命令"></a>下载命令</h3><pre><code class="shell">npm i -S hexo-prism-plugin --save
+</code></pre>
+<p> :smile:</p>
+<h1 id="发布平台"><a href="#发布平台" class="headerlink" title="发布平台"></a>发布平台</h1><h1 id="编辑工具"><a href="#编辑工具" class="headerlink" title="编辑工具"></a>编辑工具</h1><h2 id="typora图片设置"><a href="#typora图片设置" class="headerlink" title="typora图片设置"></a>typora图片设置</h2><p><img src="/jishu/hexo/install/%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE.png" alt="1617437700894"></p>
+<h2 id="typora-emoji"><a href="#typora-emoji" class="headerlink" title="typora emoji"></a>typora emoji</h2><h3 id="表情"><a href="#表情" class="headerlink" title="表情"></a>表情</h3><table>
+<thead>
+<tr>
+<th>smile</th>
+<th>laughing</th>
+<th>blush</th>
+<th>smiley</th>
+<th>relaxed</th>
+<th>smirk</th>
+<th>heart_eyes</th>
+<th>kissing_heart</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:smile:</td>
+<td>:laughing:</td>
+<td>:blush:</td>
+<td>:smiley:</td>
+<td>:relaxed:</td>
+<td>:smirk:</td>
+<td>:heart_eyes:</td>
+<td>:kissing_heart:</td>
+</tr>
+<tr>
+<td>kissing_closed_eyes</td>
+<td>flushed</td>
+<td>relieved</td>
+<td>satisfied</td>
+<td>grin</td>
+<td>wink</td>
+<td>stuck_out_tongue_winking_eye</td>
+<td>stuck_out_tongue_closed_eyes</td>
+</tr>
+<tr>
+<td>:kissing_closed_eyes:</td>
+<td>:flushed:</td>
+<td>:relieved:</td>
+<td>:satisfied:</td>
+<td>:grin:</td>
+<td>:wink:</td>
+<td>:stuck_out_tongue_winking_eye:</td>
+<td>:stuck_out_tongue_closed_eyes:</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>😜 :stuck_out_tongue_winking_eye:    😝 :stuck_out_tongue_closed_eyes:    😀 :grinning:<br>😗 :kissing:    😙 :kissing_smiling_eyes:    😛 :stuck_out_tongue:<br>😴 :sleeping:    😟 :worried:    😦 :frowning:<br>😧 :anguished:    😮 :open_mouth:    😬 :grimacing:<br>😕 :confused:    😯 :hushed:    😑 :expressionless:<br>😒 :unamused:    😅 :sweat_smile:    😓 :sweat:<br>😥 :disappointed_relieved:    😩 :weary:    😔 :pensive:<br>😞 :disappointed:    😖 :confounded:    😨 :fearful:<br>😰 :cold_sweat:    😣 :persevere:    😢 :cry:<br>😭 :sob:    😂 :joy:    😲 :astonished:<br>😱 :scream:         😫 :tired_face:<br>😠 :angry:    😡 :rage:    😤 :triumph:<br>😪 :sleepy:    😋 :yum:    😷 :mask:<br>😎 :sunglasses:    😵 :dizzy_face:    👿 :imp:<br>😈 :smiling_imp:    😐 :neutral_face:    😶 :no_mouth:<br>😇 :innocent:    👽 :alien:    </p>
+<h3 id="爱心"><a href="#爱心" class="headerlink" title="爱心"></a>爱心</h3><p>💛 :yellow_heart:<br>💙 :blue_heart:    💜 :purple_heart:    ❤️ :heart:<br>💚 :green_heart:    💔 :broken_heart:    💓 :heartbeat:<br>💗 :heartpulse:    💕 :two_hearts:    💞 :revolving_hearts:<br>💘 :cupid:    💖 :sparkling_heart:    </p>
+<h3 id="五角星"><a href="#五角星" class="headerlink" title="五角星"></a>五角星</h3><p>✨ :sparkles:<br>⭐️ :star:    🌟 :star2:    💫 :dizzy:<br>💥 :boom:    💥 :collision:    </p>
+<h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><p>💢 :anger:<br>❗️ :exclamation:    ❓ :question:    ❕ :grey_exclamation:<br>❔ :grey_question:    💤 :zzz:    </p>
+<h3 id="天气"><a href="#天气" class="headerlink" title="天气"></a>天气</h3><p>💨 :dash:<br>💦 :sweat_drops:<br>🔥 :fire:    ☀️ :sunny:    ☔️ :umbrella:    ☁️ :cloud:<br>❄️ :snowflake:    ⛄️ :snowman:    ⚡️ :zap:<br>🌀 :cyclone:    🌁 :foggy:    🌊 :ocean:</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>🐾 :feet:<br>👄 :lips:    💋 :kiss:    💧 :droplet:<br>👂 :ear:    👀 :eyes:    👃 :nose:<br>👅 :tongue:    💌 :love_letter:    👤 :bust_in_silhouette:<br>👥 :busts_in_silhouette:    💬 :speech_balloon:    💭 :thought_balloon:<br>🎶 :notes:    🎵 :musical_note:<br>🗾 :japan:    🗻 :mount_fuji:    🌄 :sunrise_over_mountains:<br>🌅 :sunrise:    🌠 :stars:    🗽 :statue_of_liberty:<br>🌉 :bridge_at_night:    🎠 :carousel_horse:    🌈 :rainbow:</p>
+<h3 id="狗屎"><a href="#狗屎" class="headerlink" title="狗屎"></a>狗屎</h3><p>💩 :hankey:    💩 :poop:<br>💩 :shit:    </p>
+<h3 id="手势"><a href="#手势" class="headerlink" title="手势"></a>手势</h3><pre><code>👍 :+1:    👍 :thumbsup:
+</code></pre>
+<p>👎 :-1:    👎 :thumbsdown:    👌 :ok_hand:<br>👊 :punch:    👊 :facepunch:    ✊ :fist:<br>✌️ :v:    👋 :wave:    ✋ :hand:<br>✋ :raised_hand:    👐 :open_hands:    ☝️ :point_up:<br>👇 :point_down:    👈 :point_left:    👉 :point_right:<br>🙌 :raised_hands:    🙏 :pray:    👆 :point_up_2:<br>👏 :clap:    💪 :muscle:    🤘 :metal:<br>🖕 :fu:    </p>
+<h3 id="人物"><a href="#人物" class="headerlink" title="人物"></a>人物</h3><p>🚶 :walking:    🏃 :runner:<br>🏃 :running:    👫 :couple:    👪 :family:<br>👬 :two_men_holding_hands:    👭 :two_women_holding_hands:    💃 :dancer:<br>👯 :dancers:    🙆 :ok_woman:    🙅 :no_good:<br>💁 :information_desk_person:    🙋 :raising_hand:    👰 :bride_with_veil:<br>🙎 :person_with_pouting_face:    🙍 :person_frowning:    🙇 :bow:<br>:couplekiss: :couplekiss:    💑 :couple_with_heart:    💆 :massage:<br>💇 :haircut:    💅 :nail_care:    👦 :boy:<br>👧 :girl:    👩 :woman:    👨 :man:<br>👶 :baby:    👵 :older_woman:    👴 :older_man:<br>👱 :person_with_blond_hair:    👲 :man_with_gua_pi_mao:    👳 :man_with_turban:<br>👷 :construction_worker:    👮 :cop:    👼 :angel:<br>👸 :princess:    😺 :smiley_cat:    😸 :smile_cat:<br>😻 :heart_eyes_cat:    😽 :kissing_cat:    😼 :smirk_cat:<br>🙀 :scream_cat:    😿 :crying_cat_face:    😹 :joy_cat:<br>😾 :pouting_cat:    👹 :japanese_ogre:    👺 :japanese_goblin:<br>🙈 :see_no_evil:    🙉 :hear_no_evil:    🙊 :speak_no_evil:<br>💂 :guardsman:    💀 :skull:    </p>
+<h3 id="动物"><a href="#动物" class="headerlink" title="动物"></a>动物</h3><p>🐱 :cat:    🐶 :dog:    🐭 :mouse:<br>🐹 :hamster:    🐰 :rabbit:    🐺 :wolf:<br>🐸 :frog:    🐯 :tiger:    🐨 :koala:<br>🐻 :bear:    🐷 :pig:    🐽 :pig_nose:<br>🐮 :cow:    🐗 :boar:    🐵 :monkey_face:<br>🐒 :monkey:    🐴 :horse:    🐎 :racehorse:<br>🐫 :camel:    🐑 :sheep:    🐘 :elephant:<br>🐼 :panda_face:    🐍 :snake:    🐦 :bird:<br>🐤 :baby_chick:    🐥 :hatched_chick:    🐣 :hatching_chick:<br>🐔 :chicken:    🐧 :penguin:    🐢 :turtle:<br>🐛 :bug:    🐝 :honeybee:    🐜 :ant:<br>🐞 :beetle:    🐌 :snail:    🐙 :octopus:<br>🐠 :tropical_fish:    🐟 :fish:    🐳 :whale:<br>🐋 :whale2:    🐬 :dolphin:    🐄 :cow2:<br>🐏 :ram:    🐀 :rat:    🐃 :water_buffalo:<br>🐅 :tiger2:    🐇 :rabbit2:    🐉 :dragon:<br>🐐 :goat:    🐓 :rooster:    🐕 :dog2:<br>🐖 :pig2:    🐁 :mouse2:    🐂 :ox:<br>🐲 :dragon_face:    🐡 :blowfish:    🐊 :crocodile:<br>🐪 :dromedary_camel:    🐆 :leopard:    🐈 :cat2:<br>🐩 :poodle:    </p>
+<h3 id="植物"><a href="#植物" class="headerlink" title="植物"></a>植物</h3><p>🐾 :paw_prints:    💐 :bouquet:<br>🌸 :cherry_blossom:    🌷 :tulip:    🍀 :four_leaf_clover:<br>🌹 :rose:    🌻 :sunflower:    🌺 :hibiscus:<br>🍁 :maple_leaf:    🍃 :leaves:    🍂 :fallen_leaf:<br>🌿 :herb:    🍄 :mushroom:    🌵 :cactus:<br>🌴 :palm_tree:    🌲 :evergreen_tree:    🌳 :deciduous_tree:<br>🌰 :chestnut:    🌱 :seedling:    🌼 :blossom:<br>🌾 :ear_of_rice:    🐚 :shell:<br>🎍 :bamboo:</p>
+<h3 id="地理"><a href="#地理" class="headerlink" title="地理"></a>地理</h3><p>🌐 :globe_with_meridians:<br>🌞 :sun_with_face:    🌝 :full_moon_with_face:    🌚 :new_moon_with_face:<br>🌑 :new_moon:    🌒 :waxing_crescent_moon:    🌓 :first_quarter_moon:<br>🌔 :waxing_gibbous_moon:    🌕 :full_moon:    🌖 :waning_gibbous_moon:<br>🌗 :last_quarter_moon:    🌘 :waning_crescent_moon:    🌜 :last_quarter_moon_with_face:<br>🌛 :first_quarter_moon_with_face:    🌔 :moon:    🌍 :earth_africa:<br>🌎 :earth_americas:    🌏 :earth_asia:    🌋 :volcano:<br>🌌 :milky_way:    ⛅️ :partly_sunny:</p>
+<h3 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h3><p>💝 :gift_heart:    🎎 :dolls:<br>🎒 :school_satchel:    🎓 :mortar_board:    🎏 :flags:<br>🎆 :fireworks:    🎇 :sparkler:    🎐 :wind_chime:<br>🎑 :rice_scene:    🎃 :jack_o_lantern:    👻 :ghost:<br>🎅 :santa:    🎄 :christmas_tree:    🎁 :gift:<br>🔔 :bell:    🔕 :no_bell:    🎋 :tanabata_tree:<br>🎉 :tada:    🎊 :confetti_ball:    🎈 :balloon:<br>🔮 :crystal_ball:    💿 :cd:    📀 :dvd:<br>💾 :floppy_disk:    📷 :camera:    📹 :video_camera:<br>🎥 :movie_camera:    💻 :computer:    📺 :tv:<br>📱 :iphone:    ☎️ :phone:    ☎️ :telephone:<br>📞 :telephone_receiver:    📟 :pager:    📠 :fax:<br>💽 :minidisc:    📼 :vhs:    🔉 :sound:<br>🔈 :speaker:    🔇 :mute:    📢 :loudspeaker:<br>📣 :mega:    ⌛️ :hourglass:    ⏳ :hourglass_flowing_sand:<br>⏰ :alarm_clock:    ⌚️ :watch:    📻 :radio:<br>📡 :satellite:    ➿ :loop:    🔍 :mag:<br>🔎 :mag_right:    🔓 :unlock:    🔒 :lock:<br>🔏 :lock_with_ink_pen:    🔐 :closed_lock_with_key:    🔑 :key:<br>💡 :bulb:    🔦 :flashlight:    🔆 :high_brightness:<br>🔅 :low_brightness:    🔌 :electric_plug:    🔋 :battery:<br>📲 :calling:    ✉️ :email:    📫 :mailbox:<br>📮 :postbox:    🛀 :bath:    🛁 :bathtub:<br>🚿 :shower:    🚽 :toilet:    🔧 :wrench:<br>🔩 :nut_and_bolt:    🔨 :hammer:    💺 :seat:<br>💰 :moneybag:    💴 :yen:    💵 :dollar:<br>💷 :pound:    💶 :euro:    💳 :credit_card:<br>💸 :money_with_wings:    📧 :e-mail:    📥 :inbox_tray:<br>📤 :outbox_tray:    ✉️ :envelope:    📨 :incoming_envelope:<br>📯 :postal_horn:    📪 :mailbox_closed:    📬 :mailbox_with_mail:<br>📭 :mailbox_with_no_mail:    🚪 :door:    🚬 :smoking:<br>💣 :bomb:    🔫 :gun:    🔪 :hocho:<br>💊 :pill:    💉 :syringe:    📄 :page_facing_up:<br>📃 :page_with_curl:    📑 :bookmark_tabs:    📊 :bar_chart:<br>📈 :chart_with_upwards_trend:    📉 :chart_with_downwards_trend:    📜 :scroll:<br>📋 :clipboard:    📆 :calendar:    📅 :date:<br>📇 :card_index:    📁 :file_folder:    📂 :open_file_folder:<br>✂️ :scissors:    📌 :pushpin:    📎 :paperclip:<br>✒️ :black_nib:    ✏️ :pencil2:    📏 :straight_ruler:<br>📐 :triangular_ruler:    📕 :closed_book:    📗 :green_book:<br>📘 :blue_book:    📙 :orange_book:    📓 :notebook:<br>📔 :notebook_with_decorative_cover:    📒 :ledger:    📚 :books:<br>🔖 :bookmark:    📛 :name_badge:    🔬 :microscope:<br>🔭 :telescope:    📰 :newspaper:    🏈 :football:<br>🏀 :basketball:    ⚽️ :soccer:    ⚾️ :baseball:<br>🎾 :tennis:    🎱 :8ball:    🏉 :rugby_football:<br>🎳 :bowling:    ⛳️ :golf:    🚵 :mountain_bicyclist:<br>🚴 :bicyclist:    🏇 :horse_racing:    🏂 :snowboarder:<br>🏊 :swimmer:    🏄 :surfer:    🎿 :ski:<br>♠️ :spades:    ♥️ :hearts:    ♣️ :clubs:<br>♦️ :diamonds:    💎 :gem:    💍 :ring:<br>🏆 :trophy:    🎼 :musical_score:    🎹 :musical_keyboard:<br>🎻 :violin:    👾 :space_invader:    🎮 :video_game:<br>🃏 :black_joker:    🎴 :flower_playing_cards:    🎲 :game_die:<br>🎯 :dart:    🀄️ :mahjong:    🎬 :clapper:<br>📝 :memo:    📝 :pencil:    📖 :book:<br>🎨 :art:    🎤 :microphone:    🎧 :headphones:<br>🎺 :trumpet:    🎷 :saxophone:    🎸 :guitar:<br>👞 :shoe:    👡 :sandal:    👠 :high_heel:<br>💄 :lipstick:    👢 :boot:    👕 :shirt:<br>👕 :tshirt:    👔 :necktie:    👚 :womans_clothes:<br>👗 :dress:    🎽 :running_shirt_with_sash:    👖 :jeans:<br>👘 :kimono:    👙 :bikini:    🎀 :ribbon:<br>🎩 :tophat:    👑 :crown:    👒 :womans_hat:<br>👞 :mans_shoe:    🌂 :closed_umbrella:    💼 :briefcase:<br>👜 :handbag:    👝 :pouch:    👛 :purse:<br>👓 :eyeglasses:    🎣 :fishing_pole_and_fish:    </p>
+<h3 id="饮食"><a href="#饮食" class="headerlink" title="饮食"></a>饮食</h3><p>☕️ :coffee:<br>🍵 :tea:    🍶 :sake:    🍼 :baby_bottle:<br>🍺 :beer:    🍻 :beers:    🍸 :cocktail:<br>🍹 :tropical_drink:    🍷 :wine_glass:    🍴 :fork_and_knife:<br>🍕 :pizza:    🍔 :hamburger:    🍟 :fries:<br>🍗 :poultry_leg:    🍖 :meat_on_bone:    🍝 :spaghetti:<br>🍛 :curry:    🍤 :fried_shrimp:    🍱 :bento:<br>🍣 :sushi:    🍥 :fish_cake:    🍙 :rice_ball:<br>🍘 :rice_cracker:    🍚 :rice:    🍜 :ramen:<br>🍲 :stew:    🍢 :oden:    🍡 :dango:<br>🥚 :egg:    🍞 :bread:    🍩 :doughnut:<br>🍮 :custard:    🍦 :icecream:    🍨 :ice_cream:<br>🍧 :shaved_ice:    🎂 :birthday:    🍰 :cake:<br>🍪 :cookie:    🍫 :chocolate_bar:    🍬 :candy:<br>🍭 :lollipop:    🍯 :honey_pot:    🍎 :apple:<br>🍏 :green_apple:    🍊 :tangerine:    🍋 :lemon:<br>🍒 :cherries:    🍇 :grapes:    🍉 :watermelon:<br>🍓 :strawberry:    🍑 :peach:    🍈 :melon:<br>🍌 :banana:    🍐 :pear:    🍍 :pineapple:<br>🍠 :sweet_potato:    🍆 :eggplant:    🍅 :tomato:<br>🌽 :corn:          </p>
+<h3 id="房屋"><a href="#房屋" class="headerlink" title="房屋"></a>房屋</h3><p>:house:    🏡 :house_with_garden:    🏫 :school:<br>🏢 :office:    🏣 :post_office:    🏥 :hospital:<br>🏦 :bank:    🏪 :convenience_store:    🏩 :love_hotel:<br>🏨 :hotel:    💒 :wedding:    ⛪️ :church:<br>🏬 :department_store:    🏤 :european_post_office:    🌇 :city_sunrise:<br>🌆 :city_sunset:    🏯 :japanese_castle:    🏰 :european_castle:<br>⛺️ :tent:    🏭 :factory:    🗼 :tokyo_tower:</p>
+<h3 id="交通"><a href="#交通" class="headerlink" title="交通"></a>交通</h3><p> :ferris_wheel:    ⛲️ :fountain:    🎢 :roller_coaster:<br>🚢 :ship:    🚤 :speedboat:    ⛵️ :boat:<br>⛵️ :sailboat:    🚣 :rowboat:    ⚓️ :anchor:<br>🚀 :rocket:    ✈️ :airplane:    🚁 :helicopter:<br>🚂 :steam_locomotive:    🚊 :tram:    🚞 :mountain_railway:<br>🚲 :bike:    🚡 :aerial_tramway:    🚟 :suspension_railway:<br>🚠 :mountain_cableway:    🚜 :tractor:    🚙 :blue_car:<br>🚘 :oncoming_automobile:    🚗 :car:    🚗 :red_car:<br>🚕 :taxi:    🚖 :oncoming_taxi:    🚛 :articulated_lorry:<br>🚌 :bus:    🚍 :oncoming_bus:    🚨 :rotating_light:<br>🚓 :police_car:    🚔 :oncoming_police_car:    🚒 :fire_engine:<br>🚑 :ambulance:    🚐 :minibus:    🚚 :truck:<br>🚋 :train:    🚉 :station:    🚆 :train2:<br>🚅 :bullettrain_front:    🚄 :bullettrain_side:    🚈 :light_rail:<br>🚝 :monorail:    🚃 :railway_car:    🚎 :trolleybus:<br>🎫 :ticket:    ⛽️ :fuelpump:    🚦 :vertical_traffic_light:<br>🚥 :traffic_light:    ⚠️ :warning:    🚧 :construction:<br>🔰 :beginner:    🏧 :atm:    🎰 :slot_machine:<br>🚏 :busstop:    💈 :barber:    ♨️ :hotsprings:<br>🏁 :checkered_flag:    🎌 :crossed_flags:    🏮 :izakaya_lantern:<br>🗿 :moyai:    🎪 :circus_tent:    🎭 :performing_arts:<br>📍 :round_pushpin:    🚩 :triangular_flag_on_post:</p>
+<h3 id="数字标志"><a href="#数字标志" class="headerlink" title="数字标志"></a>数字标志</h3><p>1️⃣ :one:    2️⃣ :two:    3️⃣ :three:<br>4️⃣ :four:    5️⃣ :five:    6️⃣ :six:<br>7️⃣ :seven:    8️⃣ :eight:    9️⃣ :nine:<br>🔟 :keycap_ten:    🔢 :1234:    0️⃣ :zero:</p>
+<h3 id="时钟标识"><a href="#时钟标识" class="headerlink" title="时钟标识"></a>时钟标识</h3><p>🕐 :clock1:<br>🕜 :clock130:    🕙 :clock10:    🕥 :clock1030:<br>🕚 :clock11:    🕦 :clock1130:    🕛 :clock12:<br>🕧 :clock1230:    🕑 :clock2:    🕝 :clock230:<br>🕒 :clock3:    🕞 :clock330:    🕓 :clock4:<br>🕟 :clock430:    🕔 :clock5:    🕠 :clock530:<br>🕕 :clock6:    🕡 :clock630:    🕖 :clock7:<br>🕢 :clock730:    🕗 :clock8:    🕣 :clock830:<br>🕘 :clock9:    🕤 :clock930:    </p>
+<h3 id="其他标识"><a href="#其他标识" class="headerlink" title="其他标识"></a>其他标识</h3><p>#️⃣ :hash:    🔣 :symbols:    ◀️ :arrow_backward:<br>⬇️ :arrow_down:    ▶️ :arrow_forward:    ⬅️ :arrow_left:<br>🔠 :capital_abcd:    🔡 :abcd:    🔤 :abc:<br>↙️ :arrow_lower_left:    ↘️ :arrow_lower_right:    ➡️ :arrow_right:<br>⬆️ :arrow_up:    ↖️ :arrow_upper_left:    ↗️ :arrow_upper_right:<br>⏬ :arrow_double_down:    ⏫ :arrow_double_up:    🔽 :arrow_down_small:<br>⤵️ :arrow_heading_down:    ⤴️ :arrow_heading_up:    ↩️:leftwards_arrow_with_hook:<br>↪️ :arrow_right_hook:    ↔️ :left_right_arrow:    ↕️ :arrow_up_down:<br>🔼 :arrow_up_small:    🔃 :arrows_clockwise:    🔄 :arrows_counterclockwise:<br>⏪ :rewind:    ⏩ :fast_forward:    ℹ️ :information_source:<br>🆗 :ok:    🔀 :twisted_rightwards_arrows:    🔁 :repeat:<br>🔂 :repeat_one:    🆕 :new:    🔝 :top:<br>🆙 :up:    🆒 :cool:    🆓 :free:<br>🆖 :ng:    🎦 :cinema:    🈁 :koko:<br>📶 :signal_strength:    🈹 :u5272:    🈴 :u5408:<br>🈺 :u55b6:    🈯️ :u6307:    🈷️ :u6708:<br>🈶 :u6709:    🈵 :u6e80:    🈚️ :u7121:<br>🈸 :u7533:    🈳 :u7a7a:    🈲 :u7981:<br>🈂️ :sa:    🚻 :restroom:    🚹 :mens:<br>🚺 :womens:    🚼 :baby_symbol:    🚭 :no_smoking:<br>🅿️ :parking:    ♿️ :wheelchair:    🚇 :metro:<br>🛄 :baggage_claim:    🉑 :accept:    🚾 :wc:<br>🚰 :potable_water:    🚮 :put_litter_in_its_place:    ㊙️ :secret:<br>㊗️ :congratulations:    Ⓜ️ :m:    🛂 :passport_control:<br>🛅 :left_luggage:    🛃 :customs:    🉐 :ideograph_advantage:<br>🆑 :cl:    🆘 :sos:    🆔 :id:<br>🚫 :no_entry_sign:    🔞 :underage:    📵 :no_mobile_phones:<br>🚯 :do_not_litter:    🚱 :non-potable_water:    🚳 :no_bicycles:<br>🚷 :no_pedestrians:    🚸 :children_crossing:    ⛔️ :no_entry:<br>✳️ :eight_spoked_asterisk:    ✴️ :eight_pointed_black_star:    💟 :heart_decoration:<br>🆚 :vs:    📳 :vibration_mode:    📴 :mobile_phone_off:<br>💹 :chart:    💱 :currency_exchange:    ♈️ :aries:<br>♉️ :taurus:    ♊️ :gemini:    ♋️ :cancer:<br>♌️ :leo:    ♍️ :virgo:    ♎️ :libra:<br>♏️ :scorpius:    ♐️ :sagittarius:    ♑️ :capricorn:<br>♒️ :aquarius:    ♓️ :pisces:    ⛎ :ophiuchus:<br>🔯 :six_pointed_star:    ❎:negative_squared_cross_mark:    🅰️ :a:<br>🅱️ :b:    🆎 :ab:    🅾️ :o2:<br>💠:diamond_shape_with_a_dot_inside:    ♻️ :recycle:    🔚 :end:<br>🔛 :on:    🔜 :soon:    💲 :heavy_dollar_sign:<br>©️ :copyright:    ®️ :registered:    ™️ :tm:<br>❌ :x:    ❗️ :heavy_exclamation_mark:    ‼️ :bangbang:<br>⁉️ :interrobang:    ⭕️ :o:    ✖️ :heavy_multiplication_x:<br>➕ :heavy_plus_sign:    ➖ :heavy_minus_sign:    ➗ :heavy_division_sign:<br>💮 :white_flower:    💯 :100:    ✔️ :heavy_check_mark:<br>☑️ :ballot_box_with_check:    🔘 :radio_button:    🔗 :link:<br>➰ :curly_loop:    〰️ :wavy_dash:    〽️ :part_alternation_mark:<br>🔱 :trident:    :black_square: :black_square:    :white_square: :white_square:<br>✅ :white_check_mark:    🔲 :black_square_button:    🔳 :white_square_button:<br>⚫️ :black_circle:    ⚪️ :white_circle:    🔴 :red_circle:<br>🔵 :large_blue_circle:    🔷 :large_blue_diamond:    🔶 :large_orange_diamond:<br>🔹 :small_blue_diamond:    🔸 :small_orange_diamond:    🔺 :small_red_triangle:<br>🔻 :small_red_triangle_down:</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/jishu/ubuntu/sources/" rel="prev" title="Ubuntu修改源">
+      <i class="fa fa-chevron-left"></i> Ubuntu修改源
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/jishu/System/CentOS%20(2)/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2ubuntu%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">部署ubuntu子系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E5%AD%90%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">开启子系统功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDubuntu"><span class="nav-number">1.2.</span> <span class="nav-text">下载ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ubuntu"><span class="nav-number">1.3.</span> <span class="nav-text">安装ubuntu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEubuntu%E6%BA%90"><span class="nav-number">1.4.</span> <span class="nav-text">设置ubuntu源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0"><span class="nav-number">1.5.</span> <span class="nav-text">系统更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEubuntu%E4%B8%AD%E6%96%87"><span class="nav-number">1.6.</span> <span class="nav-text">设置ubuntu中文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%AF%AD%E8%A8%80%E5%8C%85"><span class="nav-number">1.6.1.</span> <span class="nav-text">安装语言包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87"><span class="nav-number">1.6.2.</span> <span class="nav-text">设置中文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#npm%E5%AE%89%E8%A3%85"><span class="nav-number">1.7.</span> <span class="nav-text">npm安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%AE%89%E8%A3%85"><span class="nav-number">1.7.1.</span> <span class="nav-text">在线安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDnodejs-12%E5%AE%89%E8%A3%85%E5%8C%85"><span class="nav-number">1.7.2.</span> <span class="nav-text">下载nodejs-12安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E5%AE%89%E8%A3%85%E5%8C%85%E5%A4%8D%E5%88%B6%E3%80%81%E6%94%B9%E5%90%8D%E3%80%81%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.7.3.</span> <span class="nav-text">将安装包复制、改名、解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.7.4.</span> <span class="nav-text">修改配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Hexo"><span class="nav-number">2.</span> <span class="nav-text">安装Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">框架安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">主题安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%98%E7%BD%91%E5%BC%95%E5%AF%BC"><span class="nav-number">3.</span> <span class="nav-text">官网引导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%99"><span class="nav-number">3.1.2.</span> <span class="nav-text">建站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.4.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%81%E7%A7%BB"><span class="nav-number">3.1.5.</span> <span class="nav-text">迁移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">3.3.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="nav-number">3.4.</span> <span class="nav-text">自定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">博客设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#config-yml%EF%BC%88hexo%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">_config.yml（hexo）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E6%96%87%E4%BB%B6"><span class="nav-number">4.1.1.</span> <span class="nav-text">原始文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%90%8E%E6%96%87%E4%BB%B6"><span class="nav-number">4.1.2.</span> <span class="nav-text">改后文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%AF%B4%E6%98%8E"><span class="nav-number">4.1.3.</span> <span class="nav-text">修改说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config-yml%EF%BC%88next%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">_config.yml（next）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E6%96%87%E4%BB%B6-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">原始文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%90%8E%E6%96%87%E4%BB%B6-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">改后文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%AF%B4%E6%98%8E-1"><span class="nav-number">4.2.3.</span> <span class="nav-text">修改说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-number">5.</span> <span class="nav-text">设置步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">主题设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E6%8F%92%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">git插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4"><span class="nav-number">5.2.1.</span> <span class="nav-text">下载命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%A6%E6%88%B7%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.2.2.</span> <span class="nav-text">账户设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E6%8F%92%E4%BB%B6-1"><span class="nav-number">5.3.</span> <span class="nav-text">git插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">下载命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mermaid%E6%8F%92%E4%BB%B6"><span class="nav-number">5.4.</span> <span class="nav-text">mermaid插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4-2"><span class="nav-number">5.4.1.</span> <span class="nav-text">下载命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE-themes-yml"><span class="nav-number">5.4.2.</span> <span class="nav-text">相关设置 themes.yml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fancybox%E6%8F%92%E4%BB%B6"><span class="nav-number">5.5.</span> <span class="nav-text">fancybox插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E6%8F%92%E4%BB%B6"><span class="nav-number">5.6.</span> <span class="nav-text">图片显示插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E6%8F%92%E4%BB%B6"><span class="nav-number">5.7.</span> <span class="nav-text">搜索插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4-3"><span class="nav-number">5.7.1.</span> <span class="nav-text">下载命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo-yml"><span class="nav-number">5.7.2.</span> <span class="nav-text">hexo.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#themes-yml"><span class="nav-number">5.7.3.</span> <span class="nav-text">themes.yml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#emoji%E6%8F%92%E4%BB%B6"><span class="nav-number">5.8.</span> <span class="nav-text">emoji插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%91%BD%E4%BB%A4-4"><span class="nav-number">5.8.1.</span> <span class="nav-text">下载命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E5%B9%B3%E5%8F%B0"><span class="nav-number">6.</span> <span class="nav-text">发布平台</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7"><span class="nav-number">7.</span> <span class="nav-text">编辑工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#typora%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.1.</span> <span class="nav-text">typora图片设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typora-emoji"><span class="nav-number">7.2.</span> <span class="nav-text">typora emoji</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E6%83%85"><span class="nav-number">7.2.1.</span> <span class="nav-text">表情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%B1%E5%BF%83"><span class="nav-number">7.2.2.</span> <span class="nav-text">爱心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E8%A7%92%E6%98%9F"><span class="nav-number">7.2.3.</span> <span class="nav-text">五角星</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7"><span class="nav-number">7.2.4.</span> <span class="nav-text">符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A9%E6%B0%94"><span class="nav-number">7.2.5.</span> <span class="nav-text">天气</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">7.2.6.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%97%E5%B1%8E"><span class="nav-number">7.2.7.</span> <span class="nav-text">狗屎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%BF"><span class="nav-number">7.2.8.</span> <span class="nav-text">手势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%BA%E7%89%A9"><span class="nav-number">7.2.9.</span> <span class="nav-text">人物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E7%89%A9"><span class="nav-number">7.2.10.</span> <span class="nav-text">动物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A4%8D%E7%89%A9"><span class="nav-number">7.2.11.</span> <span class="nav-text">植物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E7%90%86"><span class="nav-number">7.2.12.</span> <span class="nav-text">地理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98"><span class="nav-number">7.2.13.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A5%AE%E9%A3%9F"><span class="nav-number">7.2.14.</span> <span class="nav-text">饮食</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%BF%E5%B1%8B"><span class="nav-number">7.2.15.</span> <span class="nav-text">房屋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E9%80%9A"><span class="nav-number">7.2.16.</span> <span class="nav-text">交通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E6%A0%87%E5%BF%97"><span class="nav-number">7.2.17.</span> <span class="nav-text">数字标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%92%9F%E6%A0%87%E8%AF%86"><span class="nav-number">7.2.18.</span> <span class="nav-text">时钟标识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%A0%87%E8%AF%86"><span class="nav-number">7.2.19.</span> <span class="nav-text">其他标识</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">吴敌</p>
+  <div class="site-description" itemprop="description">吴敌</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:wudoer@live.com" title="E-Mail → mailto:wudoer@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 1992 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴敌</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

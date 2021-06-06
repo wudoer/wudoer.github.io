@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.wudoer.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="版本 更新时间 更新内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python自动化办公">
+<meta property="og:url" content="http://www.wudoer.com/study%20(1)/Python/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/index.html">
+<meta property="og:site_name" content="吴敌">
+<meta property="og:description" content="版本 更新时间 更新内容">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-04-03T16:00:00.000Z">
+<meta property="article:author" content="吴敌">
+<meta property="article:tag" content="吴敌">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.wudoer.com/study%20(1)/Python/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Python自动化办公 | 吴敌</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吴敌</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">吴敌</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">24</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.wudoer.com/study%20(1)/Python/Python%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8A%9E%E5%85%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="吴敌">
+      <meta itemprop="description" content="吴敌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吴敌">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python自动化办公
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-04T00:00:00+08:00">2021-04-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <table>
+<thead>
+<tr>
+<th align="center">版本</th>
+<th align="center">更新时间</th>
+<th align="center">更新内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+ <span id="more"></span> 
+
+<h1 id="Python基础入门"><a href="#Python基础入门" class="headerlink" title="Python基础入门"></a>Python基础入门</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h4 id="字符串-1"><a href="#字符串-1" class="headerlink" title="字符串"></a>字符串</h4><pre><code class="python">&quot;&quot;&quot;
+多行注释
+&quot;&quot;&quot;
+print(&quot;你好,世界&quot;)
+print(&quot;你好,世界&quot;,end=&quot;\n&quot;)                # print默认end=&quot;\n&quot;换行
+print(&quot;你好,世界&quot;,end=&quot;\t&quot;)                # end=&quot;\t&quot; tab-四个空格
+print(&quot;你好&quot;,&quot;世界&quot;,sep=&quot; &quot;)               # print默认sep=&quot; &quot;空格
+print(&quot;你好&quot;,&quot;世界&quot;,sep=&quot;---&quot;)             # 设置---连接
+print(&quot;你好&quot;+&quot;3&quot;)                          # 在字符串中+代表连接
+print(&quot;你好&quot;*3)                            # 在字符串中*代表重复
+print(&quot;I&#39;LOVE&#39;YOU&quot;)                       # &quot;&quot; &#39;&#39; 需成对出现
+print(&#39;I&quot;LOVE&quot;YOU&#39;)                       # &quot;&quot; &#39;&#39; 需成对出现
+print(r&quot;\n你好,世界&quot;,end=&quot;\n&quot;)             # 取消转义
+</code></pre>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><pre><code class="python">&quot;&quot;&quot;
+变量名规则：支持汉字，并且也可以由字母、数字和下划线构成，
+但不能以数字开头，且区分大小写。
+&quot;&quot;&quot;
+
+a = 1
+b = 2
+print(b)
+print(a)
+
+c=d=f = 3     # 同时给多个变量赋值
+print(c)
+print(d)
+print(f)
+
+x = 4
+y = 5
+x,y = y,x     # 交换变量赋值
+print(x)
+print(y)
+
+姓名 = &quot;吴志明&quot;
+年龄 = 26
+print(f&#39;我的名字叫&#123;姓名&#125;,今年&#123;年龄&#125;岁&#39;)    #f 直接引用变量
+print(f&#39;我的名字叫&#123;姓名&#125;,明年&#123;年龄+1&#125;岁&#39;)  #变量可以计算
+</code></pre>
+<h4 id="input输入"><a href="#input输入" class="headerlink" title="input输入"></a>input输入</h4><pre><code class="python">&quot;&quot;&quot;
+input需要转换才能运算
+&quot;&quot;&quot;
+
+姓名 = input(&quot;请输入你的姓名:&quot;)
+年龄 = int(input(&quot;请输入你的年龄:&quot;))
+print(f&#39;&#123;姓名&#125;,&#123;年龄+1&#125;&#39;)
+</code></pre>
+<h3 id="字符串-2"><a href="#字符串-2" class="headerlink" title="字符串"></a>字符串</h3><h3 id="列表和元组"><a href="#列表和元组" class="headerlink" title="列表和元组"></a>列表和元组</h3><h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><h3 id="字典与集合"><a href="#字典与集合" class="headerlink" title="字典与集合"></a>字典与集合</h3><h3 id="For循环：公共操作与推导式"><a href="#For循环：公共操作与推导式" class="headerlink" title="For循环：公共操作与推导式"></a>For循环：公共操作与推导式</h3><h3 id="While循环"><a href="#While循环" class="headerlink" title="While循环"></a>While循环</h3><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h2 id="文件与文件夹"><a href="#文件与文件夹" class="headerlink" title="文件与文件夹"></a>文件与文件夹</h2><h2 id="修改与获取Python运行路径"><a href="#修改与获取Python运行路径" class="headerlink" title="修改与获取Python运行路径"></a>修改与获取Python运行路径</h2><h2 id="Python自动路径连接"><a href="#Python自动路径连接" class="headerlink" title="Python自动路径连接"></a>Python自动路径连接</h2><h2 id="显示文件夹中的所有元素"><a href="#显示文件夹中的所有元素" class="headerlink" title="显示文件夹中的所有元素"></a>显示文件夹中的所有元素</h2><h2 id="os-scandir遍历目录"><a href="#os-scandir遍历目录" class="headerlink" title="os.scandir遍历目录"></a>os.scandir遍历目录</h2><h2 id="练习一"><a href="#练习一" class="headerlink" title="练习一"></a>练习一</h2><h2 id="遍历文件夹"><a href="#遍历文件夹" class="headerlink" title="遍历文件夹"></a>遍历文件夹</h2><h2 id="搜索匹配文件名内置方法与glob模块"><a href="#搜索匹配文件名内置方法与glob模块" class="headerlink" title="搜索匹配文件名内置方法与glob模块"></a>搜索匹配文件名内置方法与glob模块</h2><h2 id="搜索匹配文件名fnmatch模块"><a href="#搜索匹配文件名fnmatch模块" class="headerlink" title="搜索匹配文件名fnmatch模块"></a>搜索匹配文件名fnmatch模块</h2><h2 id="练习二"><a href="#练习二" class="headerlink" title="练习二"></a>练习二</h2><h2 id="文件和文件夹操作"><a href="#文件和文件夹操作" class="headerlink" title="文件和文件夹操作"></a>文件和文件夹操作</h2><h3 id="创建文件夹【单层】"><a href="#创建文件夹【单层】" class="headerlink" title="创建文件夹【单层】"></a>创建文件夹【单层】</h3><h3 id="创建文件夹【多层】"><a href="#创建文件夹【多层】" class="headerlink" title="创建文件夹【多层】"></a>创建文件夹【多层】</h3><h3 id="shutil模块之复制文件"><a href="#shutil模块之复制文件" class="headerlink" title="shutil模块之复制文件"></a>shutil模块之复制文件</h3><h3 id="shutil模块之复制文件夹"><a href="#shutil模块之复制文件夹" class="headerlink" title="shutil模块之复制文件夹"></a>shutil模块之复制文件夹</h3><h3 id="shutil模块之移动文件和文件夹"><a href="#shutil模块之移动文件和文件夹" class="headerlink" title="shutil模块之移动文件和文件夹"></a>shutil模块之移动文件和文件夹</h3><h3 id="shutil模块之删除文件和文件夹"><a href="#shutil模块之删除文件和文件夹" class="headerlink" title="shutil模块之删除文件和文件夹"></a>shutil模块之删除文件和文件夹</h3><h3 id="重命名文件和文件夹"><a href="#重命名文件和文件夹" class="headerlink" title="重命名文件和文件夹"></a>重命名文件和文件夹</h3><h3 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a>练习3</h3><h2 id="文件读写与临时文件"><a href="#文件读写与临时文件" class="headerlink" title="文件读写与临时文件"></a>文件读写与临时文件</h2><h3 id="使用python操作zip文件"><a href="#使用python操作zip文件" class="headerlink" title="使用python操作zip文件"></a>使用python操作zip文件</h3><h3 id="pandas操作Excel文件"><a href="#pandas操作Excel文件" class="headerlink" title="pandas操作Excel文件"></a>pandas操作Excel文件</h3><h3 id="数据类型与新建文件"><a href="#数据类型与新建文件" class="headerlink" title="数据类型与新建文件"></a>数据类型与新建文件</h3><h3 id="读取txt与csv文件"><a href="#读取txt与csv文件" class="headerlink" title="读取txt与csv文件"></a>读取txt与csv文件</h3><h3 id="读取Mysql文件"><a href="#读取Mysql文件" class="headerlink" title="读取Mysql文件"></a>读取Mysql文件</h3><h3 id="读取与修改Excel文件"><a href="#读取与修改Excel文件" class="headerlink" title="读取与修改Excel文件"></a>读取与修改Excel文件</h3><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="数据结构之Series"><a href="#数据结构之Series" class="headerlink" title="数据结构之Series"></a>数据结构之Series</h3><h3 id="数据结构之DataFrame"><a href="#数据结构之DataFrame" class="headerlink" title="数据结构之DataFrame"></a>数据结构之DataFrame</h3><h2 id="连接与查询"><a href="#连接与查询" class="headerlink" title="连接与查询"></a>连接与查询</h2><h3 id="连接查询之Merge"><a href="#连接查询之Merge" class="headerlink" title="连接查询之Merge"></a>连接查询之Merge</h3><h3 id="连接查询之Join与Merge总结"><a href="#连接查询之Join与Merge总结" class="headerlink" title="连接查询之Join与Merge总结"></a>连接查询之Join与Merge总结</h3><h3 id="连接查询之concat"><a href="#连接查询之concat" class="headerlink" title="连接查询之concat"></a>连接查询之concat</h3><h1 id="各种数据自动填充"><a href="#各种数据自动填充" class="headerlink" title="各种数据自动填充"></a>各种数据自动填充</h1><h1 id="列与列之间的计算"><a href="#列与列之间的计算" class="headerlink" title="列与列之间的计算"></a>列与列之间的计算</h1><h1 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序"></a>数据排序</h1><h1 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h1><h1 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h1><h1 id="数据删除之drop函数"><a href="#数据删除之drop函数" class="headerlink" title="数据删除之drop函数"></a>数据删除之drop函数</h1><h1 id="处理缺失值"><a href="#处理缺失值" class="headerlink" title="处理缺失值"></a>处理缺失值</h1><h1 id="数学统计函数"><a href="#数学统计函数" class="headerlink" title="数学统计函数"></a>数学统计函数</h1><h1 id="删除重复和提取重复"><a href="#删除重复和提取重复" class="headerlink" title="删除重复和提取重复"></a>删除重复和提取重复</h1><h1 id="数据运算与数据对齐"><a href="#数据运算与数据对齐" class="headerlink" title="数据运算与数据对齐"></a>数据运算与数据对齐</h1><h1 id="多层索引与多层索引计算"><a href="#多层索引与多层索引计算" class="headerlink" title="多层索引与多层索引计算"></a>多层索引与多层索引计算</h1><h1 id="数据替换"><a href="#数据替换" class="headerlink" title="数据替换"></a>数据替换</h1><h1 id="离散化和分箱"><a href="#离散化和分箱" class="headerlink" title="离散化和分箱"></a>离散化和分箱</h1><h1 id="字符串操作（上）"><a href="#字符串操作（上）" class="headerlink" title="字符串操作（上）"></a>字符串操作（上）</h1><h1 id="字符串操作（下）"><a href="#字符串操作（下）" class="headerlink" title="字符串操作（下）"></a>字符串操作（下）</h1><h1 id="Excel文件的拆分与合并"><a href="#Excel文件的拆分与合并" class="headerlink" title="Excel文件的拆分与合并"></a>Excel文件的拆分与合并</h1><h1 id="分组与聚合groupby基础部分"><a href="#分组与聚合groupby基础部分" class="headerlink" title="分组与聚合groupby基础部分"></a>分组与聚合groupby基础部分</h1><h1 id="分组对象和创建"><a href="#分组对象和创建" class="headerlink" title="分组对象和创建"></a>分组对象和创建</h1><h1 id="数据透视表"><a href="#数据透视表" class="headerlink" title="数据透视表"></a>数据透视表</h1><h1 id="vlookup"><a href="#vlookup" class="headerlink" title="vlookup"></a>vlookup</h1><h1 id="数据处理的三板斧"><a href="#数据处理的三板斧" class="headerlink" title="数据处理的三板斧"></a>数据处理的三板斧</h1><h1 id="数据的转置、计算环比与同比"><a href="#数据的转置、计算环比与同比" class="headerlink" title="数据的转置、计算环比与同比"></a>数据的转置、计算环比与同比</h1><h2 id="openpyxl操作"><a href="#openpyxl操作" class="headerlink" title="openpyxl操作"></a>openpyxl操作</h2><h3 id="工作簿的新建打开与保存"><a href="#工作簿的新建打开与保存" class="headerlink" title="工作簿的新建打开与保存"></a>工作簿的新建打开与保存</h3><h3 id="工作表的创建删除与复制"><a href="#工作表的创建删除与复制" class="headerlink" title="工作表的创建删除与复制"></a>工作表的创建删除与复制</h3><h3 id="针对01课和02课的综合练习"><a href="#针对01课和02课的综合练习" class="headerlink" title="针对01课和02课的综合练习"></a>针对01课和02课的综合练习</h3><h1 id="获取单元格"><a href="#获取单元格" class="headerlink" title="获取单元格"></a>获取单元格</h1><h1 id="获取一个区域内的单元格与字母转换"><a href="#获取一个区域内的单元格与字母转换" class="headerlink" title="获取一个区域内的单元格与字母转换"></a>获取一个区域内的单元格与字母转换</h1><h1 id="动态读取数据"><a href="#动态读取数据" class="headerlink" title="动态读取数据"></a>动态读取数据</h1><h1 id="写入与插入数据"><a href="#写入与插入数据" class="headerlink" title="写入与插入数据"></a>写入与插入数据</h1><h1 id="移动与冻结单元格"><a href="#移动与冻结单元格" class="headerlink" title="移动与冻结单元格"></a>移动与冻结单元格</h1><h1 id="练习1：将每张工作表中固定单元合的数组聚合"><a href="#练习1：将每张工作表中固定单元合的数组聚合" class="headerlink" title="练习1：将每张工作表中固定单元合的数组聚合"></a>练习1：将每张工作表中固定单元合的数组聚合</h1><h1 id="练习2：按行或列聚合"><a href="#练习2：按行或列聚合" class="headerlink" title="练习2：按行或列聚合"></a>练习2：按行或列聚合</h1><h1 id="练习3：条件判断进行替换"><a href="#练习3：条件判断进行替换" class="headerlink" title="练习3：条件判断进行替换"></a>练习3：条件判断进行替换</h1><h1 id="联系4：条件判断新增列"><a href="#联系4：条件判断新增列" class="headerlink" title="联系4：条件判断新增列"></a>联系4：条件判断新增列</h1><h1 id="练习5：筛选"><a href="#练习5：筛选" class="headerlink" title="练习5：筛选"></a>练习5：筛选</h1><h1 id="练习6：一张工作表按制定列拆分成多个工作表"><a href="#练习6：一张工作表按制定列拆分成多个工作表" class="headerlink" title="练习6：一张工作表按制定列拆分成多个工作表"></a>练习6：一张工作表按制定列拆分成多个工作表</h1><h1 id="合并单元格：公式、分组、批注"><a href="#合并单元格：公式、分组、批注" class="headerlink" title="合并单元格：公式、分组、批注"></a>合并单元格：公式、分组、批注</h1><h1 id="字体与对齐"><a href="#字体与对齐" class="headerlink" title="字体与对齐"></a>字体与对齐</h1><h1 id="边框、填充、行高和列宽、锁定隐藏单元格"><a href="#边框、填充、行高和列宽、锁定隐藏单元格" class="headerlink" title="边框、填充、行高和列宽、锁定隐藏单元格"></a>边框、填充、行高和列宽、锁定隐藏单元格</h1><h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><h1 id="制作柱状图"><a href="#制作柱状图" class="headerlink" title="制作柱状图"></a>制作柱状图</h1><h1 id="制作折现图"><a href="#制作折现图" class="headerlink" title="制作折现图"></a>制作折现图</h1><h1 id="Word篇"><a href="#Word篇" class="headerlink" title="Word篇"></a>Word篇</h1><h2 id="简单认识Python-docx库"><a href="#简单认识Python-docx库" class="headerlink" title="简单认识Python-docx库"></a>简单认识Python-docx库</h2><h2 id="读取Word中的文字、标题等"><a href="#读取Word中的文字、标题等" class="headerlink" title="读取Word中的文字、标题等"></a>读取Word中的文字、标题等</h2><h2 id="写入和插入word文字和段落"><a href="#写入和插入word文字和段落" class="headerlink" title="写入和插入word文字和段落"></a>写入和插入word文字和段落</h2><h2 id="插入与删除图片"><a href="#插入与删除图片" class="headerlink" title="插入与删除图片"></a>插入与删除图片</h2><h2 id="按比例设置图片"><a href="#按比例设置图片" class="headerlink" title="按比例设置图片"></a>按比例设置图片</h2><h2 id="设置图片的对齐方式"><a href="#设置图片的对齐方式" class="headerlink" title="设置图片的对齐方式"></a>设置图片的对齐方式</h2><h2 id="表格的添加查看与定位"><a href="#表格的添加查看与定位" class="headerlink" title="表格的添加查看与定位"></a>表格的添加查看与定位</h2><h2 id="删除表的行和列，删除整表"><a href="#删除表的行和列，删除整表" class="headerlink" title="删除表的行和列，删除整表"></a>删除表的行和列，删除整表</h2><h2 id="单元格赋值与表哥录入"><a href="#单元格赋值与表哥录入" class="headerlink" title="单元格赋值与表哥录入"></a>单元格赋值与表哥录入</h2><h2 id="清空单元格里的数据"><a href="#清空单元格里的数据" class="headerlink" title="清空单元格里的数据"></a>清空单元格里的数据</h2><h2 id="表格与单元格对齐"><a href="#表格与单元格对齐" class="headerlink" title="表格与单元格对齐"></a>表格与单元格对齐</h2><h2 id="表格样式"><a href="#表格样式" class="headerlink" title="表格样式"></a>表格样式</h2><h2 id="文字样式调整"><a href="#文字样式调整" class="headerlink" title="文字样式调整"></a>文字样式调整</h2><h2 id="对齐方式与行间距"><a href="#对齐方式与行间距" class="headerlink" title="对齐方式与行间距"></a>对齐方式与行间距</h2><h2 id="段落缩进"><a href="#段落缩进" class="headerlink" title="段落缩进"></a>段落缩进</h2><h2 id="节的添加、定位和分节符的设置"><a href="#节的添加、定位和分节符的设置" class="headerlink" title="节的添加、定位和分节符的设置"></a>节的添加、定位和分节符的设置</h2><h2 id="设置页眉和页脚与节设置"><a href="#设置页眉和页脚与节设置" class="headerlink" title="设置页眉和页脚与节设置"></a>设置页眉和页脚与节设置</h2><h2 id="页眉页脚的距离"><a href="#页眉页脚的距离" class="headerlink" title="页眉页脚的距离"></a>页眉页脚的距离</h2><h2 id="设置奇偶页不同"><a href="#设置奇偶页不同" class="headerlink" title="设置奇偶页不同"></a>设置奇偶页不同</h2><h2 id="首页不同"><a href="#首页不同" class="headerlink" title="首页不同"></a>首页不同</h2><h2 id="页面边距与装订线"><a href="#页面边距与装订线" class="headerlink" title="页面边距与装订线"></a>页面边距与装订线</h2><h2 id="将某页设置为横向"><a href="#将某页设置为横向" class="headerlink" title="将某页设置为横向"></a>将某页设置为横向</h2><h2 id="页面大小和纸张方向"><a href="#页面大小和纸张方向" class="headerlink" title="页面大小和纸张方向"></a>页面大小和纸张方向</h2><h2 id="综合练习：复工证明"><a href="#综合练习：复工证明" class="headerlink" title="综合练习：复工证明"></a>综合练习：复工证明</h2><h1 id="PDF"><a href="#PDF" class="headerlink" title="PDF"></a>PDF</h1><h2 id="从PDF中提取文字"><a href="#从PDF中提取文字" class="headerlink" title="从PDF中提取文字"></a>从PDF中提取文字</h2><h2 id="从PDF中提取表格"><a href="#从PDF中提取表格" class="headerlink" title="从PDF中提取表格"></a>从PDF中提取表格</h2><h2 id="拆分PDF文件"><a href="#拆分PDF文件" class="headerlink" title="拆分PDF文件"></a>拆分PDF文件</h2><h2 id="合并PDF文件"><a href="#合并PDF文件" class="headerlink" title="合并PDF文件"></a>合并PDF文件</h2><h2 id="旋转PDF文件"><a href="#旋转PDF文件" class="headerlink" title="旋转PDF文件"></a>旋转PDF文件</h2><h2 id="PDF文件页码排序"><a href="#PDF文件页码排序" class="headerlink" title="PDF文件页码排序"></a>PDF文件页码排序</h2><h2 id="练习一-1"><a href="#练习一-1" class="headerlink" title="练习一"></a>练习一</h2><h2 id="给PDF文件添加水印"><a href="#给PDF文件添加水印" class="headerlink" title="给PDF文件添加水印"></a>给PDF文件添加水印</h2><h2 id="给PDF文件添加密码"><a href="#给PDF文件添加密码" class="headerlink" title="给PDF文件添加密码"></a>给PDF文件添加密码</h2><h2 id="取消PDF设置的密码"><a href="#取消PDF设置的密码" class="headerlink" title="取消PDF设置的密码"></a>取消PDF设置的密码</h2><h2 id="练习二-1"><a href="#练习二-1" class="headerlink" title="练习二"></a>练习二</h2><h2 id="从PDF文件中提取图片"><a href="#从PDF文件中提取图片" class="headerlink" title="从PDF文件中提取图片"></a>从PDF文件中提取图片</h2><h2 id="Word、Excel、Ppt批量转PDF"><a href="#Word、Excel、Ppt批量转PDF" class="headerlink" title="Word、Excel、Ppt批量转PDF"></a>Word、Excel、Ppt批量转PDF</h2><h1 id="PPT"><a href="#PPT" class="headerlink" title="PPT"></a>PPT</h1><h2 id="创建PPT写入标题与副标题"><a href="#创建PPT写入标题与副标题" class="headerlink" title="创建PPT写入标题与副标题"></a>创建PPT写入标题与副标题</h2><h2 id="PPT中的层次结构"><a href="#PPT中的层次结构" class="headerlink" title="PPT中的层次结构"></a>PPT中的层次结构</h2><h2 id="PPT中的占位符作用"><a href="#PPT中的占位符作用" class="headerlink" title="PPT中的占位符作用"></a>PPT中的占位符作用</h2><h2 id="在PPT中添加段落"><a href="#在PPT中添加段落" class="headerlink" title="在PPT中添加段落"></a>在PPT中添加段落</h2><h2 id="在PPT中添加文本框"><a href="#在PPT中添加文本框" class="headerlink" title="在PPT中添加文本框"></a>在PPT中添加文本框</h2><h2 id="PPT中插入图片"><a href="#PPT中插入图片" class="headerlink" title="PPT中插入图片"></a>PPT中插入图片</h2><h2 id="向PPT中添加表格"><a href="#向PPT中添加表格" class="headerlink" title="向PPT中添加表格"></a>向PPT中添加表格</h2><h2 id="综合小练习"><a href="#综合小练习" class="headerlink" title="综合小练习"></a>综合小练习</h2><h2 id="文本框的各种设置"><a href="#文本框的各种设置" class="headerlink" title="文本框的各种设置"></a>文本框的各种设置</h2><h2 id="四种常用图表的创建"><a href="#四种常用图表的创建" class="headerlink" title="四种常用图表的创建"></a>四种常用图表的创建</h2><h2 id="批量删除同一文件夹下PPT的指定页面"><a href="#批量删除同一文件夹下PPT的指定页面" class="headerlink" title="批量删除同一文件夹下PPT的指定页面"></a>批量删除同一文件夹下PPT的指定页面</h2>
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fa fa-wechat"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/pro/%E5%8D%9A%E6%96%87%20(8)/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/pro/%E5%8D%9A%E6%96%87%20(7)/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">Python基础入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.1.1.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-1"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#input%E8%BE%93%E5%85%A5"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">input输入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2-2"><span class="nav-number">1.1.2.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84"><span class="nav-number">1.1.3.</span> <span class="nav-text">列表和元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.1.4.</span> <span class="nav-text">条件语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E5%85%B8%E4%B8%8E%E9%9B%86%E5%90%88"><span class="nav-number">1.1.5.</span> <span class="nav-text">字典与集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#For%E5%BE%AA%E7%8E%AF%EF%BC%9A%E5%85%AC%E5%85%B1%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%8E%A8%E5%AF%BC%E5%BC%8F"><span class="nav-number">1.1.6.</span> <span class="nav-text">For循环：公共操作与推导式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#While%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.1.7.</span> <span class="nav-text">While循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.8.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8E%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.2.</span> <span class="nav-text">文件与文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%8E%E8%8E%B7%E5%8F%96Python%E8%BF%90%E8%A1%8C%E8%B7%AF%E5%BE%84"><span class="nav-number">1.3.</span> <span class="nav-text">修改与获取Python运行路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%87%AA%E5%8A%A8%E8%B7%AF%E5%BE%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.4.</span> <span class="nav-text">Python自动路径连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0"><span class="nav-number">1.5.</span> <span class="nav-text">显示文件夹中的所有元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#os-scandir%E9%81%8D%E5%8E%86%E7%9B%AE%E5%BD%95"><span class="nav-number">1.6.</span> <span class="nav-text">os.scandir遍历目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E4%B8%80"><span class="nav-number">1.7.</span> <span class="nav-text">练习一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.8.</span> <span class="nav-text">遍历文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%90%8D%E5%86%85%E7%BD%AE%E6%96%B9%E6%B3%95%E4%B8%8Eglob%E6%A8%A1%E5%9D%97"><span class="nav-number">1.9.</span> <span class="nav-text">搜索匹配文件名内置方法与glob模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%90%8Dfnmatch%E6%A8%A1%E5%9D%97"><span class="nav-number">1.10.</span> <span class="nav-text">搜索匹配文件名fnmatch模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E4%BA%8C"><span class="nav-number">1.11.</span> <span class="nav-text">练习二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E6%93%8D%E4%BD%9C"><span class="nav-number">1.12.</span> <span class="nav-text">文件和文件夹操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E3%80%90%E5%8D%95%E5%B1%82%E3%80%91"><span class="nav-number">1.12.1.</span> <span class="nav-text">创建文件夹【单层】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%E3%80%90%E5%A4%9A%E5%B1%82%E3%80%91"><span class="nav-number">1.12.2.</span> <span class="nav-text">创建文件夹【多层】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shutil%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-number">1.12.3.</span> <span class="nav-text">shutil模块之复制文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shutil%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.12.4.</span> <span class="nav-text">shutil模块之复制文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shutil%E6%A8%A1%E5%9D%97%E4%B9%8B%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.12.5.</span> <span class="nav-text">shutil模块之移动文件和文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shutil%E6%A8%A1%E5%9D%97%E4%B9%8B%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.12.6.</span> <span class="nav-text">shutil模块之删除文件和文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">1.12.7.</span> <span class="nav-text">重命名文件和文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A03"><span class="nav-number">1.12.8.</span> <span class="nav-text">练习3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E4%B8%8E%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.</span> <span class="nav-text">文件读写与临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8python%E6%93%8D%E4%BD%9Czip%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.1.</span> <span class="nav-text">使用python操作zip文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pandas%E6%93%8D%E4%BD%9CExcel%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.2.</span> <span class="nav-text">pandas操作Excel文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.3.</span> <span class="nav-text">数据类型与新建文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96txt%E4%B8%8Ecsv%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.4.</span> <span class="nav-text">读取txt与csv文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96Mysql%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.5.</span> <span class="nav-text">读取Mysql文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E4%B8%8E%E4%BF%AE%E6%94%B9Excel%E6%96%87%E4%BB%B6"><span class="nav-number">1.13.6.</span> <span class="nav-text">读取与修改Excel文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.14.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BSeries"><span class="nav-number">1.14.1.</span> <span class="nav-text">数据结构之Series</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BDataFrame"><span class="nav-number">1.14.2.</span> <span class="nav-text">数据结构之DataFrame</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E4%B8%8E%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.15.</span> <span class="nav-text">连接与查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E4%B9%8BMerge"><span class="nav-number">1.15.1.</span> <span class="nav-text">连接查询之Merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E4%B9%8BJoin%E4%B8%8EMerge%E6%80%BB%E7%BB%93"><span class="nav-number">1.15.2.</span> <span class="nav-text">连接查询之Join与Merge总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E4%B9%8Bconcat"><span class="nav-number">1.15.3.</span> <span class="nav-text">连接查询之concat</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E6%95%B0%E6%8D%AE%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85"><span class="nav-number">2.</span> <span class="nav-text">各种数据自动填充</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%97%E4%B8%8E%E5%88%97%E4%B9%8B%E9%97%B4%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">3.</span> <span class="nav-text">列与列之间的计算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">数据排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2"><span class="nav-number">5.</span> <span class="nav-text">数据查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-number">6.</span> <span class="nav-text">筛选</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%A0%E9%99%A4%E4%B9%8Bdrop%E5%87%BD%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">数据删除之drop函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC"><span class="nav-number">8.</span> <span class="nav-text">处理缺失值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0"><span class="nav-number">9.</span> <span class="nav-text">数学统计函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E5%92%8C%E6%8F%90%E5%8F%96%E9%87%8D%E5%A4%8D"><span class="nav-number">10.</span> <span class="nav-text">删除重复和提取重复</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90"><span class="nav-number">11.</span> <span class="nav-text">数据运算与数据对齐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%B1%82%E7%B4%A2%E5%BC%95%E4%B8%8E%E5%A4%9A%E5%B1%82%E7%B4%A2%E5%BC%95%E8%AE%A1%E7%AE%97"><span class="nav-number">12.</span> <span class="nav-text">多层索引与多层索引计算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%9B%BF%E6%8D%A2"><span class="nav-number">13.</span> <span class="nav-text">数据替换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%BB%E6%95%A3%E5%8C%96%E5%92%8C%E5%88%86%E7%AE%B1"><span class="nav-number">14.</span> <span class="nav-text">离散化和分箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%EF%BC%88%E4%B8%8A%EF%BC%89"><span class="nav-number">15.</span> <span class="nav-text">字符串操作（上）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%EF%BC%88%E4%B8%8B%EF%BC%89"><span class="nav-number">16.</span> <span class="nav-text">字符串操作（下）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Excel%E6%96%87%E4%BB%B6%E7%9A%84%E6%8B%86%E5%88%86%E4%B8%8E%E5%90%88%E5%B9%B6"><span class="nav-number">17.</span> <span class="nav-text">Excel文件的拆分与合并</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%B8%8E%E8%81%9A%E5%90%88groupby%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86"><span class="nav-number">18.</span> <span class="nav-text">分组与聚合groupby基础部分</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%88%9B%E5%BB%BA"><span class="nav-number">19.</span> <span class="nav-text">分组对象和创建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%80%8F%E8%A7%86%E8%A1%A8"><span class="nav-number">20.</span> <span class="nav-text">数据透视表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vlookup"><span class="nav-number">21.</span> <span class="nav-text">vlookup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%89%E6%9D%BF%E6%96%A7"><span class="nav-number">22.</span> <span class="nav-text">数据处理的三板斧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BD%AC%E7%BD%AE%E3%80%81%E8%AE%A1%E7%AE%97%E7%8E%AF%E6%AF%94%E4%B8%8E%E5%90%8C%E6%AF%94"><span class="nav-number">23.</span> <span class="nav-text">数据的转置、计算环比与同比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#openpyxl%E6%93%8D%E4%BD%9C"><span class="nav-number">23.1.</span> <span class="nav-text">openpyxl操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E7%B0%BF%E7%9A%84%E6%96%B0%E5%BB%BA%E6%89%93%E5%BC%80%E4%B8%8E%E4%BF%9D%E5%AD%98"><span class="nav-number">23.1.1.</span> <span class="nav-text">工作簿的新建打开与保存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA%E5%88%A0%E9%99%A4%E4%B8%8E%E5%A4%8D%E5%88%B6"><span class="nav-number">23.1.2.</span> <span class="nav-text">工作表的创建删除与复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%92%88%E5%AF%B901%E8%AF%BE%E5%92%8C02%E8%AF%BE%E7%9A%84%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0"><span class="nav-number">23.1.3.</span> <span class="nav-text">针对01课和02课的综合练习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%8D%95%E5%85%83%E6%A0%BC"><span class="nav-number">24.</span> <span class="nav-text">获取单元格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E4%B8%80%E4%B8%AA%E5%8C%BA%E5%9F%9F%E5%86%85%E7%9A%84%E5%8D%95%E5%85%83%E6%A0%BC%E4%B8%8E%E5%AD%97%E6%AF%8D%E8%BD%AC%E6%8D%A2"><span class="nav-number">25.</span> <span class="nav-text">获取一个区域内的单元格与字母转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="nav-number">26.</span> <span class="nav-text">动态读取数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E4%B8%8E%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">27.</span> <span class="nav-text">写入与插入数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E4%B8%8E%E5%86%BB%E7%BB%93%E5%8D%95%E5%85%83%E6%A0%BC"><span class="nav-number">28.</span> <span class="nav-text">移动与冻结单元格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A01%EF%BC%9A%E5%B0%86%E6%AF%8F%E5%BC%A0%E5%B7%A5%E4%BD%9C%E8%A1%A8%E4%B8%AD%E5%9B%BA%E5%AE%9A%E5%8D%95%E5%85%83%E5%90%88%E7%9A%84%E6%95%B0%E7%BB%84%E8%81%9A%E5%90%88"><span class="nav-number">29.</span> <span class="nav-text">练习1：将每张工作表中固定单元合的数组聚合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A02%EF%BC%9A%E6%8C%89%E8%A1%8C%E6%88%96%E5%88%97%E8%81%9A%E5%90%88"><span class="nav-number">30.</span> <span class="nav-text">练习2：按行或列聚合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A03%EF%BC%9A%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E8%BF%9B%E8%A1%8C%E6%9B%BF%E6%8D%A2"><span class="nav-number">31.</span> <span class="nav-text">练习3：条件判断进行替换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%94%E7%B3%BB4%EF%BC%9A%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E6%96%B0%E5%A2%9E%E5%88%97"><span class="nav-number">32.</span> <span class="nav-text">联系4：条件判断新增列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A05%EF%BC%9A%E7%AD%9B%E9%80%89"><span class="nav-number">33.</span> <span class="nav-text">练习5：筛选</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A06%EF%BC%9A%E4%B8%80%E5%BC%A0%E5%B7%A5%E4%BD%9C%E8%A1%A8%E6%8C%89%E5%88%B6%E5%AE%9A%E5%88%97%E6%8B%86%E5%88%86%E6%88%90%E5%A4%9A%E4%B8%AA%E5%B7%A5%E4%BD%9C%E8%A1%A8"><span class="nav-number">34.</span> <span class="nav-text">练习6：一张工作表按制定列拆分成多个工作表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%88%E5%B9%B6%E5%8D%95%E5%85%83%E6%A0%BC%EF%BC%9A%E5%85%AC%E5%BC%8F%E3%80%81%E5%88%86%E7%BB%84%E3%80%81%E6%89%B9%E6%B3%A8"><span class="nav-number">35.</span> <span class="nav-text">合并单元格：公式、分组、批注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E4%B8%8E%E5%AF%B9%E9%BD%90"><span class="nav-number">36.</span> <span class="nav-text">字体与对齐</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BE%B9%E6%A1%86%E3%80%81%E5%A1%AB%E5%85%85%E3%80%81%E8%A1%8C%E9%AB%98%E5%92%8C%E5%88%97%E5%AE%BD%E3%80%81%E9%94%81%E5%AE%9A%E9%9A%90%E8%97%8F%E5%8D%95%E5%85%83%E6%A0%BC"><span class="nav-number">37.</span> <span class="nav-text">边框、填充、行高和列宽、锁定隐藏单元格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="nav-number">38.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E6%9F%B1%E7%8A%B6%E5%9B%BE"><span class="nav-number">39.</span> <span class="nav-text">制作柱状图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B6%E4%BD%9C%E6%8A%98%E7%8E%B0%E5%9B%BE"><span class="nav-number">40.</span> <span class="nav-text">制作折现图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Word%E7%AF%87"><span class="nav-number">41.</span> <span class="nav-text">Word篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%AE%A4%E8%AF%86Python-docx%E5%BA%93"><span class="nav-number">41.1.</span> <span class="nav-text">简单认识Python-docx库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96Word%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97%E3%80%81%E6%A0%87%E9%A2%98%E7%AD%89"><span class="nav-number">41.2.</span> <span class="nav-text">读取Word中的文字、标题等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E5%92%8C%E6%8F%92%E5%85%A5word%E6%96%87%E5%AD%97%E5%92%8C%E6%AE%B5%E8%90%BD"><span class="nav-number">41.3.</span> <span class="nav-text">写入和插入word文字和段落</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E4%B8%8E%E5%88%A0%E9%99%A4%E5%9B%BE%E7%89%87"><span class="nav-number">41.4.</span> <span class="nav-text">插入与删除图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E6%AF%94%E4%BE%8B%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87"><span class="nav-number">41.5.</span> <span class="nav-text">按比例设置图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9B%BE%E7%89%87%E7%9A%84%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="nav-number">41.6.</span> <span class="nav-text">设置图片的对齐方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%B7%BB%E5%8A%A0%E6%9F%A5%E7%9C%8B%E4%B8%8E%E5%AE%9A%E4%BD%8D"><span class="nav-number">41.7.</span> <span class="nav-text">表格的添加查看与定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8%E7%9A%84%E8%A1%8C%E5%92%8C%E5%88%97%EF%BC%8C%E5%88%A0%E9%99%A4%E6%95%B4%E8%A1%A8"><span class="nav-number">41.8.</span> <span class="nav-text">删除表的行和列，删除整表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%A0%BC%E8%B5%8B%E5%80%BC%E4%B8%8E%E8%A1%A8%E5%93%A5%E5%BD%95%E5%85%A5"><span class="nav-number">41.9.</span> <span class="nav-text">单元格赋值与表哥录入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%85%E7%A9%BA%E5%8D%95%E5%85%83%E6%A0%BC%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">41.10.</span> <span class="nav-text">清空单元格里的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E4%B8%8E%E5%8D%95%E5%85%83%E6%A0%BC%E5%AF%B9%E9%BD%90"><span class="nav-number">41.11.</span> <span class="nav-text">表格与单元格对齐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E6%A0%B7%E5%BC%8F"><span class="nav-number">41.12.</span> <span class="nav-text">表格样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E5%AD%97%E6%A0%B7%E5%BC%8F%E8%B0%83%E6%95%B4"><span class="nav-number">41.13.</span> <span class="nav-text">文字样式调整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F%E4%B8%8E%E8%A1%8C%E9%97%B4%E8%B7%9D"><span class="nav-number">41.14.</span> <span class="nav-text">对齐方式与行间距</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD%E7%BC%A9%E8%BF%9B"><span class="nav-number">41.15.</span> <span class="nav-text">段落缩进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8A%82%E7%9A%84%E6%B7%BB%E5%8A%A0%E3%80%81%E5%AE%9A%E4%BD%8D%E5%92%8C%E5%88%86%E8%8A%82%E7%AC%A6%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">41.16.</span> <span class="nav-text">节的添加、定位和分节符的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%A1%B5%E7%9C%89%E5%92%8C%E9%A1%B5%E8%84%9A%E4%B8%8E%E8%8A%82%E8%AE%BE%E7%BD%AE"><span class="nav-number">41.17.</span> <span class="nav-text">设置页眉和页脚与节设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E7%9C%89%E9%A1%B5%E8%84%9A%E7%9A%84%E8%B7%9D%E7%A6%BB"><span class="nav-number">41.18.</span> <span class="nav-text">页眉页脚的距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%A5%87%E5%81%B6%E9%A1%B5%E4%B8%8D%E5%90%8C"><span class="nav-number">41.19.</span> <span class="nav-text">设置奇偶页不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E9%A1%B5%E4%B8%8D%E5%90%8C"><span class="nav-number">41.20.</span> <span class="nav-text">首页不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E8%BE%B9%E8%B7%9D%E4%B8%8E%E8%A3%85%E8%AE%A2%E7%BA%BF"><span class="nav-number">41.21.</span> <span class="nav-text">页面边距与装订线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E6%9F%90%E9%A1%B5%E8%AE%BE%E7%BD%AE%E4%B8%BA%E6%A8%AA%E5%90%91"><span class="nav-number">41.22.</span> <span class="nav-text">将某页设置为横向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E5%A4%A7%E5%B0%8F%E5%92%8C%E7%BA%B8%E5%BC%A0%E6%96%B9%E5%90%91"><span class="nav-number">41.23.</span> <span class="nav-text">页面大小和纸张方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%EF%BC%9A%E5%A4%8D%E5%B7%A5%E8%AF%81%E6%98%8E"><span class="nav-number">41.24.</span> <span class="nav-text">综合练习：复工证明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PDF"><span class="nav-number">42.</span> <span class="nav-text">PDF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EPDF%E4%B8%AD%E6%8F%90%E5%8F%96%E6%96%87%E5%AD%97"><span class="nav-number">42.1.</span> <span class="nav-text">从PDF中提取文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EPDF%E4%B8%AD%E6%8F%90%E5%8F%96%E8%A1%A8%E6%A0%BC"><span class="nav-number">42.2.</span> <span class="nav-text">从PDF中提取表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%86%E5%88%86PDF%E6%96%87%E4%BB%B6"><span class="nav-number">42.3.</span> <span class="nav-text">拆分PDF文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6PDF%E6%96%87%E4%BB%B6"><span class="nav-number">42.4.</span> <span class="nav-text">合并PDF文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%8B%E8%BD%ACPDF%E6%96%87%E4%BB%B6"><span class="nav-number">42.5.</span> <span class="nav-text">旋转PDF文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PDF%E6%96%87%E4%BB%B6%E9%A1%B5%E7%A0%81%E6%8E%92%E5%BA%8F"><span class="nav-number">42.6.</span> <span class="nav-text">PDF文件页码排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E4%B8%80-1"><span class="nav-number">42.7.</span> <span class="nav-text">练习一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99PDF%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E6%B0%B4%E5%8D%B0"><span class="nav-number">42.8.</span> <span class="nav-text">给PDF文件添加水印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99PDF%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81"><span class="nav-number">42.9.</span> <span class="nav-text">给PDF文件添加密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%96%E6%B6%88PDF%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%AF%86%E7%A0%81"><span class="nav-number">42.10.</span> <span class="nav-text">取消PDF设置的密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E4%BA%8C-1"><span class="nav-number">42.11.</span> <span class="nav-text">练习二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EPDF%E6%96%87%E4%BB%B6%E4%B8%AD%E6%8F%90%E5%8F%96%E5%9B%BE%E7%89%87"><span class="nav-number">42.12.</span> <span class="nav-text">从PDF文件中提取图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word%E3%80%81Excel%E3%80%81Ppt%E6%89%B9%E9%87%8F%E8%BD%ACPDF"><span class="nav-number">42.13.</span> <span class="nav-text">Word、Excel、Ppt批量转PDF</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PPT"><span class="nav-number">43.</span> <span class="nav-text">PPT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAPPT%E5%86%99%E5%85%A5%E6%A0%87%E9%A2%98%E4%B8%8E%E5%89%AF%E6%A0%87%E9%A2%98"><span class="nav-number">43.1.</span> <span class="nav-text">创建PPT写入标题与副标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPT%E4%B8%AD%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">43.2.</span> <span class="nav-text">PPT中的层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPT%E4%B8%AD%E7%9A%84%E5%8D%A0%E4%BD%8D%E7%AC%A6%E4%BD%9C%E7%94%A8"><span class="nav-number">43.3.</span> <span class="nav-text">PPT中的占位符作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8PPT%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%AE%B5%E8%90%BD"><span class="nav-number">43.4.</span> <span class="nav-text">在PPT中添加段落</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8PPT%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%96%87%E6%9C%AC%E6%A1%86"><span class="nav-number">43.5.</span> <span class="nav-text">在PPT中添加文本框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PPT%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="nav-number">43.6.</span> <span class="nav-text">PPT中插入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91PPT%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%A1%A8%E6%A0%BC"><span class="nav-number">43.7.</span> <span class="nav-text">向PPT中添加表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E5%B0%8F%E7%BB%83%E4%B9%A0"><span class="nav-number">43.8.</span> <span class="nav-text">综合小练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E6%A1%86%E7%9A%84%E5%90%84%E7%A7%8D%E8%AE%BE%E7%BD%AE"><span class="nav-number">43.9.</span> <span class="nav-text">文本框的各种设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">43.10.</span> <span class="nav-text">四种常用图表的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E5%90%8C%E4%B8%80%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8BPPT%E7%9A%84%E6%8C%87%E5%AE%9A%E9%A1%B5%E9%9D%A2"><span class="nav-number">43.11.</span> <span class="nav-text">批量删除同一文件夹下PPT的指定页面</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">吴敌</p>
+  <div class="site-description" itemprop="description">吴敌</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:wudoer@live.com" title="E-Mail → mailto:wudoer@live.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 1992 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴敌</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
